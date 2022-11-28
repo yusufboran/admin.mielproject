@@ -1,17 +1,21 @@
 export const navigations = [
-  { name: 'Dashboard', path: '/dashboard/default', icon: 'dashboard' },
-  { label: 'PAGES', type: 'label' },
+  { name: "Home", path: "/home", icon: "dashboard" },
   {
-    name: 'Session/Auth',
-    icon: 'security',
+    name: "Project",
+    icon: "domain",
     children: [
-      { name: 'Sign in', iconText: 'SI', path: '/session/signin' },
-      { name: 'Sign up', iconText: 'SU', path: '/session/signup' },
-      { name: 'Forgot Password', iconText: 'FP', path: '/session/forgot-password' },
-      { name: 'Error', iconText: '404', path: '/session/404' },
+      { name: "Projects", icon: "domain", path: "/projects" },
+      { name: "Project add", icon: "domain_add", path: "/projects/add" },
     ],
   },
-  { label: 'Components', type: 'label' },
+  {
+    name: "Consultants",
+    icon: "people",
+    children: [
+      { name: "Consultants", icon: "groups_icon", path: "/session/signin" },
+      { name: "Consultant add", icon: "person_add", path: "/session/signup" },
+    ],
+  },
   {
     name: 'Components',
     icon: 'favorite',
@@ -32,16 +36,5 @@ export const navigations = [
       { name: 'Snackbar', path: '/material/snackbar', iconText: 'S' },
       { name: 'Table', path: '/material/table', iconText: 'T' },
     ],
-  },
-  {
-    name: 'Charts',
-    icon: 'trending_up',
-    children: [{ name: 'Echarts', path: '/charts/echarts', iconText: 'E' }],
-  },
-  {
-    name: 'Documentation',
-    icon: 'launch',
-    type: 'extLink',
-    path: 'http://demos.ui-lib.com/matx-react-doc/',
   },
 ];

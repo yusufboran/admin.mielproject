@@ -33,7 +33,7 @@ const StyledIcon = styled(Icon)(() => ({
   verticalAlign: 'middle',
 }));
 
-const Breadcrumb = ({ routeSegments }) => {
+const Breadcrumb = ({ routeSegments ,icon }) => {
   const theme = useTheme();
   const hint = theme.palette.text.hint;
 
@@ -50,8 +50,8 @@ const Breadcrumb = ({ routeSegments }) => {
         separator={<Icon sx={{ color: hint }}>navigate_next</Icon>}
         sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}
       >
-        <NavLink to="/">
-          <StyledIcon color="primary">home</StyledIcon>
+        <NavLink to={"/"}>
+          <StyledIcon color="primary">{icon}</StyledIcon>
         </NavLink>
 
         {routeSegments
