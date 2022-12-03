@@ -6,12 +6,14 @@ import { AuthProvider } from './contexts/JWTAuthContext';
 import { SettingsProvider } from './contexts/SettingsContext';
 import { Store } from './redux/Store';
 import routes from './routes';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const content = useRoutes(routes);
 
   return (
     <Provider store={Store}>
+      <Toaster/>
       <SettingsProvider>
         <MatxTheme>
           <AuthProvider>{content}</AuthProvider>

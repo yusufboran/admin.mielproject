@@ -69,8 +69,7 @@ const RowCards = () => {
     return arr;
   }
 
-  const projectUrl = `/projects/edit/}?id=`;
-  const [projectsData, setProjectData] = React.useState([
+  const projectsData = [
     {
       id: 1,
       title: "Nidapark",
@@ -97,44 +96,8 @@ const RowCards = () => {
         "Amet duis non tempor est irure anim laborum anim voluptate veniam Lorem duis.Occaecat qui dolor qui consectetur laborum dolore enim eu sint commodo voluptate aliqua nostrud eu. Laborum culpa ea nisi exercitation dolor reprehenderit anim non irure et",
       imgUrl:
         "https://images.unsplash.com/photo-1666756240261-d2a79080c069?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1261&q=80",
-    },
-    {
-      id: 3,
-      title: "Project 3",
-      updateDate: 1669276992918,
-      information:
-        "Quis consectetur quis minim cupidatat et.Exercitation proident anim deserunt officia officia veniam exercitation minim.",
-      imgUrl:
-        "https://images.unsplash.com/photo-1666214280259-ab57309450b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 4,
-      title: "Project 4",
-      updateDate: 1669276992918,
-      information:
-        "Amet duis non tempor est irure anim laborum anim voluptate veniam Lorem duis.Occaecat qui dolor qui consectetur laborum dolore enim eu sint commodo voluptate aliqua nostrud eu. Laborum culpa ea nisi exercitation dolor reprehenderit anim non irure et",
-      imgUrl:
-        "https://images.unsplash.com/photo-1666756240261-d2a79080c069?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1261&q=80",
-    },
-    {
-      id: 5,
-      title: "Project 5",
-      updateDate: 1669276992918,
-      information:
-        "Quis consectetur quis minim cupidatat et.Exercitation proident anim deserunt officia officia veniam exercitation minim.",
-      imgUrl:
-        "https://images.unsplash.com/photo-1666214280259-ab57309450b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 6,
-      title: "Project 6",
-      updateDate: 1669276992918,
-      information:
-        "Quis consectetur quis minim cupidatat et.Exercitation proident anim deserunt officia officia veniam exercitation minim.",
-      imgUrl:
-        "https://images.unsplash.com/photo-1666214280259-ab57309450b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    },
-  ]);
+    }
+  ];
 
   return projectsData.map((item) => (
     <Fragment key={item.id}>
@@ -182,7 +145,13 @@ const RowCards = () => {
 
           <Grid item xs={1}>
             <Box display="flex" justifyContent="flex-end">
-              <Link to={projectUrl + item.id} className="btn btn-brand">
+              <Link
+                to={`/projects/edit/${item.title
+                  .split(" ")
+                  .join("-")
+                  .toLowerCase()}?id=${item.id} `}
+                className="btn btn-brand"
+              >
                 <IconButton>
                   <Icon>edit</Icon>
                 </IconButton>

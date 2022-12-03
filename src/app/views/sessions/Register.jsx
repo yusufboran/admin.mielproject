@@ -10,9 +10,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
-
 const JustifyBox = styled(FlexBox)(() => ({ justifyContent: 'center' }));
-
 const ContentBox = styled(JustifyBox)(() => ({
   height: '100%',
   padding: '32px',

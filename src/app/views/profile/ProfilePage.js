@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import { useLocation } from "react-router-dom";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -12,25 +11,17 @@ const Container = styled("div")(({ theme }) => ({
   },
 }));
 
-const ProjectEditPage = () => {
-  const location = useLocation();
-  const projectId = new URLSearchParams(location.search).get("id");
-
+const ProfilePage = () => {
   return (
     <Container>
       <Box className="breadcrumb">
         <Breadcrumb
-          icon={"domain"}
-          routeSegments={[
-            { name: "Project", path: "/projects" },
-            { name: "Edit", path: "/projects/add" },
-          ]}
+          icon={"person"}
+          routeSegments={[{ name: "Profile", path: "/projects" }]}
         />
       </Box>
-
-      {projectId}
     </Container>
   );
 };
 
-export default ProjectEditPage;
+export default ProfilePage;

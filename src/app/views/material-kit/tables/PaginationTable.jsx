@@ -14,6 +14,7 @@ import {
   CardContent,
 } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const StyledTable = styled(Table)(() => ({
   whiteSpace: "pre",
@@ -24,75 +25,79 @@ const StyledTable = styled(Table)(() => ({
     "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
   },
 }));
-const Title = styled("span")(() => ({
-  fontSize: "1rem",
-  fontWeight: "500",
-  textTransform: "capitalize",
-}));
 
 const subscribarList = [
   {
     name: "john doe",
     date: "18 january, 2019",
-    amount: 1000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "close",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "kessy bryan",
     date: "10 january, 2019",
-    amount: 9000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "My Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "kessy bryan",
     date: "10 january, 2019",
-    amount: 9000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "My Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "james cassegne",
     date: "8 january, 2019",
-    amount: 5000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "close",
-    company: "Collboy Tech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "lucy brown",
     date: "1 january, 2019",
-    amount: 89000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "lucy brown",
     date: "1 january, 2019",
-    amount: 89000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "lucy brown",
     date: "1 january, 2019",
-    amount: 89000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "lucy brown",
     date: "1 january, 2019",
-    amount: 89000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
   {
     name: "lucy brown",
     date: "1 january, 2019",
-    amount: 89000,
+    imgUrl:
+      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
     status: "open",
-    company: "ABC Fintech LTD.",
+    phoneNumber: "05551234567",
   },
 ];
 
@@ -112,7 +117,13 @@ const PaginationTable = () => {
   return (
     <Card elevation={3} sx={{ pt: "20px", mb: 3, pl: 3, pr: 3 }}>
       <CardHeader
-        action={<IconButton aria-label="settings">  <Icon fontSize="small">add</Icon></IconButton>}
+        action={
+          <Link to={`/consultants/add`} s style={{ textDecoration: "none" }}>
+            <IconButton aria-label="settings">
+              <Icon fontSize="small">add</Icon>
+            </IconButton>
+          </Link>
+        }
         title="Consultants"
       />
 
@@ -122,10 +133,9 @@ const PaginationTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="left">Name</TableCell>
-                <TableCell align="center">Company</TableCell>
+                <TableCell align="center">Phone Number</TableCell>
                 <TableCell align="center">Start Date</TableCell>
-                <TableCell align="center">Status</TableCell>
-                <TableCell align="center">Amount</TableCell>
+                <TableCell align="center">imgUrl</TableCell>
                 <TableCell align="right">Action</TableCell>
               </TableRow>
             </TableHead>
@@ -135,13 +145,17 @@ const PaginationTable = () => {
                 .map((subscriber, index) => (
                   <TableRow key={index}>
                     <TableCell align="left">{subscriber.name}</TableCell>
-                    <TableCell align="center">{subscriber.company}</TableCell>
+                    <TableCell align="center">
+                      {subscriber.phoneNumber}
+                    </TableCell>
                     <TableCell align="center">{subscriber.date}</TableCell>
-                    <TableCell align="center">{subscriber.status}</TableCell>
-                    <TableCell align="center">${subscriber.amount}</TableCell>
+                    <TableCell align="center">{subscriber.imgUrl}</TableCell>
                     <TableCell align="right">
                       <IconButton>
-                        <Icon color="error">close</Icon>
+                        <Icon>edit</Icon>
+                      </IconButton>
+                      <IconButton>
+                        <Icon color="error">delete</Icon>
                       </IconButton>
                     </TableCell>
                   </TableRow>

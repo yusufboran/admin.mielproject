@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
             password,
         })
         const { accessToken, user } = response.data
-
+        console.log(user)
         setSession(accessToken)
 
         dispatch({

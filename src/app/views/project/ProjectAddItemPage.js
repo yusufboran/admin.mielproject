@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import Checkout from "app/components/NewProject/Checkout";
+import NewProjectItem from "app/components/NewProject/NewProjectItem";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -22,7 +22,7 @@ const ProjectItemPage = () => {
             { name: "Add", path: "/projects/add" },
           ]}
         />
-        <Checkout />
+        <NewProjectItem />
       </Box>
     </Container>
   );

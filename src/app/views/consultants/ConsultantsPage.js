@@ -1,7 +1,6 @@
-import React from "react";
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import { useLocation } from "react-router-dom";
+import PaginationTable from "../material-kit/tables/PaginationTable";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -12,25 +11,18 @@ const Container = styled("div")(({ theme }) => ({
   },
 }));
 
-const ProjectEditPage = () => {
-  const location = useLocation();
-  const projectId = new URLSearchParams(location.search).get("id");
-
+const ConsultantsPage = () => {
   return (
     <Container>
       <Box className="breadcrumb">
         <Breadcrumb
-          icon={"domain"}
-          routeSegments={[
-            { name: "Project", path: "/projects" },
-            { name: "Edit", path: "/projects/add" },
-          ]}
+          icon={"groups_icon"}
+          routeSegments={[{ name: "Consultants", path: "/consultants" }]}
         />
+        <PaginationTable />
       </Box>
-
-      {projectId}
     </Container>
   );
 };
 
-export default ProjectEditPage;
+export default ConsultantsPage;

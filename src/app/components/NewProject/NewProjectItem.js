@@ -5,13 +5,15 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { createTheme } from "@mui/material/styles";
-import PaymentForm from "./PaymentForm";
 import Review from "./Review";
-import SimpleForm from "./SimpleForm";
 import { SimpleCard } from "app/components";
 import { Icon } from "@mui/material";
-const steps = ["Project information", "Project files", "Project check"];
+import DropFileInput from "../DropFileInput/DropFileInput";
+import TextForm from "./TextForm";
+
+
+
+const steps = ["Project information", "Project image", "Project check"];
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -25,9 +27,9 @@ const Container = styled("div")(({ theme }) => ({
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <SimpleForm />;
+      return <TextForm />;
     case 1:
-      return <PaymentForm />;
+      return <DropFileInput />;
     case 2:
       return <Review />;
     default:
@@ -35,9 +37,7 @@ function getStepContent(step) {
   }
 }
 
-const theme = createTheme();
-
-export default function Checkout() {
+export default function NewProjectItem() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -98,7 +98,13 @@ export default function Checkout() {
               onClick={handleNext}
               sx={{ mt: 3, ml: 1 }}
             >
-              {activeStep === steps.length - 1 ? "Finish" : <>Next<Icon fontSize="large">navigate_next</Icon></> }
+              {activeStep === steps.length - 1 ? (
+                "Finish"
+              ) : (
+                <>
+                  Next<Icon fontSize="large">navigate_next</Icon>
+                </>
+              )}
             </Button>
           </Box>
         </React.Fragment>

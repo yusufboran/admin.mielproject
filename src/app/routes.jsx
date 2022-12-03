@@ -7,6 +7,8 @@ import NotFound from "app/views/sessions/NotFound";
 import sessionRoutes from "app/views/sessions/SessionRoutes";
 import { Navigate } from "react-router-dom";
 import MatxLayout from "./components/MatxLayout/MatxLayout";
+import consultantsRoute from "./views/consultants/ConsultantsRoutes";
+import profileRoutes from "./views/profile/ProfileRoutes";
 
 const routes = [
   {
@@ -19,7 +21,9 @@ const routes = [
       ...dashboardRoutes,
       ...chartsRoute,
       ...projectRoutes,
+      ...consultantsRoute,
       ...materialRoutes,
+      ...profileRoutes
     ],
   },
   ...sessionRoutes,
