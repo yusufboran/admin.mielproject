@@ -7,7 +7,6 @@ import { Formik } from "formik";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { Login } from "../../../firebase";
 
 const FlexBox = styled(Box)(() => ({ display: "flex", alignItems: "center" }));
 const JustifyBox = styled(FlexBox)(() => ({ justifyContent: "center" }));
@@ -58,7 +57,7 @@ const JwtLogin = () => {
     try {
       //const loginOutput= await Login(values.email, values.password);
       await login(values.email, values.password);
-    //  navigate("/");
+      navigate("/");
     } catch (e) {
       setLoading(false);
     }

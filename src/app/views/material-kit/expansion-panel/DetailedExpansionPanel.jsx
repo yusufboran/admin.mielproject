@@ -6,6 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
+import { DocumentEditor } from "app/components/NewProject/TextEditor";
 
 const AccordionRoot = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -42,29 +43,19 @@ export default function DetailedExpansionPanel() {
           id="panel1c-header"
         >
           <Box className="column">
-            <Typography className="heading">Location</Typography>
+            <Typography className="heading">Description</Typography>
           </Box>
 
           <Box className="column">
-            <Typography className="secondaryHeading">Select trip destination</Typography>
+            <Typography className="secondaryHeading">
+              Select trip destination
+            </Typography>
           </Box>
         </AccordionSummary>
 
         <AccordionDetails className="details">
-          <Box className="column" />
-          <Box className="column">
-            <Chip label="Barbados" onDelete={() => {}} />
-          </Box>
-
-          <Box className="column helper">
-            <Typography variant="caption">
-              Select your destination of choice
-              <br />
-              <a href="#sub-labels-and-columns" className="link">
-                Learn more
-              </a>
-            </Typography>
-          </Box>
+          <DocumentEditor />
+          
         </AccordionDetails>
 
         <Divider />

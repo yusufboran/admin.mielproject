@@ -85,7 +85,6 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email, password) => {
-
     const loginOutput = await Login(email, password);
 
     console.log(loginOutput);
@@ -138,6 +137,7 @@ export const AuthProvider = ({ children }) => {
         const accessToken = window.localStorage.getItem("accessToken");
 
         if (accessToken && isValidToken(accessToken)) {
+          console.log("Access token " + accessToken);
           setSession(accessToken);
           const response = await axios.get("/api/auth/profile");
           const { user } = response.data;

@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import SignUp from "./ConsultanForm";
+import ConsultanEditForm from "./ConsultanEditForm";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -19,10 +19,10 @@ const ConsultantsAddPage = () => {
           icon={"domain"}
           routeSegments={[
             { name: "Consultants", path: "/Consultants" },
-            { name: "Add", path: "/Consultants/add" },
+            { name: "Edit", path: "/Consultants" },
           ]}
         />
-        <SignUp />
+        <ConsultanEditForm />
       </Box>
     </Container>
   );

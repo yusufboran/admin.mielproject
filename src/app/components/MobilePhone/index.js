@@ -2,14 +2,13 @@ import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "./styles.css";
 
-const MobilePhone = (props) => {
+const MobilePhone = ({value, onChange}) => {
   return (
     <PhoneInput
-      specialLabel={props.label}
+      value={value}
+      onChange={onChange}
       country={"tr"}
-      inputStyle={{
-        borderColor: props.touched && props.error && "red",
-      }}
+     
     />
   );
 };

@@ -13,8 +13,10 @@ import {
   CardHeader,
   CardContent,
 } from "@mui/material";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getConsultansList, deleteConsultansId } from "../../../../firebase";
+import AlertDialog from "../dialog/SimpleAlerts";
 
 const StyledTable = styled(Table)(() => ({
   whiteSpace: "pre",
@@ -26,82 +28,16 @@ const StyledTable = styled(Table)(() => ({
   },
 }));
 
-const subscribarList = [
-  {
-    name: "john doe",
-    date: "18 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "close",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "kessy bryan",
-    date: "10 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "kessy bryan",
-    date: "10 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "james cassegne",
-    date: "8 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "close",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "lucy brown",
-    date: "1 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "lucy brown",
-    date: "1 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "lucy brown",
-    date: "1 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "lucy brown",
-    date: "1 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-  {
-    name: "lucy brown",
-    date: "1 january, 2019",
-    imgUrl:
-      "https://businex.jamstacktemplates.dev/static/media/h-2-01.b1549d14.png",
-    status: "open",
-    phoneNumber: "05551234567",
-  },
-];
-
 const PaginationTable = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  async function getItem() {
+    getConsultansList(setItems);
+  }
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -112,6 +48,11 @@ const PaginationTable = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleDelete = (item) => {
+    deleteConsultansId(item.id);
+    getConsultansList(setItems);
   };
 
   return (
@@ -140,23 +81,28 @@ const PaginationTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {subscribarList
+              {items
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((subscriber, index) => (
+                .map((item, index) => (
                   <TableRow key={index}>
-                    <TableCell align="left">{subscriber.name}</TableCell>
-                    <TableCell align="center">
-                      {subscriber.phoneNumber}
+                    <TableCell align="left">
+                      {item.firstName + " " + item.lastName}
                     </TableCell>
-                    <TableCell align="center">{subscriber.date}</TableCell>
-                    <TableCell align="center">{subscriber.imgUrl}</TableCell>
+                    <TableCell align="center">{item.phoneNumber}</TableCell>
+                    <TableCell align="center">{item.startDate}</TableCell>
+                    <TableCell align="center">{item.imgUrl}</TableCell>
                     <TableCell align="right">
-                      <IconButton>
-                        <Icon>edit</Icon>
-                      </IconButton>
-                      <IconButton>
+                      <Link
+                        to={`/consultants/edit/}?id=${item.id} `}
+                        className="btn btn-brand"
+                      >
+                        <IconButton>
+                          <Icon>edit</Icon>
+                        </IconButton>
+                      </Link>
+                      <AlertDialog  deleteButton={() => handleDelete(item)} >
                         <Icon color="error">delete</Icon>
-                      </IconButton>
+                      </AlertDialog>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -168,7 +114,7 @@ const PaginationTable = () => {
             page={page}
             component="div"
             rowsPerPage={rowsPerPage}
-            count={subscribarList.length}
+            count={items.length}
             onPageChange={handleChangePage}
             rowsPerPageOptions={[5, 10, 25]}
             onRowsPerPageChange={handleChangeRowsPerPage}

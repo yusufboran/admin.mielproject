@@ -2,22 +2,7 @@ export const navigations = [
   { name: "Home", path: "/home", icon: "dashboard" },
   { name: "Project", path: "/projects", icon: "domain" },
   { name: "Consultants", path: "/consultants", icon: "groups_icon" },
-  {
-    name: "Project",
-    icon: "domain",
-    children: [
-      { name: "Projects", icon: "domain", path: "/projects" },
-      { name: "Project add", icon: "domain_add", path: "/projects/add" },
-    ],
-  },
-  {
-    name: "Consultants",
-    icon: "people",
-    children: [
-      { name: "Consultants", icon: "groups_icon", path: "/session/signin" },
-      { name: "Consultant add", icon: "person_add", path: "/session/signup" },
-    ],
-  },
+  
   {
     name: 'Components',
     icon: 'favorite',
