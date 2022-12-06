@@ -6,7 +6,7 @@ import TextEditor from "./TextEditor";
 import { addProject } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 
-export default function NewProjectItem() {
+export default function EditProjectItem(id) {
   const handleSave = () => {
     const files = [];
     fileList.forEach((item) => files.push(item.name));
@@ -18,11 +18,11 @@ export default function NewProjectItem() {
     };
 
     addProject(item);
-    //  navigate("/");
+    navigate("/");
   };
   const navigate = useNavigate();
   const [projectName, setProjectName] = useState("");
-  const [features, setFeatures] = React.useState([]);
+  const [features, setFeatures] = React.useState();
   const [description, setDescription] = React.useState(
     '<h2 style="text-align: center;">asdasd and React!</h2>'
   );

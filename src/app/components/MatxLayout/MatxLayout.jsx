@@ -8,7 +8,7 @@ const MatxLayout = (props) => {
 
   return (
     <MatxSuspense>
-      <Layout {...props} />
+      <Layout {...props} /> 
     </MatxSuspense>
   );
 };

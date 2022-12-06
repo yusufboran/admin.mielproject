@@ -2,6 +2,7 @@ import React from "react";
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import { useLocation } from "react-router-dom";
+import EditProjectItem from "app/components/NewProject/EditProjectItem";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -26,6 +27,7 @@ const ProjectEditPage = () => {
             { name: "Edit", path: "/projects/add" },
           ]}
         />
+        <EditProjectItem id={projectId} />
       </Box>
 
       {projectId}

@@ -56,6 +56,7 @@ export default function ConsultanEditForm() {
   const [startDate, setStartDate] = useState(null);
   const [birthday, setBirthday] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
+  const [fileList, setFileList] = useState([]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -168,7 +169,7 @@ export default function ConsultanEditForm() {
               </LocalizationProvider>
             </Grid>
           </Grid>
-          <DropFileInput />
+          <DropFileInput fileList={fileList} setFileList={setFileList} />
           <Button
             type="submit"
             fullWidth

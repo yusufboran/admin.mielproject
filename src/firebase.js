@@ -7,12 +7,11 @@ import {
   getFirestore,
   getDocs,
   getDoc,
-  setDoc,
-  onSnapshot,
   doc,
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, deleteObject } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC4iGWSLSOdBXG6q72J_uDo-i5VGBrLSro",
@@ -26,6 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
+const storage = getStorage();
 
 export const firebaseLogin = async (email, password) => {
   try {
@@ -37,25 +37,18 @@ export const firebaseLogin = async (email, password) => {
     toast.error("firebaseLogin", error.message);
   }
 };
-export const consultansAdd = async (
-  firstName,
-  lastName,
-  email,
-  phoneNumber,
-  startDate,
-  birthday,
-  imgUrl
-) => {
+export const consultansAdd = async (item) => {
   try {
     const docRef = await addDoc(collection(db, "consultans"), {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-      startDate: startDate,
-      birthday: birthday,
-      imgUrl: imgUrl,
+      firstName: item.firstName,
+      lastName: item.lastName,
+      email: item.email,
+      phoneNumber: item.phoneNumber,
+      startDate: item.startDate,
+      birthday: item.birthday,
+      imgUrl: item.file,
     });
+
     toast.success("Successfully Consultants Add" + docRef.id);
   } catch (error) {
     toast.error("consultansAdd", error.message);
@@ -152,6 +145,83 @@ export const getConsultansId = async (
     }
   } catch (error) {
     toast.error("getConsultansId", error.message);
+  }
+};
+
+export const addProject = async (item) => {
+  try {
+    console.log(item);
+
+    const docRef = await addDoc(collection(db, "projects"), {
+      projectName: item.projectName,
+      features: item.features,
+      description: item.description,
+      files: item.files,
+    });
+    toast.success("Successfully Project Add" + docRef.id);
+  } catch (error) {
+    toast.error("ConsultansAdd", error.message);
+  }
+};
+
+export const getProjectsList = async (setItems) => {
+  try {
+    const items = [];
+    const querySnapshot = await getDocs(collection(db, "projects"));
+
+    querySnapshot.forEach((doc) => {
+      const item = {
+        id: doc.id,
+        projectName: doc.data()["projectName"],
+        description: doc.data()["description"],
+        features: doc.data()["features"],
+        files: doc.data()["files"],
+        updateDate: 1669277071387,
+      };
+
+      items.push(item);
+    });
+    console.log(items);
+
+    setItems(items);
+  } catch (error) {
+    toast.error("getConsultansList", error.message);
+  }
+};
+
+export const deleteProjectsId = async (Id) => {
+  try {
+    await deleteDoc(doc(db, "projects", Id));
+    toast.success("Delete Successfully");
+  } catch (error) {
+    toast.error("deleteConsultansId", error.message);
+  }
+};
+
+export const fileUpload = async (file, url) => {
+  try {
+    const storageRef = ref(storage, url);
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+    });
+  } catch (error) {
+    toast.error("fileUpload", error.message);
+  }
+};
+
+export const fileDelete = async (url) => {
+  try {
+    const desertRef = ref(storage, url);
+
+    deleteObject(desertRef)
+      .then(() => {
+        // File deleted successfully
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+      });
+  } catch (error) {
+    toast.error("fileDelete", error.message);
   }
 };
 

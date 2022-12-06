@@ -1,74 +1,80 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Box, Button, Chip, Divider } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionActions from "@mui/material/AccordionActions";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/system";
 import { Editor } from "@tinymce/tinymce-react";
-import * as React from "react";
-import * as _ from "lodash";
+import { useState } from "react";
 
-export class DocumentEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEditorChange = this.handleEditorChange.bind(this);
+const AccordionRoot = styled(Box)(({ theme }) => ({
+  width: "100%",
+  "& .heading": { fontSize: theme.typography.pxToRem(15) },
+  "& .secondaryHeading": {
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(15),
+  },
+  "& .icon": {
+    width: 20,
+    height: 20,
+    verticalAlign: "bottom",
+  },
+  "& .details": { alignItems: "center" },
+  "& .column": { flexBasis: "33.33%" },
+  "& .helper": {
+    padding: theme.spacing(1, 2),
+    borderLeft: `2px solid ${theme.palette.divider}`,
+  },
+  "& .link": {
+    textDecoration: "none",
+    color: theme.palette.primary.main,
+    "&:hover": { textDecoration: "underline" },
+  },
+}));
 
-    this.state = {
-      documentName: "Document 1",
-      editorContent: '<h2 style="text-align: center;">TinyMCE and React!</h2>',
-      displayIsSaving: false,
-    };
+export default function TextEditor({ context, setContext }) {
+  return (
+    <AccordionRoot>
+      <Accordion defaultExpanded>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1c-content"
+          id="panel1c-header"
+        >
+          <Box className="column">
+            <Typography className="heading">Description</Typography>
+          </Box>
 
-    this.throttledSaveToServer = _.throttle(() => {
-      setTimeout(() => {
-        this.debouncedEndSaving();
-        console.log(
-          "Saved to server",
-          this.state.documentName,
-          this.state.editorContent
-        );
-      }, 500);
-    }, 500);
+          <Box className="column">
+            <Typography className="secondaryHeading">
+              Select trip destination
+            </Typography>
+          </Box>
+        </AccordionSummary>
 
-    this.debouncedEndSaving = _.debounce(() => {
-      this.setState({ displayIsSaving: false });
-    }, 1000);
-  }
+        <AccordionDetails className="details">
+          <Editor
+            apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+            onEditorChange={(e) => setContext(e)}
+            value={context}
+            init={{
+              selector: "#tinymce",
+              branding: false,
+            }}
+          />
+        </AccordionDetails>
 
-  handleEditorChange(editorContent) {
-    this.save({ editorContent });
-  }
+        <Divider />
 
-  handleNameChange(documentName) {
-    this.save({ documentName });
-  }
-
-  save(newPartialState) {
-    this.setState(
-      {
-        ...newPartialState,
-        displayIsSaving: true,
-      },
-      () => {
-        this.throttledSaveToServer();
-      }
-    );
-  }
-
-  componentWillUnmount() {
-    this.debouncedEndSaving.cancel();
-    this.throttledSaveToServer.cancel();
-  }
-
-  render() {
-    return (
-      <div className="document-editor">
-        <Editor
-        
-          apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
-          onEditorChange={this.handleEditorChange}
-          value={this.state.editorContent}
-          init={{
-            selector: '#tinymce',
-            branding: false
-          }}
-        />
-      </div>
-    );
-  }
+        <AccordionActions>
+          <Button size="small">Cancel</Button>
+          <Button size="small" color="primary">
+            Save
+          </Button>
+        </AccordionActions>
+      </Accordion>
+    </AccordionRoot>
+  );
 }

@@ -15,7 +15,11 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getConsultansList, deleteConsultansId } from "../../../../firebase";
+import {
+  getConsultansList,
+  deleteConsultansId,
+  fileDelete,
+} from "../../../../firebase";
 import AlertDialog from "../dialog/SimpleAlerts";
 
 const StyledTable = styled(Table)(() => ({
@@ -51,6 +55,7 @@ const PaginationTable = () => {
   };
 
   const handleDelete = (item) => {
+    fileDelete(item.imgUrl);
     deleteConsultansId(item.id);
     getConsultansList(setItems);
   };
@@ -100,7 +105,7 @@ const PaginationTable = () => {
                           <Icon>edit</Icon>
                         </IconButton>
                       </Link>
-                      <AlertDialog  deleteButton={() => handleDelete(item)} >
+                      <AlertDialog deleteButton={() => handleDelete(item)}>
                         <Icon color="error">delete</Icon>
                       </AlertDialog>
                     </TableCell>

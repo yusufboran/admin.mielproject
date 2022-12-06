@@ -6,7 +6,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
-import { DocumentEditor } from "app/components/NewProject/TextEditor";
+import { Editor } from "@tinymce/tinymce-react";
+import { useState } from "react";
 
 const AccordionRoot = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -34,6 +35,9 @@ const AccordionRoot = styled(Box)(({ theme }) => ({
 }));
 
 export default function DetailedExpansionPanel() {
+  const [context, setContext] = useState(
+    '<h2 style="text-align: center;">TinyMCE and React!</h2>'
+  );
   return (
     <AccordionRoot>
       <Accordion defaultExpanded>
@@ -54,8 +58,15 @@ export default function DetailedExpansionPanel() {
         </AccordionSummary>
 
         <AccordionDetails className="details">
-          <DocumentEditor />
-          
+          <Editor
+            apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+            onEditorChange={(e) => setContext(e)}
+            value={context}
+            init={{
+              selector: "#tinymce",
+              branding: false,
+            }}
+          />
         </AccordionDetails>
 
         <Divider />
