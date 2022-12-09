@@ -3,26 +3,24 @@ import { SimpleCard } from "app/components";
 import DropFileInput from "../DropFileInput/DropFileInput";
 import React, { useState } from "react";
 import TextEditor from "./TextEditor";
-import { addProject } from "../../../firebase";
+import { projectFilesUpload } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function NewProjectItem() {
   const handleSave = () => {
-    const files = [];
-    fileList.forEach((item) => files.push(item.name));
     const item = {
       projectName: projectName,
       features: features,
       description: description,
-      files: files,
     };
 
-    addProject(item);
-    //  navigate("/");
+    console.log(fileList, item);
+    projectFilesUpload(fileList, item);
+    navigate("/");
   };
   const navigate = useNavigate();
-  const [projectName, setProjectName] = useState("");
-  const [features, setFeatures] = React.useState([]);
+  const [projectName, setProjectName] = useState("deneme");
+  const [features, setFeatures] = React.useState(["asdasd", "asdasd"]);
   const [description, setDescription] = React.useState(
     '<h2 style="text-align: center;">asdasd and React!</h2>'
   );

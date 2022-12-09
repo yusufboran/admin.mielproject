@@ -15,8 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {
   updateConsultansId,
   getConsultansId,
-  fileDelete,
-  fileUpdate,
+  getFile,
 } from "../../../firebase";
 import FileItem from "app/components/DropFileInput/FileItem";
 
@@ -37,7 +36,7 @@ export default function ConsultanEditForm() {
       setPhoneNumber,
       setStartDate,
       setBirthday,
-      setImgPath
+      setFileList
     );
   };
   const handleSubmit = () => {
@@ -50,20 +49,10 @@ export default function ConsultanEditForm() {
       birthday: birthday,
     };
 
-    if (imgPath == null) {
-      fileUpdate(file[0], item, consultantsId);
-      fileDelete(deleteItemPath);
-
-    }
-
+    console.log(consultantsId, item);
     navigate("/consultants");
   };
 
-  const deleteFunc = () => {
-    console.log("delete Function");
-    setDeleteItemPath(imgPath);
-    setImgPath(null);
-  };
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
@@ -71,12 +60,14 @@ export default function ConsultanEditForm() {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [birthday, setBirthday] = useState(null);
-  const [imgPath, setImgPath] = useState(null);
-  const [file, setFile] = useState([]);
-  const [deleteItemPath, setDeleteItemPath] = useState();
-
+  const [imgUrl, setImgUrl] = useState(null);
+  const [fileList, setFileList] = useState([]);
+  console.log(fileList);
   return (
     <Container component="main" maxWidth="xs">
+      {consultantsId}
+      <CssBaseline />
+
       <Box
         sx={{
           marginTop: 8,
@@ -173,17 +164,11 @@ export default function ConsultanEditForm() {
               </LocalizationProvider>
             </Grid>
           </Grid>
-          {imgPath === null ? (
-            <DropFileInput
-              fileList={file}
-              setFileList={setFile}
-              singleFile={true}
-            />
+          {fileList === null ? (
+            <DropFileInput fileList={fileList} setFileList={setFileList} />
           ) : (
-            <FileItem
-              name={imgPath.split("/")[2]}
-              deleteFunc={() => deleteFunc()}
-            />
+            {fileList}
+           // <FileItem item={fileList.split("/")[2]} />
           )}
 
           <Button

@@ -48,7 +48,7 @@ export default function ProjectItem({ item }) {
           </IconButton>
         }
         title={item.projectName}
-        subheader="September 14, 2016"
+        subheader="September 14, 2022"
       />
       <CardMedia
         component="img"

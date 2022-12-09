@@ -10,9 +10,6 @@ import "./styles.css";
 import { ImageConfig } from "./imageConfig";
 import uploadImg from "./assets/cloud-upload-regular-240.png";
 import DeleteIcon from "@mui/icons-material/Delete";
-const onFileChange = (files) => {
-  console.log(files);
-};
 
 const DropFileInput = ({ fileList, setFileList, singleFile }) => {
   const wrapperRef = useRef(null);
@@ -24,7 +21,6 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
     if (newFile) {
       const updatedList = [...fileList, newFile];
       setFileList(updatedList);
-      onFileChange(updatedList);
     }
   };
 
@@ -32,7 +28,6 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
     const updatedList = [...fileList];
     updatedList.splice(fileList.indexOf(file), 1);
     setFileList(updatedList);
-    onFileChange(updatedList);
   };
 
   return (

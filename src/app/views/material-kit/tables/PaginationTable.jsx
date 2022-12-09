@@ -95,7 +95,9 @@ const PaginationTable = () => {
                     </TableCell>
                     <TableCell align="center">{item.phoneNumber}</TableCell>
                     <TableCell align="center">{item.startDate}</TableCell>
-                    <TableCell align="center">{item.imgUrl}</TableCell>
+                    <TableCell align="center">
+                      {item.imgUrl ? "true" : "Null"}
+                    </TableCell>
                     <TableCell align="right">
                       <Link
                         to={`/consultants/edit/}?id=${item.id} `}

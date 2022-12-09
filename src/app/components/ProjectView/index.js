@@ -16,10 +16,14 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getProjectsList, deleteProjectsId } from "../../../firebase";
+import {
+  getProjectsList,
+  deleteProjectsId,
+  fileDelete,
+} from "../../../firebase";
 import AlertDialog from "app/views/material-kit/dialog/SimpleAlerts";
 
-export default function ProjectView(item) {
+export default function ProjectView() {
   const [items, setItems] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (_, isExpanded) => {
@@ -33,8 +37,11 @@ export default function ProjectView(item) {
   async function getItem() {
     getProjectsList(setItems);
   }
-  const handleDelete = (id) => {
-    deleteProjectsId(id);
+  const handleDelete = (item) => {
+    item.files.forEach((file) => {
+      fileDelete(file);
+    });
+    deleteProjectsId(item.id);
     getItem();
   };
 
@@ -78,7 +85,7 @@ export default function ProjectView(item) {
                   <Icon>edit</Icon>
                 </IconButton>
               </Link>
-              <AlertDialog deleteButton={() => handleDelete(item.id)}>
+              <AlertDialog deleteButton={() => handleDelete(item)}>
                 <Icon color="error">delete</Icon>
               </AlertDialog>
             </AccordionActions>

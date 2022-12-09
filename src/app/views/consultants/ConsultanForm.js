@@ -15,9 +15,7 @@ import { SimpleCard } from "app/components";
 
 export default function ConsultanForm() {
   const handleSubmit = () => {
-    
-    const url = "consultans/personImage/" + firstName + lastName;
-    fileUpload(file[0], url);
+    const url = "consultans/personImage/" + firstName + lastName + Date.now();
 
     const item = {
       firstName: firstName,
@@ -26,10 +24,10 @@ export default function ConsultanForm() {
       phoneNumber: phoneNumber,
       startDate: startDate,
       birthday: birthday,
-      file: url,
+      path:url
     };
+    console.log(fileUpload(file[0], url, item));
 
-    consultansAdd(item);
     navigate("/consultants");
   };
 
