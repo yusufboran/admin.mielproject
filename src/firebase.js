@@ -253,10 +253,7 @@ export const fileUpload = async (file, url, item) => {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const value = { ...item, file: downloadURL };
-
-          console.log("File available at", downloadURL);
-          console.log("File available at value", value);
+          const value = { ...item, file: downloadURL, path: url };
           consultansAdd(value);
         });
       }
@@ -280,7 +277,8 @@ export const fileUpdate = async (file, item, id) => {
     const metadata = {
       contentType: "image/jpeg",
     };
-    var url = "/consultans/personImage/"+ item.firstName + item.lastName + Date.now();
+    var url =
+      "/consultans/personImage/" + item.firstName + item.lastName + Date.now();
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(storage, url);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);

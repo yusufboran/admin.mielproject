@@ -9,11 +9,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import MobilePhone from "../../components/MobilePhone";
 import DropFileInput from "app/components/DropFileInput/DropFileInput";
-import { consultansAdd, fileUpload } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { SimpleCard } from "app/components";
 
-export default function ConsultanForm() {
+export default function ConsultanForm({ fileUpload }) {
   const handleSubmit = () => {
     const url = "consultans/personImage/" + firstName + lastName + Date.now();
 
@@ -24,11 +23,11 @@ export default function ConsultanForm() {
       phoneNumber: phoneNumber,
       startDate: startDate,
       birthday: birthday,
-      path:url
+      path: url,
     };
-    console.log(fileUpload(file[0], url, item));
-
-    navigate("/consultants");
+    console.log("file", file);
+    console.log("url", url);
+    console.log("item", item);
   };
 
   const navigate = useNavigate();

@@ -9,11 +9,12 @@ const TextField = styled(TextValidator)(() => ({
   marginBottom: "16px",
 }));
 
-const SimpleForm = () => {
+const ConsultantsForm = ({ fileUpload }) => {
   const [state, setState] = useState({ date: new Date() });
 
   const handleSubmit = () => {
-    console.log(state);
+    const url = "consultans/personImage/" + firstName + lastName + Date.now();
+    fileUpload(file, url, state);
   };
 
   const handleChange = (event) => {
@@ -23,10 +24,9 @@ const SimpleForm = () => {
 
   const handleChangeFile = (event) => {
     setFile(event);
-    setState({ ...state, file: event[0] });
   };
 
-  const { firstName, lastName, mobile, email } = state;
+  const { firstName, lastName, phoneNumber, email } = state;
   const [file, setFile] = React.useState([]);
 
   return (
@@ -67,9 +67,9 @@ const SimpleForm = () => {
 
             <TextField
               type="text"
-              name="mobile"
+              name="phoneNumber"
               inputProps={{ maxLength: 11, minlength: 11 }}
-              value={mobile || ""}
+              value={phoneNumber || ""}
               label="Mobile Number"
               onChange={handleChange}
               validators={["required"]}
@@ -94,4 +94,4 @@ const SimpleForm = () => {
   );
 };
 
-export default SimpleForm;
+export default ConsultantsForm;

@@ -1,6 +1,7 @@
 import { Box, styled } from "@mui/material";
-import { Breadcrumb } from "app/components";
-import ConsultanForm from "./ConsultanForm";
+import { Breadcrumb, SimpleCard } from "app/components";
+import { fileUpload } from "../../../firebase";
+import ConsultantsForm from "app/components/ConsultantsForm";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -22,7 +23,11 @@ const ConsultantsAddPage = () => {
             { name: "Add", path: "/consultants/add" },
           ]}
         />
-        <ConsultanForm />
+
+        {/* <ConsultanForm fileUpload={fileUpload} /> */}
+        <SimpleCard title="New Components Form">
+          <ConsultantsForm fileUpload={fileUpload} />
+        </SimpleCard>
       </Box>
     </Container>
   );
