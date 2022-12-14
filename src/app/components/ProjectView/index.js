@@ -20,7 +20,7 @@ import {
   getProjectsList,
   deleteProjectsId,
   fileDelete,
-} from "../../../firebase";
+} from "../../firabase";
 import AlertDialog from "app/views/material-kit/dialog/SimpleAlerts";
 
 export default function ProjectView() {

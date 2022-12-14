@@ -1,20 +1,34 @@
 import { Button, Grid, Icon, styled } from "@mui/material";
 import DropFileInput from "app/components/DropFileInput/DropFileInput";
 import { Span } from "app/components/Typography";
-import React, { useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { getConsultansId } from "../firabase";
 
 const TextField = styled(TextValidator)(() => ({
   width: "100%",
   marginBottom: "16px",
 }));
 
-const ConsultantsForm = ({ fileUpload }) => {
+const ConsultantsForm = ({ func, id }) => {
   const [state, setState] = useState({ date: new Date() });
+
+  useEffect(() => {
+    if (id) {
+      console.log("useEffect", id);
+      getItems();
+    }
+  }, []);
+
+  const getItems = () => {
+    getConsultansId(id, setState, setFile);
+  };
 
   const handleSubmit = () => {
     const url = "consultans/personImage/" + firstName + lastName + Date.now();
-    fileUpload(file, url, state);
+    func(file, url, state);
+    navigate("/consultants");
   };
 
   const handleChange = (event) => {
@@ -23,9 +37,10 @@ const ConsultantsForm = ({ fileUpload }) => {
   };
 
   const handleChangeFile = (event) => {
+    setState({ ...state, path: null });
     setFile(event);
   };
-
+  const navigate = useNavigate();
   const { firstName, lastName, phoneNumber, email } = state;
   const [file, setFile] = React.useState([]);
 
@@ -84,11 +99,12 @@ const ConsultantsForm = ({ fileUpload }) => {
             {}
           </Grid>
         </Grid>
-
-        <Button color="primary" variant="contained" type="submit">
-          <Icon>send</Icon>
-          <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
-        </Button>
+        <Grid justifyContent={"end"} container spacing={6}>
+          <Button color="primary" variant="contained" type="submit">
+            <Icon>send</Icon>
+            <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
+          </Button>
+        </Grid>
       </ValidatorForm>
     </div>
   );

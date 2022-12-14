@@ -3,7 +3,7 @@ import { SimpleCard } from "app/components";
 import DropFileInput from "../DropFileInput/DropFileInput";
 import React, { useState } from "react";
 import TextEditor from "./TextEditor";
-import { addProject } from "../../../firebase";
+import { addProject } from "../../firabase";
 import { useNavigate } from "react-router-dom";
 
 export default function EditProjectItem(id) {

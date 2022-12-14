@@ -52,6 +52,7 @@ export default function AlertDialogSlide() {
           <Button onClick={handleClose} color="primary">
             Agree
           </Button>
+          
         </DialogActions>
       </Dialog>
     </div>

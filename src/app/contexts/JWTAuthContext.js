@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useReducer } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios.js";
 import { MatxLoading } from "app/components";
-import { firebaseLogin } from "../../firebase";
+import { firebaseLogin } from "../firabase";
 
 const initialState = {
   isAuthenticated: false,

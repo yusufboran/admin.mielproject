@@ -29,10 +29,10 @@ const firebaseConfig = {
   appId: "1:850541188172:web:4c19c6afe35d42f03c90e9",
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const db = getFirestore();
-const storage = getStorage();
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const db = getFirestore();
+export const storage = getStorage();
 
 export const firebaseLogin = async (email, password) => {
   try {
@@ -46,6 +46,7 @@ export const firebaseLogin = async (email, password) => {
 };
 export const consultansAdd = async (item) => {
   try {
+    console.log(item);
     const docRef = await addDoc(collection(db, "consultans"), item);
 
     toast.success("Successfully Consultants Add" + docRef.id);
@@ -94,20 +95,10 @@ export const deleteConsultansId = async (Id) => {
 
 export const updateConsultansId = async (id, item) => {
   try {
+    console.log(item);
     const docRef = doc(db, "consultans", id);
-    const data = {
-      firstName: item.firstName,
-      lastName: item.lastName,
-      phoneNumber: item.phoneNumber,
-      email: item.email,
-      startDate: item.startDate,
-      birthday: item.birthday,
-      path: item.path,
-      file: item.file,
-    };
-    console.log("updateConsultansId", data);
 
-    updateDoc(docRef, data)
+    updateDoc(docRef, item)
       .then((docRef) => {
         toast.success("Update Successfully");
       })
@@ -119,33 +110,32 @@ export const updateConsultansId = async (id, item) => {
   }
 };
 
-export const getConsultansId = async (
-  Id,
-  setFirstName,
-  setLastName,
-  setEmail,
-  setPhoneNumber,
-  setStartDate,
-  setBirthday,
-  setImgPath
-) => {
+export const getConsultansId = async (id, setState, setFile) => {
   try {
-    const docRef = doc(db, "consultans", Id);
+    const docRef = doc(db, "consultans", id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      const imgUrl = docSnap.data()["file"];
-      getFile(imgUrl);
-
-      setFirstName(docSnap.data()["firstName"]);
-      setLastName(docSnap.data()["lastName"]);
-      setEmail(docSnap.data()["email"]);
-      setPhoneNumber(docSnap.data()["phoneNumber"]);
-      setStartDate(docSnap.data()["startDate"]);
-      setBirthday(docSnap.data()["birthday"]);
-      setImgPath(docSnap.data()["path"]);
+      console.log(docSnap.data());
+      setState({
+        firstName: docSnap.data().firstName,
+        lastName: docSnap.data().lastName,
+        email: docSnap.data().email,
+        phoneNumber: docSnap.data().phoneNumber,
+        date: docSnap.data().date,
+        path: docSnap.data().path,
+        imgUrl: docSnap.data().file,
+      });
+      setFile([
+        {
+          lastModified: 1670758416076,
+          lastModifiedDate: new Date(),
+          name: docSnap.data().path.split("/")[2],
+          size: 232877,
+          type: "image/jpeg",
+        },
+      ]);
     } else {
-      // doc.data() will be undefined in this case
       console.log("No such document!");
     }
   } catch (error) {
@@ -432,5 +422,7 @@ export const getFile = async (url) => {
     toast.error("getFile", error.message);
   }
 };
+
+
 
 export default app;

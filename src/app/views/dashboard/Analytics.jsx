@@ -3,8 +3,9 @@ import { Fragment } from "react";
 import PaginationTable from "../material-kit/tables/PaginationTable";
 import DoughnutChart from "./shared/Doughnut";
 import RowCards from "./shared/RowCards";
-import { Breadcrumb } from "app/components";
+import { Breadcrumb, SimpleCard } from "app/components";
 import ProjectView from "app/components/ProjectView";
+import CustomList from "app/components/CustomList/index";
 
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -42,20 +43,8 @@ const Analytics = () => {
             <PaginationTable />
           </Grid>
 
-          <Grid item lg={4} md={4} sm={12} xs={12}>
-            <Card sx={{ px: 3, py: 2, mb: 3 }}>
-              <Title>Sales figures</Title>
-              <SubTitle>Last 30 days</SubTitle>
-
-              <DoughnutChart
-                height="200px"
-                color={[
-                  palette.primary.dark,
-                  palette.primary.main,
-                  palette.primary.light,
-                ]}
-              />
-            </Card>
+          <Grid item lg={4} md={4} sm={12} xs={12} spacing={3}>
+            <CustomList />
           </Grid>
         </Grid>
       </ContentBox>

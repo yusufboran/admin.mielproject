@@ -1,7 +1,7 @@
 import { Box, Grid, Paper, styled, TextField } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ProjectItem from "./ProjectItem";
-import { getProjectsList, deleteProjectsId } from "../../../firebase";
+import { getProjectsList, deleteProjectsId } from "../../firabase";
 import React, { useEffect, useState } from "react";
 import TabButton from "app/components/MatxLayout/Layout1/TabButton";
 

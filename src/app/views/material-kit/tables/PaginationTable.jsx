@@ -19,7 +19,7 @@ import {
   getConsultansList,
   deleteConsultansId,
   fileDelete,
-} from "../../../../firebase";
+} from "../../../firabase";
 import AlertDialog from "../dialog/SimpleAlerts";
 
 const StyledTable = styled(Table)(() => ({

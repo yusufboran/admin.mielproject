@@ -67,7 +67,9 @@ const AutocompleteCombo = () => {
 
   return (
     <Fragment>
+      {value}
       <AutoComplete
+        onChange={handleChange}
         options={suggestions}
         getOptionLabel={(option) => option.label}
         renderInput={(params) => (
