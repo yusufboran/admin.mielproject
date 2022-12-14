@@ -10,20 +10,12 @@ import { FormGroup, withStyles, TextField } from "@material-ui/core";
 import { useEffect } from "react";
 import { deleteSocialMedia } from "app/firabase/other";
 import { Icon, IconButton } from "@mui/material";
+import UserTextfield from "./UserTextfield";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const StyledButton = withStyles({
-  root: {
-    fontSize: 14,
-    textAlign: "right",
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
 
-    textTransform: "lowercase",
-  },
-})(Button);
 
 export default function ModalEdit({ open, setOpen, editItem }) {
   function handleClose() {
@@ -49,22 +41,12 @@ export default function ModalEdit({ open, setOpen, editItem }) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="alert-dialog-slide-title">
-          Use Google's location service?
+          Edit Social Media Item
         </DialogTitle>
 
         <DialogContent>
-          <FormGroup row>
-            <StyledButton variant="contained" disableElevation>
-              {editItem.sosicalMedia
-                ? "www." + editItem.sosicalMedia + ".com/"
-                : "www.example.com/"}
-            </StyledButton>
-
-            <TextField
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </FormGroup>
+          <UserTextfield editItem={editItem} username={username} setUsername={setUsername} />
+      
         </DialogContent>
 
         <DialogActions>

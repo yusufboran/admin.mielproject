@@ -6,8 +6,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
-import SelectTextField from "../SelectTextField";
 import { addSocialMedia } from "../../firabase/other";
+import DropBox from "./DropBox";
+import UserTextfield from "./UserTextfield";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -34,16 +35,12 @@ export default function ModalAdd({ open, setOpen }) {
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle id="alert-dialog-slide-title">
-        Use Google's location service?
+        New Social Media Platform
       </DialogTitle>
 
       <DialogContent>
-        <SelectTextField
-          sosicalMedia={sosicalMedia}
-          setSosicalMedia={setSosicalMedia}
-          username={username}
-          setUsername={setUsername}
-        />
+        <DropBox />
+        <UserTextfield />
       </DialogContent>
 
       <DialogActions>
