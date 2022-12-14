@@ -1,4 +1,10 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "./index";
 import toast from "react-hot-toast";
 
@@ -22,8 +28,8 @@ export const getSocialMedia = async (setItems) => {
     const querySnapshot = await getDocs(collection(db, "socialMedia"));
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
       const item = {
+        id: doc.id,
         sosicalMedia: doc.data().sosicalMedia,
         username: doc.data().username,
       };
@@ -33,5 +39,14 @@ export const getSocialMedia = async (setItems) => {
     setItems(items);
   } catch (error) {
     toast.error("getSocialMedia", error.message);
+  }
+};
+
+export const deleteSocialMedia = async (Id) => {
+  try {
+    await deleteDoc(doc(db, "socialMedia", Id));
+    toast.success("Delete Successfully");
+  } catch (error) {
+    toast.error("deleteSocialMedia", error.message);
   }
 };

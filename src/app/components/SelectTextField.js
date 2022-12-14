@@ -3,68 +3,68 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Grid, TextField, Button } from "@mui/material";
-import { FormGroup, withStyles } from "@material-ui/core";
+import { Grid, TextField } from "@mui/material";
 
-export default function SelectTextField({
-  sosicalMedia,
-  setSosicalMedia,
-  username,
-  setUsername,
-}) {
-  const StyledButton = withStyles({
-    root: {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+export default function SelectTextField() {
+  const [sosicalMedia, setSosicalMedia] = React.useState("");
+  const [link, setLink] = React.useState("");
 
-      textTransform: "lowercase",
-    },
-  })(Button);
+  const handleChange = (e) => {
+    console.log(e);
+    setSosicalMedia(e.target.value);
+  };
 
   const List = [
-    { id: 1, title: "twitter" },
+    { id: 1, title: "twitter", icon: "twitter_icon", link: "www.twitter.com/" },
     {
       id: 2,
       title: "facebook",
+      icon: "facebook_icon",
+      link: "www.facebook.com/",
     },
     {
       id: 3,
       title: "linkedin",
+      icon: "twitter_icon",
+      link: "www.linkedin.com/in/",
     },
     {
       id: 4,
       title: "instagram",
+      icon: "twitter_icon",
+      link: "www.instagram.com/",
     },
   ];
   return (
-    <div>
-      <FormControl sx={{ minWidth: 200, backgroundColor: "primary",marginY:20 }}>
-        <InputLabel id="demo-simple-select-label">
-          Select Social Media
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sosicalMedia}
-          label="Social Media"
-          onChange={(e) => setSosicalMedia(e.target.value)}
-        >
-          {List.map((item) => {
-            return <MenuItem value={item.title}>{item.title}</MenuItem>;
-          })}
-        </Select>
-      </FormControl>
-
-      <FormGroup row>
-        <StyledButton variant="contained" disableElevation>
-          {sosicalMedia ? "www." + sosicalMedia + ".com/" : "www.example.com/"}
-        </StyledButton>
-
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Social Media</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={sosicalMedia}
+            label="Age"
+            onChange={(e) => handleChange(e)}
+          >
+            {List.map((item) => {
+              return (
+                <MenuItem key={item.id} value={item}>
+                  {item.title}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12}>
         <TextField
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          fullWidth
+          id="outlined-basic"
+          label="Link"
+          variant="outlined"
         />
-      </FormGroup>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
