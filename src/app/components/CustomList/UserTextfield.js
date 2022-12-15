@@ -19,11 +19,11 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-export default function UserTextfield({ username, setUsername, sosicalMedia }) {
+export default function UserTextfield({ username, setUsername, socialMedia }) {
   return (
     <FormGroup row>
       <StyledButton variant="contained" disableElevation>
-        www.{sosicalMedia ? sosicalMedia : "example"}.com/
+        www.{socialMedia ? socialMedia : "example"}.com/
       </StyledButton>
       <StyledTextField
         value={username}

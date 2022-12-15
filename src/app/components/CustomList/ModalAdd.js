@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
-import { addSocialMedia } from "../../firabase/other";
+import { addSocialMedia } from "../../firabase/socialMedia";
 import DropBox from "./DropBox";
 import UserTextfield from "./UserTextfield";
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -14,7 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ModalAdd({ open, setOpen }) {
-  const [sosicalMedia, setSosicalMedia] = React.useState("");
+  const [socialMedia, setsocialMedia] = React.useState("");
   const [username, setUsername] = React.useState("");
 
   function handleClose() {
@@ -22,7 +22,7 @@ export default function ModalAdd({ open, setOpen }) {
   }
 
   function handleSave() {
-    addSocialMedia(sosicalMedia, username);
+    addSocialMedia(socialMedia, username);
     setOpen(false);
   }
   return (
@@ -39,11 +39,11 @@ export default function ModalAdd({ open, setOpen }) {
       </DialogTitle>
 
       <DialogContent>
-        <DropBox selectItem={sosicalMedia} setSelectItem={setSosicalMedia} />
+        <DropBox selectItem={socialMedia} setSelectItem={setsocialMedia} />
         <UserTextfield
           username={username}
           setUsername={setUsername}
-          sosicalMedia={sosicalMedia}
+          socialMedia={socialMedia}
         />
       </DialogContent>
 

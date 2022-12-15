@@ -8,28 +8,40 @@ import Slide from "@mui/material/Slide";
 import React from "react";
 import { FormGroup, withStyles, TextField } from "@material-ui/core";
 import { useEffect } from "react";
-import { deleteSocialMedia } from "app/firabase/other";
+import { deleteSocialMedia, updateSocialMedia } from "app/firabase/socialMedia";
 import { Icon, IconButton } from "@mui/material";
 import UserTextfield from "./UserTextfield";
+import { useNavigate } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function ModalEdit({ open, setOpen, editItem }) {
+  const navigate = useNavigate();
+  const [username, setUsername] = React.useState();
+
   function handleClose() {
     setOpen(false);
   }
-  console.log("editItem", editItem.sosicalMedia);
 
   function handleDelete() {
     deleteSocialMedia(editItem.id);
     setOpen(false);
+
+    navigate("/");
   }
-  const [username, setUsername] = React.useState();
+  function handleSave() {
+    updateSocialMedia(editItem.id, username);
+    setOpen(false);
+
+    navigate("/");
+  }
+
   useEffect(() => {
     setUsername(editItem.username);
   }, [editItem]);
+
   return (
     <div>
       <Dialog
@@ -48,7 +60,7 @@ export default function ModalEdit({ open, setOpen, editItem }) {
           <UserTextfield
             username={username}
             setUsername={setUsername}
-            sosicalMedia={editItem.sosicalMedia}
+            socialMedia={editItem.socialMedia}
           />
         </DialogContent>
 
@@ -61,7 +73,7 @@ export default function ModalEdit({ open, setOpen, editItem }) {
             Cancel
           </Button>
 
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleSave} color="primary">
             Save
           </Button>
         </DialogActions>

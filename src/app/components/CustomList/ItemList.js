@@ -54,11 +54,11 @@ const ItemList = ({ newItem, openItem, items }) => {
                       <img
                         height={"25px"}
                         width={"25px"}
-                        src={Icons(item.sosicalMedia)}
+                        src={Icons(item.socialMedia)}
                       />
                     </ListItemIcon>
                     <ListItemText>{item.username} </ListItemText>
-                    <Icon>visibility</Icon>
+                    <img height={"20px"} width={"20px"} src={Icons("visibility")} />
                   </ListItemButton>
                 </ListItem>
               </List>
