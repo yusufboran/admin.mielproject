@@ -16,11 +16,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 export default function ModalEdit({ open, setOpen, editItem }) {
   function handleClose() {
     setOpen(false);
   }
+  console.log("editItem", editItem.sosicalMedia);
 
   function handleDelete() {
     deleteSocialMedia(editItem.id);
@@ -45,8 +45,11 @@ export default function ModalEdit({ open, setOpen, editItem }) {
         </DialogTitle>
 
         <DialogContent>
-          <UserTextfield editItem={editItem} username={username} setUsername={setUsername} />
-      
+          <UserTextfield
+            username={username}
+            setUsername={setUsername}
+            sosicalMedia={editItem.sosicalMedia}
+          />
         </DialogContent>
 
         <DialogActions>

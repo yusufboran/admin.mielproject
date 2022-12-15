@@ -39,8 +39,12 @@ export default function ModalAdd({ open, setOpen }) {
       </DialogTitle>
 
       <DialogContent>
-        <DropBox />
-        <UserTextfield />
+        <DropBox selectItem={sosicalMedia} setSelectItem={setSosicalMedia} />
+        <UserTextfield
+          username={username}
+          setUsername={setUsername}
+          sosicalMedia={sosicalMedia}
+        />
       </DialogContent>
 
       <DialogActions>

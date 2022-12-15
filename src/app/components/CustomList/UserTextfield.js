@@ -19,13 +19,11 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-export default function UserTextfield() {
-  const [username, setUsername] = React.useState();
-
+export default function UserTextfield({ username, setUsername, sosicalMedia }) {
   return (
     <FormGroup row>
       <StyledButton variant="contained" disableElevation>
-        @example.com
+        www.{sosicalMedia ? sosicalMedia : "example"}.com/
       </StyledButton>
       <StyledTextField
         value={username}
@@ -33,7 +31,6 @@ export default function UserTextfield() {
         variant="outlined"
         placeholder="username"
       />
-      {username}
     </FormGroup>
   );
 }
