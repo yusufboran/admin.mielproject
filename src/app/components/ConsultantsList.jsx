@@ -13,14 +13,10 @@ import {
   CardHeader,
   CardContent,
 } from "@mui/material";
+import ConfirmationDialog from "app/components/ConfirmationDialog";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  getConsultansList,
-  deleteConsultansId,
-  fileDelete,
-} from "../../../firabase";
-import AlertDialog from "../dialog/SimpleAlerts";
+import { getConsultansList, deleteConsultansId, fileDelete } from "../firabase";
 
 const StyledTable = styled(Table)(() => ({
   whiteSpace: "pre",
@@ -32,7 +28,7 @@ const StyledTable = styled(Table)(() => ({
   },
 }));
 
-const PaginationTable = () => {
+const ConsultantsList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -107,9 +103,9 @@ const PaginationTable = () => {
                           <Icon>edit</Icon>
                         </IconButton>
                       </Link>
-                      <AlertDialog deleteButton={() => handleDelete(item)}>
-                        <Icon color="error">delete</Icon>
-                      </AlertDialog>
+                      <ConfirmationDialog
+                        deleteButton={() => handleDelete(item)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -134,4 +130,4 @@ const PaginationTable = () => {
   );
 };
 
-export default PaginationTable;
+export default ConsultantsList;

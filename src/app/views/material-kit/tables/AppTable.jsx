@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
-import PaginationTable from "./PaginationTable";
+import PaginationTable from "../../../components/ConsultantsList";
 import SimpleTable from "./SimpleTable";
 
 const Container = styled("div")(({ theme }) => ({

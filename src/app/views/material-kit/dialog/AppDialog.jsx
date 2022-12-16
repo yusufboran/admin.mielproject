@@ -8,7 +8,7 @@ import FormDialog from './FormDialog';
 import FullScreenDialog from './FullScreenDialog';
 import MaxWidthDialog from './OptimalSizeDialog';
 import ResponsiveDialog from './ResponsiveDialog';
-import AlertDialog from './SimpleAlerts';
+import AlertDialog from '../../../components/DeleteDialog';
 import SimpleDialogDemo from './SimpleDialog';
 
 const Container = styled('div')(({ theme }) => ({

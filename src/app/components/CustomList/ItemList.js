@@ -6,10 +6,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Icon, IconButton, ListItem } from "@mui/material";
+import { ListItem } from "@mui/material";
 import Icons from "./Icons";
+import ModalAdd from "./ModalAdd";
 
-const ItemList = ({ newItem, openItem, items }) => {
+const ItemList = ({ openItem, items }) => {
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -28,13 +29,7 @@ const ItemList = ({ newItem, openItem, items }) => {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
-        <ListItem
-          secondaryAction={
-            <IconButton onClick={() => newItem()} edge="end" aria-label="add">
-              <Icon color="primary">add_circle</Icon>
-            </IconButton>
-          }
-        >
+        <ListItem secondaryAction={<ModalAdd />}>
           <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <img height={"25px"} width={"25px"} src={Icons("socialMedia")} />
@@ -58,7 +53,11 @@ const ItemList = ({ newItem, openItem, items }) => {
                       />
                     </ListItemIcon>
                     <ListItemText>{item.username} </ListItemText>
-                    <img height={"20px"} width={"20px"} src={Icons("visibility")} />
+                    <img
+                      height={"20px"}
+                      width={"20px"}
+                      src={Icons("visibility")}
+                    />
                   </ListItemButton>
                 </ListItem>
               </List>

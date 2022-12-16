@@ -5,16 +5,12 @@ import { getSocialMedia } from "app/firabase/socialMedia";
 import ModalEdit from "./ModalEdit";
 
 export default function NestedList() {
-  const [modalAdd, setModalAdd] = React.useState(false);
   const [modalEdit, setModalEdit] = React.useState(false);
   const [items, setItems] = React.useState([]);
   const [editItem, setEditItem] = React.useState([]);
 
-  const newItem = () => {
-    setModalAdd(true);
-  };
   const openItem = (item) => {
-    setEditItem(item)
+    setEditItem(item);
     setModalEdit(true);
   };
   useEffect(() => {
@@ -22,10 +18,9 @@ export default function NestedList() {
     console.log(items);
   }, []);
   return (
-    <>
-      <ItemList newItem={newItem} openItem={openItem} items={items} />
-      <ModalAdd open={modalAdd} setOpen={setModalAdd} />
+    <div style={{ marginBottom: "16px" }}>
+      <ItemList openItem={openItem} items={items} />
       <ModalEdit open={modalEdit} setOpen={setModalEdit} editItem={editItem} />
-    </>
+    </div>
   );
 }

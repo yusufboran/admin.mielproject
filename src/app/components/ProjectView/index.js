@@ -21,7 +21,7 @@ import {
   deleteProjectsId,
   fileDelete,
 } from "../../firabase";
-import AlertDialog from "app/views/material-kit/dialog/SimpleAlerts";
+import AlertDialog from "app/components/DeleteDialog";
 
 export default function ProjectView() {
   const [items, setItems] = useState([]);

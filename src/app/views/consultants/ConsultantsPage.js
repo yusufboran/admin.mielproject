@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import PaginationTable from "../material-kit/tables/PaginationTable";
+import ConsultantsList from "../../components/ConsultantsList";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -18,7 +18,7 @@ const ConsultantsPage = () => {
           icon={"groups_icon"}
           routeSegments={[{ name: "Consultants", path: "/consultants" }]}
         />
-        <PaginationTable />
+        <ConsultantsList />
       </Box>
     </Container>
   );

@@ -13,6 +13,7 @@ const TextField = styled(TextValidator)(() => ({
 
 const ConsultantsForm = ({ func, id }) => {
   const [state, setState] = useState({ date: new Date() });
+  const [deleteCheck, setDeleteCheck] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -26,8 +27,7 @@ const ConsultantsForm = ({ func, id }) => {
   };
 
   const handleSubmit = () => {
-    const url = "consultans/personImage/" + firstName + lastName + Date.now();
-    func(file, url, state);
+    func(file[0], state, deleteCheck);
     navigate("/consultants");
   };
 
@@ -37,7 +37,7 @@ const ConsultantsForm = ({ func, id }) => {
   };
 
   const handleChangeFile = (event) => {
-    setState({ ...state, path: null });
+    setDeleteCheck(true);
     setFile(event);
   };
   const navigate = useNavigate();

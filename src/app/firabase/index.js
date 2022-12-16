@@ -197,6 +197,7 @@ export const deleteProjectsId = async (Id) => {
 
 export const fileUpload = async (file, url, item) => {
   try {
+    console.log(file);
     const metadata = {
       contentType: "image/jpeg",
     };
@@ -258,8 +259,9 @@ export const fileUpload = async (file, url, item) => {
 };
 
 export const fileUpdate = async (file, item, id) => {
+  console.log("fileUpdate");
   console.log("file", file);
-  console.log("url", url);
+
   console.log("item", item);
   console.log("id", id);
 
@@ -422,7 +424,5 @@ export const getFile = async (url) => {
     toast.error("getFile", error.message);
   }
 };
-
-
 
 export default app;

@@ -3,7 +3,7 @@ import { Breadcrumb, SimpleCard } from "app/components";
 import ConsultantsForm from "app/components/ConsultantsForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { getConsultansId, updateConsultansId } from "../../firabase";
+import { fileDelete, fileUpdate, updateConsultansId } from "../../firabase";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -18,23 +18,16 @@ const ConsultantsEditPage = () => {
   const location = useLocation();
   const consultantsId = new URLSearchParams(location.search).get("id");
 
-  const updateConsultant = (file, url, state) => {
-    if (state.path === null) {
-      console.log(file[0]);
-      console.log(url);
-      console.log(state);
-      console.log(
-        "updateConsultant file change, resim yükleme hatalı şuan burda resim yükleme düzelince bu bilgiler ile danışman bilgileri güncellenecek"
-      );
+  const updateConsultant = (file, state, deleteCheck) => {
+    if (deleteCheck) {
+      fileDelete(state.path);
+      fileUpdate(file, state, consultantsId);
     } else {
       updateConsultansId(consultantsId, state);
     }
   };
 
   const navigate = useNavigate();
-
-  const [file, setFile] = React.useState([]);
-  const [state, setState] = useState();
 
   return (
     <Container>
@@ -48,7 +41,9 @@ const ConsultantsEditPage = () => {
         />
         <SimpleCard>
           <ConsultantsForm
-            func={(file, url, state) => updateConsultant(file, url, state)}
+            func={(file, state, deleteCheck) =>
+              updateConsultant(file, state, deleteCheck)
+            }
             id={consultantsId}
           />
         </SimpleCard>

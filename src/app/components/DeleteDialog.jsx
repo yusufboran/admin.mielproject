@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Icon, Tooltip } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 
-export default function AlertDialog({ children, deleteButton }) {
+export default function DeleteDialog({ deleteButton }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => setOpen(true);
@@ -19,7 +19,11 @@ export default function AlertDialog({ children, deleteButton }) {
 
   return (
     <>
-      <Button onClick={handleClickOpen}>{children}</Button>
+      <Button onClick={handleClickOpen}>
+        <Tooltip title="Delete">
+          <Icon color="error">delete</Icon>
+        </Tooltip>
+      </Button>
 
       <Dialog
         open={open}
@@ -27,13 +31,11 @@ export default function AlertDialog({ children, deleteButton }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          Delete
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">Delete</DialogTitle>
 
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          Are you sure you want to delete?
+            Are you sure you want to delete?
           </DialogContentText>
         </DialogContent>
 
