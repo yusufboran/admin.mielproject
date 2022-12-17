@@ -5,7 +5,7 @@ import { Breadcrumb, SimpleCard } from "app/components";
 import ProjectView from "app/components/ProjectView";
 import CustomList from "app/components/CustomList/index";
 import FeaturesList from "app/components/FeatureList";
-import MapComponent from "app/components/MapComponent/index";
+import MapChart from "app/components/MapComponent/index";
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
   [theme.breakpoints.down("sm")]: { margin: "16px" },
@@ -38,7 +38,7 @@ const Analytics = () => {
 
         <Grid container spacing={3}>
           <Grid item lg={8} md={8} sm={12} xs={12}>
-            <MapComponent />
+            <MapChart />
             <ProjectView />
             <ConsultantsList />
           </Grid>
