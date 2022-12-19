@@ -78,7 +78,7 @@ const ConsultantsList = () => {
                 <TableCell align="center">Phone Number</TableCell>
                 <TableCell align="center">Start Date</TableCell>
                 <TableCell align="center">imgUrl</TableCell>
-                <TableCell align="right">Action</TableCell>
+                <TableCell align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

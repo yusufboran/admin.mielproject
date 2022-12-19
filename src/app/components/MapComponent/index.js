@@ -1,65 +1,82 @@
-import React from "react";
-import { geoCentroid } from "d3-geo";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-  Marker,
-} from "react-simple-maps";
+import * as React from "react";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import MapChart from "./MapView";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import PublicIcon from "@mui/icons-material/Public";
+import { Icon, IconButton, Paper } from "@mui/material";
+import MapList from "./List";
+import FormLocaion from "./FormLocaion";
+import { addItem, getItemsList, updateItemId } from "app/firabase/locaion";
 
-const MapChart = () => {
-  const markers = [
-    {
-      markerOffset: -15,
-      name: "Buenos Aires",
-      coordinates: [-58.3816, -34.6037],
-    },
-    {
-      markerOffset: -15,
-      name: "La Paz",
-      coordinates: [28.98515070117598, 41.1025790977422],
-    },
-  ];
-  // https://raw.githubusercontent.com/ozanyerli/istanbul-districts-geojson/main/istanbul-districts.json istanbul ilçeleri
+export default function LabTabs() {
+  const [value, setValue] = React.useState("1");
+  const [items, setItems] = React.useState([]);
+  const [editItem, setEditITem] = React.useState([]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleEdit = (item) => {
+    console.log("handleEdit ", item);
+    setEditITem(item);
+    setValue("edit");
+  };
+
+  React.useEffect(() => {
+    setEditITem(null);
+    getItemsList(setItems);
+  }, [items]);
+
+  const newLocation = (item) => {
+    addItem(item);
+    setValue("1");
+  };
+  const updateLocation = (item) => {
+    console.log("updateItemId ", item);
+    updateItemId(item.id, item);
+    setValue("1");
+  };
+
   return (
-    <ComposableMap>
-      <ZoomableGroup center={[28.95949703456525, 40.98575102103216]} zoom={170}>
-        <Geographies
-          onClick={(e) => null}
-          geography={
-            "https://raw.githubusercontent.com/ozanyerli/istanbul-districts-geojson/main/istanbul-districts.json"
-          }
-        >
-          {({ geographies }) => (
-            <>
-              {geographies.map((geo) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill="#EAEAEC"
-                  stroke="#D6D6DA"
-                  strokeWidth={0.01}
-                />
-              ))}
-            </>
+    <Paper sx={{ marginBottom: 2 }}>
+      <TabContext value={value} centered>
+        <TabList onChange={handleChange} aria-label="Map View" centered>
+          <Tab icon={<PublicIcon />} aria-label="phone" value="1" />
+          <Tab
+            icon={<FormatListBulletedIcon />}
+            aria-label="Map List"
+            value="2"
+          />
+          <Tab
+            icon={
+              <IconButton edge="end" aria-label="add">
+                <Icon color="primary">add_circle</Icon>
+              </IconButton>
+            }
+            aria-label="favorite"
+            value="add"
+          />
+          {editItem && (
+            <Tab icon={<Icon>edit</Icon>} aria-label="favorite" value="edit" />
           )}
-        </Geographies>
-        {markers.map(({ name, coordinates, markerOffset }) => (
-          <Marker key={name} coordinates={coordinates}>
-            <circle r={0.03} fill="#F00" />
-            <text
-              textAnchor="middle"
-              y={0.13}
-              style={{ fontSize: "0.1px", letterSpacing: 0.005 }}
-            >
-              {name}
-            </text>
-          </Marker>
-        ))}
-      </ZoomableGroup>
-    </ComposableMap>
+        </TabList>
+        <TabPanel value="1">
+          <MapChart items={items} />
+        </TabPanel>
+        <TabPanel value="2">
+          <MapList items={items} handleEdit={handleEdit} />
+        </TabPanel>
+        <TabPanel value="add">
+          <FormLocaion func={newLocation} />
+        </TabPanel>
+        <TabPanel value="edit">
+          <FormLocaion func={updateLocation} editItem={editItem} />
+        </TabPanel>
+      </TabContext>
+    </Paper>
   );
-};
-
-export default MapChart;
+}
