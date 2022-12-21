@@ -29,7 +29,7 @@ export default function LabTabs() {
   React.useEffect(() => {
     setEditITem(null);
     getItemsList(setItems);
-  }, [items]);
+  }, []);
 
   const newLocation = (item) => {
     addItem(item);
@@ -37,12 +37,12 @@ export default function LabTabs() {
   };
   const updateLocation = (item) => {
     console.log("updateItemId ", item);
-    updateItemId(item.id, item);
+    updateItemId(item);
     setValue("1");
   };
 
   return (
-    <Paper sx={{ marginBottom: 2 }}>
+    <Paper sx={{ marginBottom: 2, borderRadius: 1 }}>
       <TabContext value={value} centered>
         <TabList onChange={handleChange} aria-label="Map View" centered>
           <Tab icon={<PublicIcon />} aria-label="phone" value="1" />

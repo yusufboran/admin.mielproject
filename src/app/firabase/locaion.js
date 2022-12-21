@@ -56,11 +56,10 @@ export const deleteItemId = async (Id) => {
   }
 };
 
-export const updateItemId = async (id, item) => {
+export const updateItemId = async (item) => {
   try {
-    console.log(item);
-    const docRef = doc(db, folderName, id);
-
+    const docRef = doc(db, folderName, item.id);
+    delete item.id;
     updateDoc(docRef, item)
       .then((docRef) => {
         toast.success("Update Successfully");

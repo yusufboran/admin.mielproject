@@ -23,7 +23,7 @@ const FormLocaion = ({ func, editItem }) => {
       console.log("useEffect", editItem);
       setState(editItem);
     }
-  });
+  }, []);
 
   const handleChange = (event) => {
     event.persist();
@@ -68,7 +68,7 @@ const FormLocaion = ({ func, editItem }) => {
               name="phone"
               inputProps={{ maxLength: 11, minlength: 11 }}
               value={phone || ""}
-              label="phone Nubmer"
+              label="phone Number"
               onChange={handleChange}
               validators={["required"]}
               errorMessages={["this field is required"]}
