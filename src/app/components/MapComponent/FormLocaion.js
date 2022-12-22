@@ -1,9 +1,5 @@
-import { DatePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Button, Grid, Icon, styled } from "@mui/material";
 import { Span } from "app/components/Typography";
-import { addItem } from "app/firabase/locaion";
 import { useEffect, useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
@@ -19,9 +15,10 @@ const FormLocaion = ({ func, editItem }) => {
   };
 
   useEffect(() => {
-    if (editItem) {
-      setState(editItem);
+    function getItem() {
+      editItem && setState(editItem);
     }
+    getItem();
   }, []);
 
   const handleChange = (event) => {

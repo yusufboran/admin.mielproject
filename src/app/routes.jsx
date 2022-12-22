@@ -1,8 +1,6 @@
 import AuthGuard from "app/auth/AuthGuard";
-import chartsRoute from "app/views/charts/ChartsRoute";
 import dashboardRoutes from "app/views/dashboard/DashboardRoutes";
 import projectRoutes from "./views/project/ProjectRoutes";
-import materialRoutes from "app/views/material-kit/MaterialRoutes";
 import NotFound from "app/views/sessions/NotFound";
 import sessionRoutes from "app/views/sessions/SessionRoutes";
 import { Navigate } from "react-router-dom";
@@ -19,11 +17,9 @@ const routes = [
     ),
     children: [
       ...dashboardRoutes,
-      ...chartsRoute,
       ...projectRoutes,
       ...consultantsRoute,
-      ...materialRoutes,
-      ...profileRoutes
+      ...profileRoutes,
     ],
   },
   ...sessionRoutes,

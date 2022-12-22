@@ -80,7 +80,7 @@ export default function ProjectItem({ item }) {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>{parse(item.description)}</CardContent>
+        <CardContent> {parse(item.description)}</CardContent>
       </Collapse>
     </Card>
   );

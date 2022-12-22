@@ -1,7 +1,7 @@
-import { Card, Grid, styled, useTheme, Box } from "@mui/material";
+import { Grid, styled, Box } from "@mui/material";
 import { Fragment } from "react";
 import ConsultantsList from "../../components/ConsultantsList";
-import { Breadcrumb, SimpleCard } from "app/components";
+import { Breadcrumb } from "app/components";
 import ProjectView from "app/components/ProjectView";
 import CustomList from "app/components/CustomList/index";
 import FeaturesList from "app/components/FeatureList";
@@ -13,21 +13,7 @@ const ContentBox = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: { margin: "16px" },
 }));
 
-const Title = styled("span")(() => ({
-  fontSize: "1rem",
-  fontWeight: "500",
-  marginRight: ".5rem",
-  textTransform: "capitalize",
-}));
-
-const SubTitle = styled("span")(({ theme }) => ({
-  fontSize: "0.875rem",
-  color: theme.palette.text.secondary,
-}));
-
 const Analytics = () => {
-  const { palette } = useTheme();
-
   return (
     <Fragment>
       <ContentBox className="analytics">

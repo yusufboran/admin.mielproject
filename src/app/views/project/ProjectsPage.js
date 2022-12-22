@@ -1,7 +1,7 @@
-import { Box, Grid, Paper, styled, TextField } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ProjectItem from "./ProjectItem";
-import { getProjectsList, deleteProjectsId } from "../../firabase";
+import { getProjectsList } from "../../firabase";
 import React, { useEffect, useState } from "react";
 import TabButton from "app/components/MatxLayout/Layout1/TabButton";
 
@@ -22,10 +22,6 @@ const ProjectsPage = () => {
   async function getItem() {
     getProjectsList(setItems);
   }
-  const handleDelete = (id) => {
-    deleteProjectsId(id);
-    getItem();
-  };
 
   const [items, setItems] = useState([]);
   return (
@@ -47,7 +43,7 @@ const ProjectsPage = () => {
           })}
         </Grid>
       </SimpleCard>
-      <TabButton  />
+      <TabButton />
     </Container>
   );
 };

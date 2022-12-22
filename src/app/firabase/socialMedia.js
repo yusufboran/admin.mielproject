@@ -13,7 +13,7 @@ const folderName = "socialMedia";
 
 export const addSocialMedia = async (socialMedia, username) => {
   try {
-    const docRef = await addDoc(collection(db, folderName), {
+    await addDoc(collection(db, folderName), {
       socialMedia: socialMedia,
       username: username,
     });

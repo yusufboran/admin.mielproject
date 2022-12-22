@@ -1,11 +1,8 @@
 import {
   AccordionActions,
-  Box,
   Divider,
   Icon,
   IconButton,
-  ListItem,
-  ListItemText,
   styled,
 } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
@@ -13,10 +10,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { deleteItemId, getItemsList } from "app/firabase/feature";
-import ConfirmationDialog from "app/views/material-kit/dialog/ConfirmationDialog";
 import React from "react";
 import { useEffect } from "react";
-import { SimpleCard } from "..";
 import DeleteDialog from "../DeleteDialog";
 
 const ExpansionPanel = styled(Accordion)(() => ({
@@ -60,9 +55,10 @@ const ItemList = () => {
   }, []);
   return (
     <div>
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
           <ExpansionPanel
+            key={index}
             square
             expanded={expanded === item.id}
             onChange={handleChange(item.id)}

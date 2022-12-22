@@ -2,14 +2,11 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
-import { FormGroup, withStyles, TextField } from "@material-ui/core";
 import { useEffect } from "react";
 import { deleteSocialMedia, updateSocialMedia } from "app/firabase/socialMedia";
-import { Icon, IconButton } from "@mui/material";
 import UserTextfield from "./UserTextfield";
 import { useNavigate } from "react-router-dom";
 

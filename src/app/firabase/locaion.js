@@ -13,7 +13,7 @@ const folderName = "locations";
 
 export const addItem = async (item) => {
   try {
-    const docRef = await addDoc(collection(db, folderName), item);
+    await addDoc(collection(db, folderName), item);
 
     toast.success("Successfully");
   } catch (error) {

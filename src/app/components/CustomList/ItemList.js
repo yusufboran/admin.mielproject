@@ -7,7 +7,6 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { ListItem } from "@mui/material";
-import Icons from "./Icons";
 import ModalAdd from "./ModalAdd";
 
 const ItemList = ({ openItem, items }) => {
@@ -32,7 +31,12 @@ const ItemList = ({ openItem, items }) => {
         <ListItem secondaryAction={<ModalAdd />}>
           <ListItemButton onClick={handleClick}>
             <ListItemIcon>
-              <img height={"25px"} width={"25px"} src={Icons("socialMedia")} />
+              <img
+                height={"25px"}
+                width={"25px"}
+                alt="socialMedia"
+                src={"/assets/images/icons/social-network.png"}
+              />
             </ListItemIcon>
             <ListItemText primary={"Social Media"} />
             {open ? <ExpandLess /> : <ExpandMore />}
@@ -42,21 +46,25 @@ const ItemList = ({ openItem, items }) => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           {items.map((item, index) => {
             return (
-              <List component="div" disablePadding>
+              <List key={index} component="div" disablePadding>
                 <ListItem>
                   <ListItemButton onClick={() => openItem(item)} sx={{ pl: 4 }}>
                     <ListItemIcon>
                       <img
                         height={"25px"}
                         width={"25px"}
-                        src={Icons(item.socialMedia)}
+                        alt="socialMedia"
+                        src={
+                          "/assets/images/icons/" + item.socialMedia + ".png"
+                        }
                       />
                     </ListItemIcon>
                     <ListItemText>{item.username} </ListItemText>
                     <img
-                      height={"20px"}
-                      width={"20px"}
-                      src={Icons("visibility")}
+                      height={"25px"}
+                      width={"25px"}
+                      alt="socialMedia"
+                      src={"/assets/images/icons/edit-icon.png"}
                     />
                   </ListItemButton>
                 </ListItem>

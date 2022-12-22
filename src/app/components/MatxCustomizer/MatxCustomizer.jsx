@@ -153,9 +153,9 @@ const MatxCustomizer = () => {
                   <Box sx={{ color: secondary }}>Layouts</Box>
 
                   <Box display="flex" flexDirection="column">
-                    {demoLayouts.map((layout) => (
+                    {demoLayouts.map((layout,index) => (
                       <LayoutBox
-                        key={layout.name}
+                        key={index}
                         color="secondary"
                         badgeContent={'Pro'}
                         invisible={!layout.isPro}

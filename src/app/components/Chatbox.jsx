@@ -246,9 +246,9 @@ const Chatbox = ({ togglePopup }) => {
         </IconButton>
       </ProfileBox>
       <StyledScrollBar id="chat-scroll">
-        {messageList.map((item, ind) => (
+        {messageList.map((item, index) => (
           <Box
-            key={ind}
+            key={index}
             p="20px"
             display="flex"
             sx={{

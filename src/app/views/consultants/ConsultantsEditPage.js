@@ -1,8 +1,8 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ConsultantsForm from "app/components/ConsultantsForm";
-import { useLocation, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import React from "react";
 import { fileDelete, fileUpdate, updateConsultansId } from "../../firabase";
 
 const Container = styled("div")(({ theme }) => ({
@@ -26,8 +26,6 @@ const ConsultantsEditPage = () => {
       updateConsultansId(consultantsId, state);
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <Container>

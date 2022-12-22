@@ -4,27 +4,14 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { deleteItemId, getItemsList } from "app/firabase/locaion";
-import { useEffect } from "react";
+import { deleteItemId } from "app/firabase/locaion";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { Icon, IconButton } from "@mui/material";
 import DeleteDialog from "../DeleteDialog";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
-export default function MapList({ items ,handleEdit}) {
+export default function MapList({ items, handleEdit }) {
   const handleDelete = (id) => {
     deleteItemId(id);
   };
@@ -61,7 +48,7 @@ export default function MapList({ items ,handleEdit}) {
             </TableCell>
             <TableCell align="right">
               <Link className="btn btn-brand">
-                <IconButton onClick={() => handleEdit(location)}> 
+                <IconButton onClick={() => handleEdit(location)}>
                   <Icon>edit</Icon>
                 </IconButton>
               </Link>

@@ -16,11 +16,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import {
-  getProjectsList,
-  deleteProjectsId,
-  fileDelete,
-} from "../../firabase";
+import { getProjectsList, deleteProjectsId, fileDelete } from "../../firabase";
 import AlertDialog from "app/components/DeleteDialog";
 
 export default function ProjectView() {
@@ -47,9 +43,10 @@ export default function ProjectView() {
 
   return (
     <Box width="100%" paddingBottom={2}>
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
           <Accordion
+            key={index}
             expanded={expanded === "panel" + item.id}
             onChange={handleChange("panel" + item.id)}
           >

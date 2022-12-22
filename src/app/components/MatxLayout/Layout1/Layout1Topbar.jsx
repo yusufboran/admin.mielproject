@@ -69,11 +69,6 @@ const StyledItem = styled(MenuItem)(({ theme }) => ({
   "& span": { marginRight: "10px", color: theme.palette.text.primary },
 }));
 
-const IconBox = styled("div")(({ theme }) => ({
-  display: "inherit",
-  [theme.breakpoints.down("md")]: { display: "none !important" },
-}));
-
 const Layout1Topbar = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();

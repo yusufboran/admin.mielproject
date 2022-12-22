@@ -9,14 +9,6 @@ import {
 const geoUrl =
   "https://raw.githubusercontent.com/ozanyerli/istanbul-districts-geojson/main/istanbul-districts.json";
 
-const markers = [
-  {
-    markerOffset: -15,
-    name: "La Paz",
-    coordinates: [28.98515070117598, 41.1025790977422],
-  },
-];
-
 const MapChart = ({ items }) => {
   return (
     <ComposableMap
@@ -27,14 +19,14 @@ const MapChart = ({ items }) => {
     >
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
-          geographies.map((geo) => (
+          geographies.map((geo, index) => (
             <Geography
+              key={index}
               style={{
                 default: { outline: "none" },
                 hover: { outline: "none" },
                 pressed: { outline: "none" },
               }}
-              key={geo.rsmKey}
               geography={geo}
               fill="#EAEAEC"
               stroke="#D6D6DA"
