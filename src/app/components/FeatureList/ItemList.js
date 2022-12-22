@@ -61,7 +61,6 @@ const ItemList = () => {
   return (
     <div>
       {items.map((item) => {
-        console.log(item);
         return (
           <ExpansionPanel
             square

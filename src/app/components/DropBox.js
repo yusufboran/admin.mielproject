@@ -22,7 +22,11 @@ export default function DropBox({ selectItem, setSelectItem, List }) {
           onChange={handleChange}
         >
           {List.map((item) => {
-            return <MenuItem value={item.title}>{item.title}</MenuItem>;
+            return (
+              <MenuItem key={item.id} value={item.title}>
+                <p>{item.title}</p>
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>

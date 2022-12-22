@@ -53,7 +53,6 @@ export const deleteItemId = async (Id) => {
 
 export const updateItemId = async (id, username) => {
   try {
-    console.log(id);
     const docRef = doc(db, folderName, id);
 
     updateDoc(docRef, {

@@ -21,7 +21,6 @@ export default function LabTabs() {
   };
 
   const handleEdit = (item) => {
-    console.log("handleEdit ", item);
     setEditITem(item);
     setValue("edit");
   };
@@ -36,7 +35,6 @@ export default function LabTabs() {
     setValue("1");
   };
   const updateLocation = (item) => {
-    console.log("updateItemId ", item);
     updateItemId(item);
     setValue("1");
   };

@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
-import jwtDecode from "jwt-decode";
-import axios from "axios.js";
 import { MatxLoading } from "app/components";
-import { firebaseLogin } from "../firabase";
+import { firebaseLogin, firebaseLogout } from "../firabase";
 
 const initialState = {
   isAuthenticated: false,
@@ -10,23 +8,11 @@ const initialState = {
   user: null,
 };
 
-const isValidToken = (accessToken) => {
-  if (!accessToken) {
-    return false;
-  }
-
-  const decodedToken = jwtDecode(accessToken);
-  const currentTime = Date.now() / 1000;
-  return decodedToken.exp > currentTime;
-};
-
-const setSession = (accessToken) => {
-  if (accessToken) {
-    localStorage.setItem("accessToken", accessToken);
-    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+const setSession = (userData) => {
+  if (userData) {
+    localStorage.setItem("userData", JSON.stringify(userData));
   } else {
-    localStorage.removeItem("accessToken");
-    delete axios.defaults.headers.common.Authorization;
+    localStorage.removeItem("userData");
   }
 };
 
@@ -58,15 +44,7 @@ const reducer = (state, action) => {
         user: null,
       };
     }
-    case "REGISTER": {
-      const { user } = action.payload;
 
-      return {
-        ...state,
-        isAuthenticated: true,
-        user,
-      };
-    }
     default: {
       return { ...state };
     }
@@ -78,7 +56,6 @@ const AuthContext = createContext({
   method: "JWT",
   login: () => Promise.resolve(),
   logout: () => {},
-  register: () => Promise.resolve(),
 });
 
 export const AuthProvider = ({ children }) => {
@@ -86,15 +63,22 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const userData = await firebaseLogin(email, password);
-    console.log(userData);
-    
-    const response = await axios.post("/api/auth/login", {
-      email,
-      password,
-    });
-    const { accessToken, user } = response.data;
-    console.log(user);
-    setSession(accessToken);
+    const accessToken = userData.accessToken;
+    const response = {
+      accessToken,
+      user: {
+        id: 1,
+        role: "SA",
+        name: "Jason Alexander",
+        username: "jason_alexander",
+        email: "jason@ui-lib.com",
+        avatar: "/assets/images/face-6.jpg",
+        age: 25,
+      },
+    };
+    const { user } = response;
+
+    setSession(response);
 
     dispatch({
       type: "LOGIN",
@@ -104,40 +88,20 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const register = async (email, username, password) => {
-    const response = await axios.post("/api/auth/register", {
-      email,
-      username,
-      password,
-    });
-
-    const { accessToken, user } = response.data;
-
-    setSession(accessToken);
-
-    dispatch({
-      type: "REGISTER",
-      payload: {
-        user,
-      },
-    });
-  };
-
   const logout = () => {
     setSession(null);
     dispatch({ type: "LOGOUT" });
+    firebaseLogout();
   };
 
   useEffect(() => {
     (async () => {
       try {
-        const accessToken = window.localStorage.getItem("accessToken");
-        console.log("Access token " + accessToken);
-        if (accessToken && isValidToken(accessToken)) {
-          setSession(accessToken);
-          const response = await axios.get("/api/auth/profile");
-          const { user } = response.data;
+        const userData = JSON.parse(window.localStorage.getItem("userData"));
 
+        if (userData) {
+          setSession(userData);
+          const { user } = userData;
           dispatch({
             type: "INIT",
             payload: {
@@ -178,7 +142,6 @@ export const AuthProvider = ({ children }) => {
         method: "JWT",
         login,
         logout,
-        register,
       }}
     >
       {children}

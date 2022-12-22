@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 import {
   collection,
@@ -20,19 +20,39 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_API_KEY,
+//   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+//   projectId:process.env.REACT_APP_PROJECT_ID,
+//   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+//   messagingSenderId:  process.env.REACT_APP_MESSAGING_SENDER_ID,
+//   appId: process.env.REACT_APP_ID,
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC4iGWSLSOdBXG6q72J_uDo-i5VGBrLSro",
-  authDomain: "mielproje.firebaseapp.com",
-  projectId: "mielproje",
-  storageBucket: "mielproje.appspot.com",
-  messagingSenderId: "850541188172",
-  appId: "1:850541188172:web:4c19c6afe35d42f03c90e9",
+  apiKey: "AIzaSyD3yfR754GMZsNGwNBa5kccauJiTwmQ-3E",
+  authDomain: "deneme-9cb18.firebaseapp.com",
+  projectId: "deneme-9cb18",
+  storageBucket: "deneme-9cb18.appspot.com",
+  messagingSenderId: "791723348296",
+  appId: "1:791723348296:web:f1b329850badaa5ec9a37d",
+  measurementId: "G-6NJMWLE5PG",
 };
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const db = getFirestore();
 export const storage = getStorage();
+
+export const firebaseLogout = async () => {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+};
 
 export const firebaseLogin = async (email, password) => {
   try {
@@ -46,7 +66,6 @@ export const firebaseLogin = async (email, password) => {
 };
 export const consultansAdd = async (item) => {
   try {
-    console.log(item);
     const docRef = await addDoc(collection(db, "consultans"), item);
 
     toast.success("Successfully Consultants Add" + docRef.id);
@@ -95,7 +114,6 @@ export const deleteConsultansId = async (Id) => {
 
 export const updateConsultansId = async (id, item) => {
   try {
-    console.log(item);
     const docRef = doc(db, "consultans", id);
 
     updateDoc(docRef, item)
@@ -116,7 +134,6 @@ export const getConsultansId = async (id, setState, setFile) => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log(docSnap.data());
       setState({
         firstName: docSnap.data().firstName,
         lastName: docSnap.data().lastName,
@@ -153,7 +170,6 @@ export const addProject = async (item, arr, arrPath) => {
       path: arrPath,
     };
 
-    console.log(data);
     const docRef = await addDoc(collection(db, "projects"), data);
     toast.success("Successfully Project Add" + docRef.id);
   } catch (error) {
@@ -178,7 +194,6 @@ export const getProjectsList = async (setItems) => {
 
       items.push(item);
     });
-    console.log(items);
 
     setItems(items);
   } catch (error) {
@@ -195,17 +210,21 @@ export const deleteProjectsId = async (Id) => {
   }
 };
 
-export const fileUpload = async (file, url, item) => {
+export const fileUpload = async (file, item) => {
   try {
-    console.log(file);
     const metadata = {
       contentType: "image/jpeg",
     };
-
+    const url =
+      "/person/images/" +
+      item.firstName +
+      "-" +
+      item.lastName +
+      "-" +
+      Date.now();
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(storage, url);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    console.log(uploadTask);
 
     uploadTask.on(
       "state_changed",
@@ -259,11 +278,6 @@ export const fileUpload = async (file, url, item) => {
 };
 
 export const fileUpdate = async (file, item, id) => {
-  console.log("fileUpdate");
-  console.log("file", file);
-
-  console.log("item", item);
-  console.log("id", id);
 
   try {
     const metadata = {
@@ -274,7 +288,6 @@ export const fileUpdate = async (file, item, id) => {
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(storage, url);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    console.log(uploadTask);
 
     uploadTask.on(
       "state_changed",
@@ -379,7 +392,6 @@ export const projectFilesUpload = async (files, item) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("getDownloadURL 320 ", downloadURL);
             arr.push(downloadURL);
             counter++;
             if (counter === flag) {

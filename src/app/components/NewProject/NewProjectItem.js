@@ -14,7 +14,6 @@ export default function NewProjectItem() {
       description: description,
     };
 
-    console.log(fileList, item);
     projectFilesUpload(fileList, item);
     navigate("/");
   };

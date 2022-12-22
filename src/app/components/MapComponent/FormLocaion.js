@@ -20,7 +20,6 @@ const FormLocaion = ({ func, editItem }) => {
 
   useEffect(() => {
     if (editItem) {
-      console.log("useEffect", editItem);
       setState(editItem);
     }
   }, []);

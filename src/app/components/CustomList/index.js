@@ -15,7 +15,6 @@ export default function NestedList() {
   };
   useEffect(() => {
     getSocialMedia(setItems);
-    console.log(items);
   }, []);
   return (
     <div style={{ marginBottom: "16px" }}>

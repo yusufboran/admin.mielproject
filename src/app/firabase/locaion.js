@@ -26,7 +26,6 @@ export const getItemsList = async (setItems) => {
     const items = [];
     const querySnapshot = await getDocs(collection(db, folderName));
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
       //   <TableCell>İmage</TableCell>
 
       const item = {

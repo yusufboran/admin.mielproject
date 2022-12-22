@@ -13,7 +13,6 @@ const folderName = "socialMedia";
 
 export const addSocialMedia = async (socialMedia, username) => {
   try {
-    console.log("addSocialMedia", socialMedia, username);
     const docRef = await addDoc(collection(db, folderName), {
       socialMedia: socialMedia,
       username: username,
@@ -56,7 +55,6 @@ export const deleteSocialMedia = async (Id) => {
 
 export const updateSocialMedia = async (id, username) => {
   try {
-    console.log(id);
     const docRef = doc(db, "socialMedia", id);
 
     updateDoc(docRef, {

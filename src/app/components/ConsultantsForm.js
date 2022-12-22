@@ -16,14 +16,13 @@ const ConsultantsForm = ({ func, id }) => {
   const [deleteCheck, setDeleteCheck] = useState(false);
 
   useEffect(() => {
-    if (id) {
-      console.log("useEffect", id);
-      getItems();
-    }
+    getItems();
   }, []);
 
   const getItems = () => {
-    getConsultansId(id, setState, setFile);
+    if (id) {
+      getConsultansId(id, setState, setFile);
+    }
   };
 
   const handleSubmit = () => {
