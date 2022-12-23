@@ -4,6 +4,7 @@ import ProjectItem from "./ProjectItem";
 import { getProjectsList } from "../../firabase";
 import React, { useEffect, useState } from "react";
 import TabButton from "app/components/MatxLayout/Layout1/TabButton";
+import AddSpeedDialButton from "app/components/AddSpeedDialButton";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -43,7 +44,7 @@ const ProjectsPage = () => {
           })}
         </Grid>
       </SimpleCard>
-      <TabButton />
+      <AddSpeedDialButton />
     </Container>
   );
 };

@@ -7,6 +7,7 @@ import CustomList from "app/components/CustomList/index";
 import FeaturesList from "app/components/FeatureList";
 import MapChart from "app/components/MapComponent/index";
 import Contact from "app/components/Contact/index";
+import AddSpeedDialButton from "app/components/AddSpeedDialButton";
 
 const ContentBox = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -38,6 +39,8 @@ const Analytics = () => {
           </Grid>
         </Grid>
       </ContentBox>
+
+      <AddSpeedDialButton />
     </Fragment>
   );
 };

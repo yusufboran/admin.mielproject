@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
       user: {
         id: 1,
         role: "SA",
-        name: "Jason Alexander",
+        name: email,
         username: "jason_alexander",
         email: "jason@ui-lib.com",
         avatar: "/assets/images/face-6.jpg",

@@ -1,5 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
+import AddSpeedDialButton from "app/components/AddSpeedDialButton";
 import ConsultantsList from "../../components/ConsultantsList";
 
 const Container = styled("div")(({ theme }) => ({
@@ -20,6 +21,7 @@ const ConsultantsPage = () => {
         />
         <ConsultantsList />
       </Box>
+      <AddSpeedDialButton />
     </Container>
   );
 };
