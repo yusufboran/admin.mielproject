@@ -13,10 +13,11 @@ import {
   CardHeader,
   CardContent,
 } from "@mui/material";
-import ConfirmationDialog from "app/components/ConfirmationDialog";
+import DeleteDialog from "app/components/DeleteDialog";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getConsultansList, deleteConsultansId, fileDelete } from "../firabase";
+import EditButton from "./EditButton";
 
 const StyledTable = styled(Table)(() => ({
   whiteSpace: "pre",
@@ -95,17 +96,9 @@ const ConsultantsList = () => {
                       {item.imgUrl ? "true" : "Null"}
                     </TableCell>
                     <TableCell align="right">
-                      <Link
-                        to={`/consultants/edit/}?id=${item.id} `}
-                        className="btn btn-brand"
-                      >
-                        <IconButton>
-                          <Icon>edit</Icon>
-                        </IconButton>
-                      </Link>
-                      <ConfirmationDialog
-                        deleteButton={() => handleDelete(item)}
-                      />
+                      <EditButton to={`/consultants/edit/${item.id} `} />
+
+                      <DeleteDialog deleteButton={() => handleDelete(item)} />
                     </TableCell>
                   </TableRow>
                 ))}

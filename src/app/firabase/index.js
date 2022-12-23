@@ -30,13 +30,12 @@ import {
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD3yfR754GMZsNGwNBa5kccauJiTwmQ-3E",
-  authDomain: "deneme-9cb18.firebaseapp.com",
-  projectId: "deneme-9cb18",
-  storageBucket: "deneme-9cb18.appspot.com",
-  messagingSenderId: "791723348296",
-  appId: "1:791723348296:web:f1b329850badaa5ec9a37d",
-  measurementId: "G-6NJMWLE5PG",
+  apiKey: "AIzaSyC4iGWSLSOdBXG6q72J_uDo-i5VGBrLSro",
+  authDomain: "mielproje.firebaseapp.com",
+  projectId: "mielproje",
+  storageBucket: "mielproje.appspot.com",
+  messagingSenderId: "850541188172",
+  appId: "1:850541188172:web:4c19c6afe35d42f03c90e9",
 };
 
 export const app = initializeApp(firebaseConfig);

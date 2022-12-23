@@ -16,11 +16,23 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
   const onDragEnter = () => wrapperRef.current.classList.add("dragover");
   const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
   const onDrop = () => wrapperRef.current.classList.remove("dragover");
+
   const onFileDrop = (e) => {
-    const newFile = e.target.files[0];
-    if (newFile) {
-      const updatedList = [...fileList, newFile];
-      setFileList(updatedList);
+    if (singleFile) {
+      const newFile = e.target.files[0];
+      if (newFile) {
+        const updatedList = [...fileList, newFile];
+        setFileList(updatedList);
+      }
+    } else {
+      const files = e.target.files;
+      var list = [];
+      for (let i = 0; i < files.length; i++) {
+        list.push(files[i]);
+      }
+      setFileList(list);
+
+      console.log("file : ", list);
     }
   };
 
@@ -51,7 +63,7 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
               <img src={uploadImg} alt="" />
               <p>Drag & Drop your files here</p>
             </div>
-            <input type="file" value="" onChange={onFileDrop} />
+            <input type="file" value="" onChange={onFileDrop} multiple />
           </div>
         ) : null}
         <List

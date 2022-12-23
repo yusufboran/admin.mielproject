@@ -72,10 +72,7 @@ export default function ProjectView() {
 
             <AccordionActions>
               <Link
-                to={`/projects/edit/${item.projectName
-                  .split(" ")
-                  .join("-")
-                  .toLowerCase()}?id=${item.id} `}
+                to={`/projects/edit/${item.id} `}
                 className="btn btn-brand"
               >
                 <IconButton>

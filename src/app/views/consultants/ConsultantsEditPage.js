@@ -1,7 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ConsultantsForm from "app/components/ConsultantsForm";
-import { useLocation } from "react-router-dom";
 import React from "react";
 import { fileDelete, fileUpdate, updateConsultansId } from "../../firabase";
 
@@ -15,8 +14,8 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const ConsultantsEditPage = () => {
-  const location = useLocation();
-  const consultantsId = new URLSearchParams(location.search).get("id");
+  var url = window.location.href.split("/");
+  var consultantsId = url[url.length - 1];
 
   const updateConsultant = (file, state, deleteCheck) => {
     if (deleteCheck) {
@@ -26,6 +25,8 @@ const ConsultantsEditPage = () => {
       updateConsultansId(consultantsId, state);
     }
   };
+
+  console.log();
 
   return (
     <Container>

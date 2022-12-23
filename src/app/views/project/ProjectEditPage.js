@@ -14,8 +14,8 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const ProjectEditPage = () => {
-  const location = useLocation();
-  const projectId = new URLSearchParams(location.search).get("id");
+  var url = window.location.href.split("/");
+  var projectId = url[url.length - 1];
 
   return (
     <Container>
