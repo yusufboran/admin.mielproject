@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import parse from "html-react-parser";
-import { Chip, Menu, MenuList, Stack } from "@mui/material";
+import { Chip, Divider, Menu, MenuList, Stack } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteDialog from "app/components/DeleteDialog";
@@ -162,7 +162,11 @@ export default function ProjectItem({ item }) {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent> {parse(item.description)}</CardContent>
+        <CardContent>
+          {parse(item.descriptionTR)}
+          <Divider />
+          {parse(item.descriptionEN)}
+        </CardContent>
       </Collapse>
     </Card>
   );

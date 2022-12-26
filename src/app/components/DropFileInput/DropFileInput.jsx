@@ -18,10 +18,10 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
   const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
   const onFileDrop = (e) => {
-    if (singleFile) {
-      const newFile = e.target.files[0];
-      if (newFile) {
-        const updatedList = [...fileList, newFile];
+    if (fileList.length > 0) {
+      const files = e.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const updatedList = [...fileList, e.target.files[i]];
         setFileList(updatedList);
       }
     } else {

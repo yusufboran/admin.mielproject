@@ -1,6 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import NewProjectItem from "app/components/NewProject/NewProjectItem";
+import ProjectsForm from "app/components/NewProject/ProjectsForm";
+import { projectFilesUpload } from "app/firabase";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -22,7 +23,7 @@ const ProjectItemPage = () => {
             { name: "Add", path: "/projects/add" },
           ]}
         />
-        <NewProjectItem />
+        <ProjectsForm func={projectFilesUpload} />
       </Box>
     </Container>
   );

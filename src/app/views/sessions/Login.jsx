@@ -15,9 +15,11 @@ const ContentBox = styled(Box)(() => ({
   background: "rgba(0, 0, 0, 0.01)",
 }));
 
+
+
 const initialValues = {
-  email: "",
-  password: "",
+  email: "jason@ui-lib.com",
+  password: "dummyPass",
   remember: true,
 };
 

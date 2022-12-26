@@ -2,7 +2,8 @@ import React from "react";
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import { useLocation } from "react-router-dom";
-import EditProjectItem from "app/components/NewProject/EditProjectItem";
+import ProjectsForm from "app/components/NewProject/ProjectsForm";
+import { updateProjectId } from "app/firabase";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -17,6 +18,9 @@ const ProjectEditPage = () => {
   var url = window.location.href.split("/");
   var projectId = url[url.length - 1];
 
+  const updateConsultant = (itefileList, item) => {
+    updateProjectId(projectId, item);
+  };
   return (
     <Container>
       <Box className="breadcrumb">
@@ -27,10 +31,8 @@ const ProjectEditPage = () => {
             { name: "Edit", path: "/projects/add" },
           ]}
         />
-        <EditProjectItem id={projectId} />
+        <ProjectsForm func={updateConsultant} id={projectId} />
       </Box>
-
-      {projectId}
     </Container>
   );
 };

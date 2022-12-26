@@ -66,15 +66,15 @@ export default function ProjectView() {
             </AccordionSummary>
 
             <AccordionDetails>
-              <Typography>{parse(item.description)}</Typography>
+              <Typography>
+                {parse(item.descriptionEN)} <Divider />{" "}
+                {parse(item.descriptionTR)}{" "}
+              </Typography>
             </AccordionDetails>
             <Divider />
 
             <AccordionActions>
-              <Link
-                to={`/projects/edit/${item.id} `}
-                className="btn btn-brand"
-              >
+              <Link to={`/projects/edit/${item.id} `} className="btn btn-brand">
                 <IconButton>
                   <Icon>edit</Icon>
                 </IconButton>

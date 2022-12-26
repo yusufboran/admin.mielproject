@@ -33,7 +33,7 @@ const AccordionRoot = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function TextEditor({ context, setContext }) {
+export default function TextEditor({ context, setContext, language }) {
   return (
     <AccordionRoot>
       <Accordion defaultExpanded>
@@ -43,12 +43,10 @@ export default function TextEditor({ context, setContext }) {
           id="panel1c-header"
         >
           <Box className="column">
-            <Typography className="heading">Description</Typography>
-          </Box>
-
-          <Box className="column">
-            <Typography className="secondaryHeading">
-              Select trip destination
+            <Typography className="heading">
+              {language == "tr"
+                ? "Türkçe açıklama ekleyiniz"
+                : "Add English description"}{" "}
             </Typography>
           </Box>
         </AccordionSummary>

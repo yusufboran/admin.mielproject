@@ -3,28 +3,51 @@ import { SimpleCard } from "app/components";
 import DropFileInput from "../DropFileInput/DropFileInput";
 import React, { useState } from "react";
 import TextEditor from "./TextEditor";
-import { addProject } from "../../firabase";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getProjectId } from "app/firabase";
 
-export default function EditProjectItem(id) {
+export default function NewProjectItem({ func, id }) {
   const handleSave = () => {
-    const files = [];
-    fileList.forEach((item) => files.push(item.name));
     const item = {
       projectName: projectName,
       features: features,
-      description: description,
-      files: files,
+      descriptionTR: descriptionTR,
+      descriptionEN: descriptionEN,
     };
 
-    addProject(item);
-    navigate("/");
+    func(fileList, item);
   };
+
+  useEffect(() => {
+    getItem();
+  }, []);
+
+  const getItem = () => {
+    if (id) {
+      getProjectId(
+        id,
+        setProjectName,
+        setFeatures,
+        setDescriptionTR,
+        setDescriptionEN,
+        setFileList
+      );
+    }
+  };
+
   const navigate = useNavigate();
-  const [projectName, setProjectName] = useState("");
-  const [features, setFeatures] = React.useState();
-  const [description, setDescription] = React.useState(
-    '<h2 style="text-align: center;">asdasd and React!</h2>'
+
+  const [projectName, setProjectName] = useState("deneme");
+  const [features, setFeatures] = React.useState([
+    featuresExample[0].title,
+    featuresExample[1].title,
+  ]);
+  const [descriptionTR, setDescriptionTR] = React.useState(
+    '<h2 style="text-align: center;">türkçe açıklama</h2>'
+  );
+  const [descriptionEN, setDescriptionEN] = React.useState(
+    '<h2 style="text-align: center;">description english</h2>'
   );
   const [fileList, setFileList] = useState([]);
 
@@ -33,7 +56,7 @@ export default function EditProjectItem(id) {
       <Grid container spacing={2}>
         <Grid item xl={6} md={12} sm={12} xs={12}>
           <TextField
-            value={projectName}
+            value={projectName || ""}
             onChange={(e) => setProjectName(e.target.value)}
             fullWidth
             id="outlined-basic"
@@ -62,7 +85,16 @@ export default function EditProjectItem(id) {
           />
         </Grid>
         <Grid item xl={12} xs={12} md={12}>
-          <TextEditor context={description} setContext={setDescription} />
+          <TextEditor
+            context={descriptionTR}
+            setContext={setDescriptionTR}
+            language={"tr"}
+          />
+          <TextEditor
+            context={descriptionEN}
+            setContext={setDescriptionEN}
+            language={"en"}
+          />
         </Grid>
       </Grid>
       <DropFileInput fileList={fileList} setFileList={setFileList} />

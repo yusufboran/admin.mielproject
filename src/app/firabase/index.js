@@ -127,21 +127,29 @@ export const updateConsultansId = async (id, item) => {
   }
 };
 
+export const updateProjectId = async (id, item) => {
+  try {
+    const docRef = doc(db, "projects", id);
+
+    updateDoc(docRef, item)
+      .then((docRef) => {
+        toast.success("Update Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    toast.error("updateProjectId", error.message);
+  }
+};
+
 export const getConsultansId = async (id, setState, setFile) => {
   try {
     const docRef = doc(db, "consultans", id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      setState({
-        firstName: docSnap.data().firstName,
-        lastName: docSnap.data().lastName,
-        email: docSnap.data().email,
-        phoneNumber: docSnap.data().phoneNumber,
-        date: docSnap.data().date,
-        path: docSnap.data().path,
-        imgUrl: docSnap.data().file,
-      });
+      setState();
       setFile([
         {
           lastModified: 1670758416076,
@@ -159,17 +167,49 @@ export const getConsultansId = async (id, setState, setFile) => {
   }
 };
 
-export const addProject = async (item, arr, arrPath) => {
+export const getProjectId = async (
+  id,
+  setProjectName,
+  setFeatures,
+  setDescriptionTR,
+  setDescriptionEN,
+  setFileList
+) => {
   try {
-    const data = {
-      projectName: item.projectName,
-      features: item.features,
-      description: item.description,
-      files: arr,
-      path: arrPath,
-    };
+    const docRef = doc(db, "projects", id);
+    const docSnap = await getDoc(docRef);
 
-    const docRef = await addDoc(collection(db, "projects"), data);
+    if (docSnap.exists()) {
+      setProjectName(docSnap.data().projectName);
+      setFeatures(docSnap.data().features);
+      setDescriptionTR(docSnap.data().descriptionTR);
+      setDescriptionEN(docSnap.data().descriptionEN);
+
+      var files = [];
+      docSnap.data().path.map((item) => {
+        var File = {
+          lastModified: 1670758416076,
+          lastModifiedDate: new Date(),
+          name: item,
+          size: 232877,
+          type: "image/jpeg",
+          webkitRelativePath: "",
+        };
+        files.push(File);
+      });
+
+      setFileList(files);
+      console.log(files);
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    toast.error("getConsultansId", error.message);
+  }
+};
+export const addProject = async (item) => {
+  try {
+    const docRef = await addDoc(collection(db, "projects"), item);
     toast.success("Successfully Project Add" + docRef.id);
   } catch (error) {
     toast.error("addProject", error.message);
@@ -185,7 +225,8 @@ export const getProjectsList = async (setItems) => {
       const item = {
         id: doc.id,
         projectName: doc.data()["projectName"],
-        description: doc.data()["description"],
+        descriptionEN: doc.data()["descriptionEN"],
+        descriptionTR: doc.data()["descriptionTR"],
         features: doc.data()["features"],
         files: doc.data()["files"],
         updateDate: 1669277071387,
@@ -193,6 +234,7 @@ export const getProjectsList = async (setItems) => {
 
       items.push(item);
     });
+    console.log(items);
 
     setItems(items);
   } catch (error) {
@@ -296,8 +338,10 @@ export const projectFilesUpload = async (files, item) => {
             arr.push(downloadURL);
             counter++;
             if (counter === flag) {
-              console.log(item, arr, arrPath);
-              addProject(item, arr, arrPath);
+              item = { ...item, files: arr, path: arrPath };
+              console.log("item", item);
+
+              addProject(item);
             }
           });
         }
