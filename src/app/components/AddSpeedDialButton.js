@@ -45,12 +45,17 @@ const Toggle = styled("div")(() => ({
 export default function AddSpeedDialButton() {
   return (
     <Toggle>
-      <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
-        <SpeedDial
-          ariaLabel="SpeedDial basic example"
-          sx={{ position: "absolute", bottom: 16, right: 16 }}
-          icon={<SpeedDialIcon />}
-        >
+      <Box
+        sx={{
+          height: 320,
+          transform: "translateZ(0px)",
+          flexGrow: 1,
+          position: "absolute",
+          bottom: -150,
+          right: 16,
+        }}
+      >
+        <SpeedDial ariaLabel="SpeedDial basic example" icon={<SpeedDialIcon />}>
           {actions.map((action) => (
             <SpeedDialAction
               key={action.name}

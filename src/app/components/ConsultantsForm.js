@@ -21,7 +21,7 @@ const ConsultantsForm = ({ func, id }) => {
 
   const getItems = () => {
     if (id) {
-      return getConsultansId(id, setState, setFile);
+      getConsultansId(id, setState, setFile);
     }
   };
 

@@ -34,8 +34,8 @@ export default function ProjectView() {
     getProjectsList(setItems);
   }
   const handleDelete = (item) => {
-    item.files.forEach((file) => {
-      fileDelete(file);
+    item.path.forEach((path) => {
+      fileDelete(path);
     });
     deleteProjectsId(item.id);
     getItem();

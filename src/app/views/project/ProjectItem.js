@@ -15,6 +15,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteDialog from "app/components/DeleteDialog";
 import EditButton from "app/components/EditButton";
 import { getProjectsList, deleteProjectsId, fileDelete } from "../../firabase";
+import SliderImage from "app/components/SliderImage";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -54,13 +55,7 @@ export default function ProjectItem({ item }) {
     <Card>
       <Card>
         <div style={{ position: "relative" }}>
-          <CardMedia
-            component="img"
-            height="194"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            //      image={item.files[0]}
-            alt="Paella dish"
-          />
+          <SliderImage item={item.files} />
           <h1
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.5)",
@@ -68,6 +63,7 @@ export default function ProjectItem({ item }) {
               color: "white",
               top: 20,
               left: 30,
+              zIndex: 99,
             }}
           >
             {item.projectName}
@@ -78,6 +74,7 @@ export default function ProjectItem({ item }) {
               color: "white",
               top: 10,
               right: 10,
+              zIndex: 99,
             }}
           >
             <IconButton
@@ -151,15 +148,10 @@ export default function ProjectItem({ item }) {
           </Stack>
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
+      <CardActions>
+        <IconButton onClick={handleExpandClick}>
           <ExpandMoreIcon />
-        </ExpandMore>
+        </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>

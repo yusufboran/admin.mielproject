@@ -149,7 +149,15 @@ export const getConsultansId = async (id, setState, setFile) => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      setState();
+      setState({
+        firstName: docSnap.data().firstName,
+        lastName: docSnap.data().lastName,
+        email: docSnap.data().email,
+        phoneNumber: docSnap.data().phoneNumber,
+        date: docSnap.data().date,
+        path: docSnap.data().path,
+        imgUrl: docSnap.data().file,
+      });
       setFile([
         {
           lastModified: 1670758416076,
@@ -229,6 +237,7 @@ export const getProjectsList = async (setItems) => {
         descriptionTR: doc.data()["descriptionTR"],
         features: doc.data()["features"],
         files: doc.data()["files"],
+        path: doc.data()["path"],
         updateDate: 1669277071387,
       };
 
@@ -332,14 +341,44 @@ export const projectFilesUpload = async (files, item) => {
 
       uploadTask.on(
         "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
 
+            // ...
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("getDownloadURL 320 ", downloadURL);
             arr.push(downloadURL);
             counter++;
             if (counter === flag) {
               item = { ...item, files: arr, path: arrPath };
-              console.log("item", item);
 
               addProject(item);
             }
@@ -347,9 +386,7 @@ export const projectFilesUpload = async (files, item) => {
         }
       );
 
-      uploadBytes(storageRef, file).then((snapshot) => {
-        console.log("Uploaded a blob or file!");
-      });
+      uploadBytes(storageRef, file);
     });
   } catch (error) {
     toast.error("fileUpload", error.message);
