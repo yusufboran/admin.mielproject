@@ -1,11 +1,10 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { Icon, IconButton } from "@mui/material";
+import { Fab, Icon, IconButton } from "@mui/material";
 
 const actions = [
   {
@@ -42,30 +41,34 @@ const Toggle = styled("div")(() => ({
   },
 }));
 
-export default function AddSpeedDialButton() {
+export default function AddSpeedDialButton({ path }) {
   return (
-    <Toggle>
-      <Box
-        sx={{
-          height: 320,
-          transform: "translateZ(0px)",
-          flexGrow: 1,
-          position: "absolute",
-          bottom: -150,
-          right: 16,
-        }}
-      >
-        <SpeedDial ariaLabel="SpeedDial basic example" icon={<SpeedDialIcon />}>
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={() => console.log(action.name)}
-            />
-          ))}
-        </SpeedDial>
-      </Box>
-    </Toggle>
+    <>
+      {path ? (
+        <Link to={path}>
+          <Toggle>
+            <Fab color="primary" aria-label="expand">
+              <Icon>add</Icon>
+            </Fab>
+          </Toggle>
+        </Link>
+      ) : (
+        <Toggle>
+          <SpeedDial
+            ariaLabel="SpeedDial basic example"
+            icon={<SpeedDialIcon />}
+          >
+            {actions.map((action) => (
+              <SpeedDialAction
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={() => console.log(action.name)}
+              />
+            ))}
+          </SpeedDial>
+        </Toggle>
+      )}
+    </>
   );
 }

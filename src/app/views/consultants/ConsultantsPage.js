@@ -21,7 +21,7 @@ const ConsultantsPage = () => {
         />
         <ConsultantsList />
       </Box>
-      <AddSpeedDialButton />
+      <AddSpeedDialButton path={"/consultants/add"} />
     </Container>
   );
 };

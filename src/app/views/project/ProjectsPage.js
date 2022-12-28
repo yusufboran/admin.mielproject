@@ -44,7 +44,7 @@ const ProjectsPage = () => {
           })}
         </Grid>
       </SimpleCard>
-      <AddSpeedDialButton />
+      <AddSpeedDialButton path={"/projects/add"} />
     </Container>
   );
 };
