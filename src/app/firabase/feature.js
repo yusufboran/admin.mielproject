@@ -38,7 +38,7 @@ export const getItemsList = async (setItems) => {
 
     setItems(items);
   } catch (error) {
-    toast.error("getSocialMedia", error.message);
+    toast.error("features getItemsList", error.message);
   }
 };
 
@@ -47,7 +47,7 @@ export const deleteItemId = async (Id) => {
     await deleteDoc(doc(db, folderName, Id));
     toast.success("Delete Successfully");
   } catch (error) {
-    toast.error("deleteSocialMedia", error.message);
+    toast.error("features deleteItemId", error.message);
   }
 };
 
@@ -65,6 +65,6 @@ export const updateItemId = async (id, username) => {
         console.log(error);
       });
   } catch (error) {
-    toast.error("updateSocialMedia", error.message);
+    toast.error("features updateItemId", error.message);
   }
 };

@@ -6,12 +6,12 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Fab, Icon, IconButton } from "@mui/material";
 
-const actions = [
+  const actions = [
   {
     icon: (
       <Link to={`/consultants/add`} s style={{ textDecoration: "none" }}>
         <IconButton aria-label="settings">
-          <Icon fontSize="small">person</Icon>
+          <Icon fontSize="small">person_add_alt_1</Icon>
         </IconButton>
       </Link>
     ),
@@ -22,7 +22,7 @@ const actions = [
     icon: (
       <Link to={`/projects/add`} s style={{ textDecoration: "none" }}>
         <IconButton aria-label="settings">
-          <Icon fontSize="small">domain</Icon>
+          <Icon fontSize="small">domain_add</Icon>
         </IconButton>
       </Link>
     ),

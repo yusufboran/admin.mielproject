@@ -13,6 +13,8 @@ const folderName = "socialMedia";
 
 export const addSocialMedia = async (socialMedia, username) => {
   try {
+    console.log(socialMedia, username);
+
     await addDoc(collection(db, folderName), {
       socialMedia: socialMedia,
       username: username,

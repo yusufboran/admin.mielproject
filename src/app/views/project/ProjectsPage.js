@@ -1,10 +1,9 @@
 import { Box, Grid, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ProjectItem from "./ProjectItem";
-import { getProjectsList } from "../../firabase";
-import React, { useEffect, useState } from "react";
-import TabButton from "app/components/MatxLayout/Layout1/TabButton";
+import React, { useContext } from "react";
 import AddSpeedDialButton from "app/components/AddSpeedDialButton";
+import { ProjectContext } from "app/App";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -16,15 +15,7 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const ProjectsPage = () => {
-  useEffect(() => {
-    getItem();
-  }, []);
-
-  async function getItem() {
-    getProjectsList(setItems);
-  }
-
-  const [items, setItems] = useState([]);
+  const items = useContext(ProjectContext);
   return (
     <Container>
       <Box className="breadcrumb">

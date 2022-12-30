@@ -23,7 +23,7 @@ export const getItemsList = async (setItems) => {
 
     setItems(items);
   } catch (error) {
-    toast.error("getSocialMedia", error.message);
+    toast.error("message getItemsList", error.message);
   }
 };
 
@@ -35,6 +35,6 @@ export const deleteItemId = async (items) => {
 
     toast.success("Delete Successfully");
   } catch (error) {
-    toast.error("deleteSocialMedia", error.message);
+    toast.error("deleteItemId", error.message);
   }
 };

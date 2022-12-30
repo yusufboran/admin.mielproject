@@ -6,6 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { addSocialMedia } from "../../firabase/socialMedia";
 import DropBox from "../DropBox";
 import UserTextfield from "./UserTextfield";
@@ -31,7 +32,6 @@ const List = [
 
 export default function ModalAdd() {
   const [open, setOpen] = React.useState(false);
-
   const [socialMedia, setsocialMedia] = React.useState("");
   const [username, setUsername] = React.useState("");
 

@@ -20,6 +20,11 @@ export default function LabTabs() {
     setValue(newValue);
   };
 
+  const handleUpdate = (state) => {
+    updateLocation(state);
+    setEditITem(null);
+  };
+
   const handleEdit = (item) => {
     setEditITem(item);
     setValue("edit");
@@ -40,7 +45,7 @@ export default function LabTabs() {
   };
 
   return (
-    <Paper sx={{ marginBottom: 2, borderRadius: 1 }}>
+    <Paper sx={{ marginY: 2, borderRadius: 1 }}>
       <TabContext value={value} centered>
         <TabList onChange={handleChange} aria-label="Map View" centered>
           <Tab icon={<PublicIcon />} aria-label="phone" value="1" />
@@ -52,7 +57,7 @@ export default function LabTabs() {
           <Tab
             icon={
               <IconButton edge="end" aria-label="add">
-                <Icon color="primary">add_circle</Icon>
+                <Icon color="primary">add_location_alt</Icon>
               </IconButton>
             }
             aria-label="favorite"
@@ -72,7 +77,7 @@ export default function LabTabs() {
           <FormLocaion func={newLocation} />
         </TabPanel>
         <TabPanel value="edit">
-          <FormLocaion func={updateLocation} editItem={editItem} />
+          <FormLocaion func={handleUpdate} editItem={editItem} />
         </TabPanel>
       </TabContext>
     </Paper>

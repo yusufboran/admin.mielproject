@@ -42,7 +42,7 @@ export const getItemsList = async (setItems) => {
 
     setItems(items);
   } catch (error) {
-    toast.error("getSocialMedia", error.message);
+    toast.error("locations getItemsList", error.message);
   }
 };
 
@@ -67,6 +67,6 @@ export const updateItemId = async (item) => {
         console.log(error);
       });
   } catch (error) {
-    toast.error("updateSocialMedia", error.message);
+    toast.error("locations updateItemId", error.message);
   }
 };

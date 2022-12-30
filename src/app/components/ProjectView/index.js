@@ -12,33 +12,26 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { getProjectsList, deleteProjectsId, fileDelete } from "../../firabase";
+import { deleteProjectsId, fileDelete } from "../../firabase";
 import AlertDialog from "app/components/DeleteDialog";
+import { ProjectContext } from "app/App";
 
 export default function ProjectView() {
-  const [items, setItems] = useState([]);
+  const items = useContext(ProjectContext);
+
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  useEffect(() => {
-    getItem();
-  }, []);
-
-  async function getItem() {
-    getProjectsList(setItems);
-  }
   const handleDelete = (item) => {
     item.path.forEach((path) => {
       fileDelete(path);
     });
     deleteProjectsId(item.id);
-    getItem();
   };
 
   return (

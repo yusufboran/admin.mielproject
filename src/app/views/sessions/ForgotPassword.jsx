@@ -1,4 +1,5 @@
 import { Box, Button, Card, Grid, styled, TextField } from "@mui/material";
+import { forgotPassword } from "app/firabase/user";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { JWTRoot } from "./JWTRoot";
@@ -31,7 +32,11 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("admin@example.com");
 
-  const handleFormSubmit = () => {};
+  function handleSubmit(e) {
+    e.preventDefault();
+    forgotPassword(email);
+    navigate("/");
+  }
 
   return (
     <JWTRoot>
@@ -39,7 +44,7 @@ const ForgotPassword = () => {
         <Grid>
           <Grid item xs={12}>
             <ContentBox style={{ backgroundColor: "transparent" }}>
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={handleSubmit}>
                 <TextField
                   type="email"
                   name="email"
