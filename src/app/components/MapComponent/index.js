@@ -21,8 +21,9 @@ export default function LabTabs() {
   };
 
   const handleUpdate = (state) => {
-    updateLocation(state);
-    setEditITem(null);
+    updateItemId(state);
+    // setEditITem(null);
+    //  setValue("1");
   };
 
   const handleEdit = (item) => {
@@ -33,14 +34,11 @@ export default function LabTabs() {
   React.useEffect(() => {
     setEditITem(null);
     getItemsList(setItems);
+    console.log(items);
   }, []);
 
   const newLocation = (item) => {
     addItem(item);
-    setValue("1");
-  };
-  const updateLocation = (item) => {
-    updateItemId(item);
     setValue("1");
   };
 

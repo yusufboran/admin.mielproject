@@ -8,12 +8,20 @@ import {
 } from "firebase/firestore";
 import { db } from "./index";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const folderName = "locations";
 
+var path = "http://localhost:3000/api/v1/map";
 export const addItem = async (item) => {
   try {
-    await addDoc(collection(db, folderName), item);
+    var location = [item.location.split(",")[0], item.location.split(",")[1]];
+
+    delete item.localion;
+    delete item.date;
+    item = { ...item, files: location, location };
+    console.log(item);
+    axios.post(path, item);
 
     toast.success("Successfully");
   } catch (error) {
@@ -23,24 +31,11 @@ export const addItem = async (item) => {
 
 export const getItemsList = async (setItems) => {
   try {
-    const items = [];
-    const querySnapshot = await getDocs(collection(db, folderName));
-    querySnapshot.forEach((doc) => {
-      //   <TableCell>İmage</TableCell>
-
-      const item = {
-        id: doc.id,
-        title: doc.data().title,
-        address: doc.data().address,
-        phone: doc.data().phone,
-        location: doc.data().location,
-        imgUrl: doc.data().imgUrl,
-      };
-
-      items.push(item);
-    });
-
-    setItems(items);
+    axios
+      .get(path)
+      .then((response) =>
+        console.log("response.data", setItems(response.data))
+      );
   } catch (error) {
     toast.error("locations getItemsList", error.message);
   }
@@ -48,7 +43,12 @@ export const getItemsList = async (setItems) => {
 
 export const deleteItemId = async (Id) => {
   try {
-    await deleteDoc(doc(db, folderName, Id));
+    axios.delete(path, {
+      data: {
+        id: Id,
+      },
+    });
+
     toast.success("Delete Successfully");
   } catch (error) {
     toast.error("deleteSocialMedia", error.message);
@@ -56,16 +56,13 @@ export const deleteItemId = async (Id) => {
 };
 
 export const updateItemId = async (item) => {
+  console.log("item", item);
+  console.log("location", item.location);
   try {
-    const docRef = doc(db, folderName, item.id);
-    delete item.id;
-    updateDoc(docRef, item)
-      .then((docRef) => {
-        toast.success("Update Successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(item);
+     axios.put(path, item);
+
+    toast.success("Successfully");
   } catch (error) {
     toast.error("locations updateItemId", error.message);
   }

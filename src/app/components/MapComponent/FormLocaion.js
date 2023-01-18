@@ -26,7 +26,7 @@ const FormLocaion = ({ func, editItem }) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const { title, address, imgUrl, phone, location } = state;
+  const { name, address, image, phone, location } = state;
 
   return (
     <div>
@@ -36,9 +36,9 @@ const FormLocaion = ({ func, editItem }) => {
             <TextField
               fullWidth
               type="text"
-              name="title"
+              name="name"
               id="standard-basic"
-              value={title || ""}
+              value={name || ""}
               onChange={handleChange}
               errorMessages={["this field is required"]}
               label="Title"
@@ -87,10 +87,10 @@ const FormLocaion = ({ func, editItem }) => {
               placeholder="https://www.example.com/image.jpg"
               sx={{ mb: 4 }}
               type="text"
-              name="imgUrl"
+              name="image"
               label="İmage Url"
               onChange={handleChange}
-              value={imgUrl || ""}
+              value={image || ""}
               errorMessages={["this field is required"]}
               validators={["required"]}
             />
