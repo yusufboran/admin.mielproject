@@ -31,8 +31,6 @@ const DropFileInput = ({ fileList, setFileList, singleFile }) => {
         list.push(files[i]);
       }
       setFileList(list);
-
-      console.log("file : ", list);
     }
   };
 

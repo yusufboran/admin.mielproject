@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteDialog from "../DeleteDialog";
 import { Card, Grid } from "@mui/material";
-import { getItemsList, deleteItemId } from "app/firabase/incomingMessages";
+import { getItemsList, deleteItemId } from "app/db/incomingMessages";
 
 const columns = [
   { field: "id", headerName: "ID", width: 60 },

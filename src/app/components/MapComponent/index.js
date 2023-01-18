@@ -9,7 +9,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import { Icon, IconButton, Paper } from "@mui/material";
 import MapList from "./List";
 import FormLocaion from "./FormLocaion";
-import { addItem, getItemsList, updateItemId } from "app/firabase/locaion";
+import { addItem, getItemsList, updateItemId } from "app/db/locaion";
 
 export default function LabTabs() {
   const [value, setValue] = React.useState("1");

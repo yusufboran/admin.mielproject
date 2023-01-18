@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { addSocialMedia } from "../../firabase/socialMedia";
+import { addSocialMedia } from "../../db/socialMedia";
 import DropBox from "../DropBox";
 import UserTextfield from "./UserTextfield";
 const Transition = React.forwardRef(function Transition(props, ref) {

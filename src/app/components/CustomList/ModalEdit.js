@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
 import { useEffect } from "react";
-import { deleteSocialMedia, updateSocialMedia } from "app/firabase/socialMedia";
+import { deleteSocialMedia, updateSocialMedia } from "app/db/socialMedia";
 import UserTextfield from "./UserTextfield";
 import { useNavigate } from "react-router-dom";
 

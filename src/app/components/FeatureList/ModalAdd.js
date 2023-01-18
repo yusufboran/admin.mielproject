@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { addItem } from "app/firabase/feature";
+import { addItem } from "app/db/feature";
 import React from "react";
 import DropBox from "../DropBox";
 

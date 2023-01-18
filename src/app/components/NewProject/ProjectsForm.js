@@ -5,18 +5,23 @@ import React, { useState } from "react";
 import TextEditor from "./TextEditor";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getProjectId } from "app/firabase";
+import { getProjectId } from "app/db";
+import { ProjectContext } from "app/App";
+import { useContext } from "react";
 
 export default function NewProjectItem({ func, id }) {
+  const items = useContext(ProjectContext);
   const handleSave = () => {
     const item = {
       projectName: projectName,
       features: features,
       descriptionTR: descriptionTR,
       descriptionEN: descriptionEN,
+      fileList: fileList,
     };
 
     func(fileList, item);
+    navigate("/");
   };
 
   useEffect(() => {
@@ -25,14 +30,18 @@ export default function NewProjectItem({ func, id }) {
 
   const getItem = () => {
     if (id) {
-      getProjectId(
-        id,
-        setProjectName,
-        setFeatures,
-        setDescriptionTR,
-        setDescriptionEN,
-        setFileList
-      );
+      items.map((item) => {
+        if (item.pid == id) {
+          console.log(item);
+          setProjectName(item.projectname);
+          setFeatures(item.features);
+          setDescriptionTR(item.descriptiontr);
+          setDescriptionEN(item.descriptionen);
+        }
+      });
+      // getProjectId(
+      //   setFileList
+      // );
     }
   };
 

@@ -8,8 +8,9 @@ const SliderImage = ({ item }) => {
       <AwesomeSlider>
         {item.map((imgUrl, index) => (
           <div>
+            {console.log(imgUrl)}
             <img
-              src={item[index]}
+              src={`http://localhost:3000/uploads/${imgUrl}`}
               alt="Girl in a jacket"
               width="100%"
               height="56.25%"

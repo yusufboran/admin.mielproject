@@ -3,7 +3,7 @@ import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import { useLocation } from "react-router-dom";
 import ProjectsForm from "app/components/NewProject/ProjectsForm";
-import { updateProjectId } from "app/firabase";
+import { updateProjectId } from "app/db";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -17,6 +17,7 @@ const Container = styled("div")(({ theme }) => ({
 const ProjectEditPage = () => {
   var url = window.location.href.split("/");
   var projectId = url[url.length - 1];
+  console.log(projectId);
 
   const updateConsultant = (itefileList, item) => {
     updateProjectId(projectId, item);

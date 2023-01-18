@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ItemList from "./ItemList";
-import { getSocialMedia } from "app/firabase/socialMedia";
+import { getSocialMedia } from "app/db/socialMedia";
 import ModalEdit from "./ModalEdit";
 
 export default function NestedList() {

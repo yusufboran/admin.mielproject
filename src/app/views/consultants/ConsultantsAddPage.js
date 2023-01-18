@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
-import { fileUpload } from "../../firabase";
+import { fileUpload } from "../../db";
 import ConsultantsForm from "app/components/ConsultantsForm";
 
 const Container = styled("div")(({ theme }) => ({

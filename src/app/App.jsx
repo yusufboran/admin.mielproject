@@ -7,7 +7,7 @@ import { Store } from "./redux/Store";
 import routes from "./routes";
 import { Toaster } from "react-hot-toast";
 import { useState, createContext, useEffect } from "react";
-import { getProjectsList } from "./firabase";
+import axios from "axios";
 
 export const ProjectContext = createContext();
 const App = () => {
@@ -18,7 +18,11 @@ const App = () => {
   }, []);
 
   async function getItem() {
-    getProjectsList(setItems);
+    axios
+      .get("http://localhost:3000/api/v1/project/")
+      .then((response) =>
+        console.log("response.data", setItems(response.data))
+      );
   }
 
   const content = useRoutes(routes);

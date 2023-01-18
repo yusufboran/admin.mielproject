@@ -19,6 +19,7 @@ import {
   deleteObject,
   getDownloadURL,
 } from "firebase/storage";
+import axios from "axios";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_API_KEY,
@@ -254,7 +255,12 @@ export const getProjectsList = async (setItems) => {
 
 export const deleteProjectsId = async (Id) => {
   try {
-    await deleteDoc(doc(db, "projects", Id));
+    axios.delete("http://localhost:3000/api/v1/project/", {
+      data: {
+        id: Id,
+      },
+    });
+
     toast.success("Delete Successfully");
   } catch (error) {
     toast.error("deleteConsultansId", error.message);

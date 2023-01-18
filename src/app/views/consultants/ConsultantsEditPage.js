@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ConsultantsForm from "app/components/ConsultantsForm";
 import React from "react";
-import { fileDelete, fileUpdate, updateConsultansId } from "../../firabase";
+import { fileDelete, fileUpdate, updateConsultansId } from "../../db";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",

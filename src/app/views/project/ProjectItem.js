@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteDialog from "app/components/DeleteDialog";
 import EditButton from "app/components/EditButton";
-import { getProjectsList, deleteProjectsId, fileDelete } from "../../firabase";
+import { getProjectsList, deleteProjectsId, fileDelete } from "../../db";
 import SliderImage from "app/components/SliderImage";
 
 const ExpandMore = styled((props) => {
@@ -55,7 +55,8 @@ export default function ProjectItem({ item }) {
     <Card>
       <Card>
         <div style={{ position: "relative" }}>
-          <SliderImage item={item.files} />
+          {console.log(item)}
+          <SliderImage item={item.paths} />
           <h1
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.5)",
@@ -66,7 +67,7 @@ export default function ProjectItem({ item }) {
               zIndex: 99,
             }}
           >
-            {item.projectName}
+            {item.projectname}
           </h1>
           <div
             style={{
@@ -155,9 +156,9 @@ export default function ProjectItem({ item }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {parse(item.descriptionTR)}
+          {parse(item.descriptiontr)}
           <Divider />
-          {parse(item.descriptionEN)}
+          {parse(item.descriptionen)}
         </CardContent>
       </Collapse>
     </Card>

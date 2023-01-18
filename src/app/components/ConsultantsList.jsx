@@ -16,7 +16,7 @@ import {
 import DeleteDialog from "app/components/DeleteDialog";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getConsultansList, deleteConsultansId, fileDelete } from "../firabase";
+import { getConsultansList, deleteConsultansId, fileDelete } from "../db";
 import EditButton from "./EditButton";
 
 const StyledTable = styled(Table)(() => ({

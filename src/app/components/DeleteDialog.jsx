@@ -13,8 +13,8 @@ export default function DeleteDialog({ deleteButton }) {
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleDelete = () => {
-    deleteButton();
     setOpen(false);
+    deleteButton();
   };
 
   return (

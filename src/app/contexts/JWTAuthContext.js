@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { MatxLoading } from "app/components";
-import { firebaseLogin, firebaseLogout } from "../firabase";
+import { firebaseLogin, firebaseLogout } from "../db";
 
 const initialState = {
   isAuthenticated: false,

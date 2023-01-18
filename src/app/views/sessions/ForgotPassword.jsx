@@ -1,5 +1,5 @@
 import { Box, Button, Card, Grid, styled, TextField } from "@mui/material";
-import { forgotPassword } from "app/firabase/user";
+import { forgotPassword } from "app/db/user";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { JWTRoot } from "./JWTRoot";

@@ -9,7 +9,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import { deleteItemId, getItemsList } from "app/firabase/feature";
+import { deleteItemId, getItemsList } from "app/db/feature";
 import React from "react";
 import { useEffect } from "react";
 import DeleteDialog from "../DeleteDialog";
