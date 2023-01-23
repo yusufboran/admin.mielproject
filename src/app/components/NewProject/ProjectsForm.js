@@ -21,7 +21,7 @@ export default function NewProjectItem({ func, id }) {
     };
 
     func(fileList, item);
-    navigate("/");
+    // navigate("/");
   };
 
   useEffect(() => {

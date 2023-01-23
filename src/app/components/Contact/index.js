@@ -30,7 +30,7 @@ const columns = [
     field: "date",
     headerName: "Date",
     type: "date",
-    width: 110,
+    width: 150,
     editable: true,
   },
   {
@@ -47,7 +47,8 @@ export default function DataGridDemo() {
 
   React.useEffect(() => {
     getItemsList(setItems);
-  }, [items]);
+    console.log(items);
+  }, []);
 
   const handleDelete = () => {
     deleteItemId(selectedRows);

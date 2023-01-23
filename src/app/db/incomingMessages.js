@@ -1,27 +1,18 @@
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "./index";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const folderName = "message";
 
+var path = "http://localhost:3000/api/v1/contactform";
+
 export const getItemsList = async (setItems) => {
   try {
-    const items = [];
-    const querySnapshot = await getDocs(collection(db, folderName));
-    querySnapshot.forEach((doc) => {
-      const item = {
-        id: doc.id,
-        name: doc.data().name,
-        phone: doc.data().phone,
-        email: doc.data().email,
-        message: doc.data().message,
-        date: new Date(doc.data().date * 1000),
-      };
-
-      items.push(item);
+    axios.get(path).then((response) => {
+      console.log(response.data);
+      setItems(response.data);
     });
-
-    setItems(items);
   } catch (error) {
     toast.error("message getItemsList", error.message);
   }

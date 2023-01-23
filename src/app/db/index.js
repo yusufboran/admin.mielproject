@@ -31,13 +31,12 @@ import axios from "axios";
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqE8vPtV2iv4RbId_aAIpEUcK8jGL_Vwk",
-  authDomain: "denemepersembe.firebaseapp.com",
-  projectId: "denemepersembe",
-  storageBucket: "denemepersembe.appspot.com",
-  messagingSenderId: "323155737862",
-  appId: "1:323155737862:web:068d57388f71dcb7d7b287",
-  measurementId: "G-KXH1VQG8CT",
+  apiKey: "AIzaSyC4iGWSLSOdBXG6q72J_uDo-i5VGBrLSro",
+  authDomain: "mielproje.firebaseapp.com",
+  projectId: "mielproje",
+  storageBucket: "mielproje.appspot.com",
+  messagingSenderId: "850541188172",
+  appId: "1:850541188172:web:4c19c6afe35d42f03c90e9"
 };
 
 export const app = initializeApp(firebaseConfig);

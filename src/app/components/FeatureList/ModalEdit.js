@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { addItem } from "app/db/feature";
+import { updateItemId } from "app/db/feature";
 import React from "react";
 import DropBox from "../DropBox";
 
@@ -14,11 +14,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ModalAdd() {
+export default function ModalEdit({ item }) {
+  const id = item.id;
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState("");
-  const [trext, setTrText] = React.useState("");
-  const [entext, setEnText] = React.useState("");
+  const [title, setTitle] = React.useState(item.title || "");
+  const [trtext, setTrText] = React.useState(item.trtext || "");
+  const [entext, setEnText] = React.useState(item.entext || "");
 
   function handleClickOpen() {
     setOpen(true);
@@ -28,12 +29,14 @@ export default function ModalAdd() {
     setOpen(false);
   }
   function handleSave() {
+    console.log(item);
     const item = {
+      id: id,
       title: title,
-      trtext: trext,
+      trtext: trtext,
       entext: entext,
     };
-    addItem(item);
+    updateItemId(item);
 
     setTitle("");
     setEnText("");
@@ -56,7 +59,7 @@ export default function ModalAdd() {
   return (
     <div>
       <IconButton onClick={() => handleClickOpen()} edge="end" aria-label="add">
-        <Icon color="primary">add_circle</Icon>
+        <Icon color="primary">edit</Icon>
       </IconButton>
       <Dialog
         open={open}
@@ -73,7 +76,7 @@ export default function ModalAdd() {
             <DropBox selectItem={title} setSelectItem={setTitle} List={List} />
             <TextField
               sx={{ minWidth: 120, marginBottom: 2 }}
-              value={trext}
+              value={trtext}
               onChange={(e) => setTrText(e.target.value)}
               fullWidth
               id="outlined-multiline-static"

@@ -13,6 +13,8 @@ import { deleteItemId, getItemsList } from "app/db/feature";
 import React from "react";
 import { useEffect } from "react";
 import DeleteDialog from "../DeleteDialog";
+import ModalAdd from "./ModalAdd";
+import ModalEdit from "./ModalEdit";
 
 const ExpansionPanel = styled(Accordion)(() => ({
   "&.root": {
@@ -71,15 +73,13 @@ const ItemList = () => {
             </ExpansionPanelSummary>
 
             <ExpansionPanelDetails>
-              <Divider>TR</Divider>
-              <Typography>{item.trText}</Typography>
-              <Divider>EN</Divider>
-              <Typography>{item.enText}</Typography>
+              <Divider>türkçe</Divider>
+              <Typography>{item.trtext}</Typography>
+              <Divider>english</Divider>
+              <Typography>{item.entext}</Typography>
             </ExpansionPanelDetails>
             <AccordionActions>
-              <IconButton>
-                <Icon>edit</Icon>
-              </IconButton>
+              <ModalEdit item={item} />
               <DeleteDialog deleteButton={() => handleDelete(item.id)} />
             </AccordionActions>
           </ExpansionPanel>

@@ -6,7 +6,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { addSocialMedia } from "../../db/socialMedia";
 import DropBox from "../DropBox";
 import UserTextfield from "./UserTextfield";
@@ -44,7 +43,11 @@ export default function ModalAdd() {
   }
 
   function handleSave() {
-    addSocialMedia(socialMedia, username);
+    var item = {
+      socialmedia: socialMedia,
+      username: username,
+    };
+    addSocialMedia(item);
     setOpen(false);
   }
   return (

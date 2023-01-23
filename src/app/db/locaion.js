@@ -1,12 +1,3 @@
-import {
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "./index";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -16,7 +7,6 @@ var path = "http://localhost:3000/api/v1/map";
 export const addItem = async (item) => {
   try {
     var location = [item.location.split(",")[0], item.location.split(",")[1]];
-
     delete item.localion;
     delete item.date;
     item = { ...item, files: location, location };
@@ -56,11 +46,8 @@ export const deleteItemId = async (Id) => {
 };
 
 export const updateItemId = async (item) => {
-  console.log("item", item);
-  console.log("location", item.location);
   try {
-    console.log(item);
-     axios.put(path, item);
+    axios.put(path, item);
 
     toast.success("Successfully");
   } catch (error) {

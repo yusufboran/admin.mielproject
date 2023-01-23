@@ -23,13 +23,18 @@ export default function ModalEdit({ open, setOpen, editItem }) {
   }
 
   function handleDelete() {
+    console.log("Delete", editItem.id);
     deleteSocialMedia(editItem.id);
     setOpen(false);
 
     navigate("/");
   }
   function handleSave() {
-    updateSocialMedia(editItem.id, username);
+    var item ={
+      id:editItem.id,
+      username:username
+    }
+    updateSocialMedia(item);
     setOpen(false);
 
     navigate("/");
@@ -57,7 +62,7 @@ export default function ModalEdit({ open, setOpen, editItem }) {
           <UserTextfield
             username={username}
             setUsername={setUsername}
-            socialMedia={editItem.socialMedia}
+            socialmedia={editItem.socialmedia}
           />
         </DialogContent>
 

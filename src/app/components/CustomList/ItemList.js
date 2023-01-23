@@ -55,7 +55,7 @@ const ItemList = ({ openItem, items }) => {
                         width={"25px"}
                         alt="socialMedia"
                         src={
-                          "/assets/images/icons/" + item.socialMedia + ".png"
+                          "/assets/images/icons/" + item.socialmedia + ".png"
                         }
                       />
                     </ListItemIcon>

@@ -55,7 +55,6 @@ export default function ProjectItem({ item }) {
     <Card>
       <Card>
         <div style={{ position: "relative" }}>
-          {console.log(item)}
           <SliderImage item={item.paths} />
           <h1
             style={{

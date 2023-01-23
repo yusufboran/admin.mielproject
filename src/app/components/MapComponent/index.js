@@ -22,8 +22,8 @@ export default function LabTabs() {
 
   const handleUpdate = (state) => {
     updateItemId(state);
-    // setEditITem(null);
-    //  setValue("1");
+    setEditITem(null);
+      setValue("1");
   };
 
   const handleEdit = (item) => {

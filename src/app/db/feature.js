@@ -1,19 +1,12 @@
-import {
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "./index";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const folderName = "features";
 
+var path = "http://localhost:3000/api/v1/features";
 export const addItem = async (item) => {
   try {
-    await addDoc(collection(db, folderName), item);
+    axios.post(path, item);
 
     toast.success("Successfully");
   } catch (error) {
@@ -23,20 +16,11 @@ export const addItem = async (item) => {
 
 export const getItemsList = async (setItems) => {
   try {
-    const items = [];
-    const querySnapshot = await getDocs(collection(db, folderName));
-    querySnapshot.forEach((doc) => {
-      const item = {
-        id: doc.id,
-        title: doc.data().title,
-        trText: doc.data().trText,
-        enText: doc.data().enText,
-      };
-
-      items.push(item);
-    });
-
-    setItems(items);
+    axios
+      .get(path)
+      .then((response) =>
+        console.log("response.data", setItems(response.data))
+      );
   } catch (error) {
     toast.error("features getItemsList", error.message);
   }
@@ -44,26 +28,22 @@ export const getItemsList = async (setItems) => {
 
 export const deleteItemId = async (Id) => {
   try {
-    await deleteDoc(doc(db, folderName, Id));
+    axios.delete(path, {
+      data: {
+        id: Id,
+      },
+    });
+
     toast.success("Delete Successfully");
   } catch (error) {
     toast.error("features deleteItemId", error.message);
   }
 };
 
-export const updateItemId = async (id, username) => {
+export const updateItemId = async (item) => {
   try {
-    const docRef = doc(db, folderName, id);
-
-    updateDoc(docRef, {
-      username: username,
-    })
-      .then((docRef) => {
-        toast.success("Update Successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log("Update Successfully", item);
+    axios.put(path, item);
   } catch (error) {
     toast.error("features updateItemId", error.message);
   }
