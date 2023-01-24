@@ -3,7 +3,7 @@ import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import { useLocation } from "react-router-dom";
 import ProjectsForm from "app/components/NewProject/ProjectsForm";
-import { updateProjectId } from "app/db";
+import { updateProjectId } from "app/db/project";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",

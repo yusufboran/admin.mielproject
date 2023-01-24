@@ -14,7 +14,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteProjectsId, fileDelete } from "../../db";
+import { deleteProjectsId } from "../../db/project";
 import AlertDialog from "app/components/DeleteDialog";
 import { ProjectContext } from "app/App";
 

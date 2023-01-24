@@ -20,8 +20,13 @@ export const getItemsList = async (setItems) => {
 
 export const deleteItemId = async (items) => {
   try {
-    items.map(async (item) => {
-      await deleteDoc(doc(db, folderName, item.id));
+    console.log(items);
+    items.map((item) => {
+      axios.delete(path, {
+        data: {
+          id: item.id,
+        },
+      });
     });
 
     toast.success("Delete Successfully");

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
@@ -14,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteDialog from "app/components/DeleteDialog";
 import EditButton from "app/components/EditButton";
-import { getProjectsList, deleteProjectsId, fileDelete } from "../../db";
+import { deleteProjectsId } from "../../db/project";
 import SliderImage from "app/components/SliderImage";
 
 const ExpandMore = styled((props) => {
@@ -37,9 +36,6 @@ export default function ProjectItem({ item }) {
     setExpanded(!expanded);
   };
   const handleDelete = (item) => {
-    item.files.forEach((file) => {
-      fileDelete(file);
-    });
     deleteProjectsId(item.id);
   };
 
