@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import TextEditor from "./TextEditor";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getProjectId } from "app/db";
 import { ProjectContext } from "app/App";
 import { useContext } from "react";
 
@@ -21,29 +20,29 @@ export default function NewProjectItem({ func, id }) {
     };
 
     func(fileList, item);
-    // navigate("/");
+    navigate("/");
   };
 
   useEffect(() => {
+    const getItem = () => {
+      if (id) {
+        items.forEach((item) => {
+          if (item.pid === id) {
+            console.log(item);
+            setProjectName(item.projectname);
+            setFeatures(item.features);
+            setDescriptionTR(item.descriptiontr);
+            setDescriptionEN(item.descriptionen);
+          }
+        });
+        // getProjectId(
+        //   setFileList
+        // );
+      }
+    };
+
     getItem();
   }, []);
-
-  const getItem = () => {
-    if (id) {
-      items.map((item) => {
-        if (item.pid == id) {
-          console.log(item);
-          setProjectName(item.projectname);
-          setFeatures(item.features);
-          setDescriptionTR(item.descriptiontr);
-          setDescriptionEN(item.descriptionen);
-        }
-      });
-      // getProjectId(
-      //   setFileList
-      // );
-    }
-  };
 
   const navigate = useNavigate();
 

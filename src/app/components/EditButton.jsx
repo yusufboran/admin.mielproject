@@ -1,4 +1,4 @@
-import { Button, Icon, IconButton, Tooltip } from "@mui/material";
+import { Button, Icon, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function EditButton({ to }) {

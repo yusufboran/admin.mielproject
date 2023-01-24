@@ -27,7 +27,7 @@ export const addProject = async (fileList, item) => {
     var filesArr = [];
 
     var now = Date.now();
-    fileList.map((file) => {
+    fileList.forEach((file) => {
       var fileName = deleteTurkishCharacters(
         item.projectName + "-" + now + "-" + file.name
       );

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -15,17 +14,6 @@ import DeleteDialog from "app/components/DeleteDialog";
 import EditButton from "app/components/EditButton";
 import { deleteProjectsId } from "../../db/project";
 import SliderImage from "app/components/SliderImage";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 export default function ProjectItem({ item }) {
   const [expanded, setExpanded] = React.useState(false);

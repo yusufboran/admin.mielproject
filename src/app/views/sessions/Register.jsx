@@ -18,18 +18,6 @@ const ContentBox = styled(JustifyBox)(() => ({
   background: "rgba(0, 0, 0, 0.01)",
 }));
 
-const JWTRegister = styled(JustifyBox)(() => ({
-  background: "#1A2038",
-  minHeight: "100vh !important",
-  "& .card": {
-    maxWidth: 800,
-    minHeight: 400,
-    margin: "1rem",
-    display: "flex",
-    borderRadius: 12,
-    alignItems: "center",
-  },
-}));
 
 // inital login credentials
 const initialValues = {

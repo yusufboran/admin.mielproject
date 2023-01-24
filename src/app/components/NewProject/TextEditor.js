@@ -44,7 +44,7 @@ export default function TextEditor({ context, setContext, language }) {
         >
           <Box className="column">
             <Typography className="heading">
-              {language == "tr"
+              {language === "tr"
                 ? "Türkçe açıklama ekleyiniz"
                 : "Add English description"}{" "}
             </Typography>

@@ -4,28 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { JWTRoot } from "./JWTRoot";
 
-const FlexBox = styled(Box)(() => ({
-  display: "flex",
-  alignItems: "center",
-}));
-
-const JustifyBox = styled(FlexBox)(() => ({
-  justifyContent: "center",
-}));
-
 const ContentBox = styled(Box)(({ theme }) => ({
   padding: 32,
   background: theme.palette.background.default,
-}));
-
-const ForgotPasswordRoot = styled(JustifyBox)(() => ({
-  background: "#1A2038",
-  minHeight: "100vh !important",
-  "& .card": {
-    maxWidth: 800,
-    margin: "1rem",
-    borderRadius: 12,
-  },
 }));
 
 const ForgotPassword = () => {
