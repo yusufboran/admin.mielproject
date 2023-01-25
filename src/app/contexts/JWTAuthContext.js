@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { MatxLoading } from "app/components";
-import { firebaseLogin, firebaseLogout } from "../db";
+import { dbLogin, dbLogout } from "../db/auth";
 
 const initialState = {
   isAuthenticated: false,
@@ -62,8 +62,8 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email, password) => {
-    const userData = await firebaseLogin(email, password);
-    const accessToken = userData.accessToken;
+    const userData = await dbLogin(email, password);
+    const accessToken = userData.token;
     const response = {
       accessToken,
       user: {
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setSession(null);
     dispatch({ type: "LOGOUT" });
-    firebaseLogout();
+    dbLogout();
   };
 
   useEffect(() => {

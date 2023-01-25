@@ -24,17 +24,15 @@ const ProjectsPage = () => {
           routeSegments={[{ name: "Project", path: "/projects" }]}
         />
       </Box>
-      <SimpleCard>
-        <Grid container spacing={2}>
-          {items.map((item) => {
-            return (
-              <Grid item xl={6} md={12} sm={12} xs={12}>
-                <ProjectItem item={item} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </SimpleCard>
+      <Grid container spacing={2}>
+        {items.map((item) => {
+          return (
+            <Grid item xl={6} md={12} sm={12} xs={12}>
+              <ProjectItem item={item} />
+            </Grid>
+          );
+        })}
+      </Grid>
       <AddSpeedDialButton path={"/projects/add"} />
     </Container>
   );

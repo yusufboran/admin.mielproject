@@ -43,7 +43,7 @@ export default function LabTabs() {
   };
 
   return (
-    <Paper sx={{ marginY: 2, borderRadius: 1 }}>
+    <Paper sx={{ marginBottom: 2, borderRadius: 1 }}>
       <TabContext value={value} centered>
         <TabList onChange={handleChange} aria-label="Map View" centered>
           <Tab icon={<PublicIcon />} aria-label="phone" value="1" />

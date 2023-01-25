@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import toast from "react-hot-toast";
 import {
   collection,
@@ -34,26 +34,6 @@ export const auth = getAuth();
 export const db = getFirestore();
 export const storage = getStorage();
 
-export const firebaseLogout = async () => {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch((error) => {
-      // An error happened.
-    });
-};
-
-export const firebaseLogin = async (email, password) => {
-  try {
-    const { user } = await signInWithEmailAndPassword(auth, email, password);
-    toast.success("Successfully!");
-
-    return user;
-  } catch (error) {
-    toast.error("firebaseLogin", error.message);
-  }
-};
 export const consultansAdd = async (item) => {
   try {
     const docRef = await addDoc(collection(db, "consultans"), item);
