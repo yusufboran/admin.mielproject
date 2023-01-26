@@ -4,7 +4,6 @@ import { Span } from "app/components/Typography";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { getConsultansId } from "../db";
 
 const TextField = styled(TextValidator)(() => ({
   width: "100%",
@@ -21,7 +20,7 @@ const ConsultantsForm = ({ func, id }) => {
 
   const getItems = () => {
     if (id) {
-      getConsultansId(id, setState, setFile);
+//getConsultansId(id, setState, setFile);
     }
   };
 

@@ -2,7 +2,6 @@ import { Box, styled } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import ConsultantsForm from "app/components/ConsultantsForm";
 import React from "react";
-import { fileDelete, fileUpdate, updateConsultansId } from "../../db";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",
@@ -19,10 +18,10 @@ const ConsultantsEditPage = () => {
 
   const updateConsultant = (file, state, deleteCheck) => {
     if (deleteCheck) {
-      fileDelete(state.path);
-      fileUpdate(file, state, consultantsId);
+      //  fileDelete(state.path);
+      //   fileUpdate(file, state, consultantsId);
     } else {
-      updateConsultansId(consultantsId, state);
+      //  updateConsultansId(consultantsId, state);
     }
   };
 

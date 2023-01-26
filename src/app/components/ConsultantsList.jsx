@@ -16,7 +16,7 @@ import {
 import DeleteDialog from "app/components/DeleteDialog";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getConsultansList, deleteConsultansId, fileDelete } from "../db";
+
 import EditButton from "./EditButton";
 
 const StyledTable = styled(Table)(() => ({
@@ -37,7 +37,7 @@ const ConsultantsList = () => {
   }, []);
 
   async function getItem() {
-    getConsultansList(setItems);
+    //  getConsultansList(setItems);
   }
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -52,9 +52,9 @@ const ConsultantsList = () => {
   };
 
   const handleDelete = (item) => {
-    fileDelete(item.imgUrl);
-    deleteConsultansId(item.id);
-    getConsultansList(setItems);
+    //fileDelete(item.imgUrl);
+    // deleteConsultansId(item.id);
+    // getConsultansList(setItems);
   };
 
   return (
