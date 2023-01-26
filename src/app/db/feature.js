@@ -1,16 +1,19 @@
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const folderName = "features";
+const userToken = JSON.parse(
+  window.localStorage.getItem("userData")
+).accessToken;
 
 var path = "http://localhost:3000/api/v1/features";
 export const addItem = async (item) => {
   try {
+    item = { ...item, token: userToken };
     axios.post(path, item);
 
     toast.success("Successfully");
   } catch (error) {
-    toast.error(folderName, " addItem ", error.message);
+    toast.error(" addItem ", error.message);
   }
 };
 
@@ -31,6 +34,7 @@ export const deleteItemId = async (Id) => {
     axios.delete(path, {
       data: {
         id: Id,
+        token: userToken,
       },
     });
 
@@ -42,7 +46,7 @@ export const deleteItemId = async (Id) => {
 
 export const updateItemId = async (item) => {
   try {
-    console.log("Update Successfully", item);
+    item = { ...item, token: userToken };
     axios.put(path, item);
   } catch (error) {
     toast.error("features updateItemId", error.message);

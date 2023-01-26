@@ -3,13 +3,17 @@ import axios from "axios";
 
 const folderName = "locations";
 
+const userToken = JSON.parse(
+  window.localStorage.getItem("userData")
+).accessToken;
+
 var path = "http://localhost:3000/api/v1/map";
 export const addItem = async (item) => {
   try {
     var location = [item.location.split(",")[0], item.location.split(",")[1]];
     delete item.localion;
     delete item.date;
-    item = { ...item, files: location, location };
+    item = { ...item, files: location, location, token: userToken };
     console.log(item);
     axios.post(path, item);
 
@@ -36,6 +40,7 @@ export const deleteItemId = async (Id) => {
     axios.delete(path, {
       data: {
         id: Id,
+        token: userToken,
       },
     });
 
@@ -47,6 +52,7 @@ export const deleteItemId = async (Id) => {
 
 export const updateItemId = async (item) => {
   try {
+    item = { ...item, token: userToken };
     axios.put(path, item);
 
     toast.success("Successfully");

@@ -21,6 +21,10 @@ function deleteTurkishCharacters(text) {
     .toLowerCase();
 }
 
+const userToken = JSON.parse(
+  window.localStorage.getItem("userData")
+).accessToken;
+
 export const addProject = async (fileList, item) => {
   try {
     var paths = [];
@@ -35,7 +39,7 @@ export const addProject = async (fileList, item) => {
       filesArr.push(myNewFile);
       paths.push(fileName);
     });
-    item = { ...item, paths: paths };
+    item = { ...item, paths: paths, token: userToken };
 
     const config = {
       headers: {
@@ -81,6 +85,7 @@ export const deleteProjectsId = async (Id) => {
     axios.delete("http://localhost:3000/api/v1/project/", {
       data: {
         id: Id,
+        token: userToken,
       },
     });
 

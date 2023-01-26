@@ -3,8 +3,13 @@ import axios from "axios";
 
 var path = "http://localhost:3000/api/v1/socialmedia";
 
+const userToken = JSON.parse(
+  window.localStorage.getItem("userData")
+).accessToken;
+
 export const addSocialMedia = async (item) => {
   try {
+    item = { ...item, token: userToken };
     axios.post(path, item);
     toast.success("Successfully Social Media Item Add");
   } catch (error) {
@@ -29,6 +34,7 @@ export const deleteSocialMedia = async (Id) => {
     axios.delete(path, {
       data: {
         id: Id,
+        token: userToken
       },
     });
 
@@ -40,6 +46,7 @@ export const deleteSocialMedia = async (Id) => {
 
 export const updateSocialMedia = async (item) => {
   try {
+    item = { ...item, token: userToken };
     axios.put(path, item);
   } catch (error) {
     toast.error("updateSocialMedia", error.message);

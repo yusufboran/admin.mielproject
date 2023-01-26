@@ -207,5 +207,3 @@ export const fileDelete = async (url) => {
     toast.error("fileDelete", error.message);
   }
 };
-
-export default app;

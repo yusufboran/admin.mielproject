@@ -1,8 +1,11 @@
 import toast from "react-hot-toast";
 import axios from "axios";
 
-
 var path = "http://localhost:3000/api/v1/contactform";
+
+const userToken = JSON.parse(
+  window.localStorage.getItem("userData")
+).accessToken;
 
 export const getItemsList = async (setItems) => {
   try {
@@ -22,6 +25,7 @@ export const deleteItemId = async (items) => {
       axios.delete(path, {
         data: {
           id: item.id,
+          token: userToken,
         },
       });
     });
