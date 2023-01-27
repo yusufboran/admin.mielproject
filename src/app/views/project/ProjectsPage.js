@@ -1,5 +1,5 @@
 import { Box, Grid, styled } from "@mui/material";
-import { Breadcrumb, SimpleCard } from "app/components";
+import { Breadcrumb } from "app/components";
 import ProjectItem from "./ProjectItem";
 import React, { useContext } from "react";
 import AddSpeedDialButton from "app/components/AddSpeedDialButton";
@@ -24,7 +24,7 @@ const ProjectsPage = () => {
           routeSegments={[{ name: "Project", path: "/projects" }]}
         />
       </Box>
-      <Grid container spacing={2}>
+      <Grid container>
         {items.map((item) => {
           return (
             <Grid item xl={6} md={12} sm={12} xs={12}>

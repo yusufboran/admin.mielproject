@@ -3,7 +3,7 @@ import DropFileInput from "app/components/DropFileInput/DropFileInput";
 import { Span } from "app/components/Typography";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const TextField = styled(TextValidator)(() => ({
   width: "100%",
@@ -13,16 +13,6 @@ const TextField = styled(TextValidator)(() => ({
 const ConsultantsForm = ({ func, id }) => {
   const [state, setState] = useState({ date: new Date() });
   const [deleteCheck, setDeleteCheck] = useState(false);
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  const getItems = () => {
-    if (id) {
-//getConsultansId(id, setState, setFile);
-    }
-  };
 
   const handleSubmit = () => {
     func(file[0], state, deleteCheck);
@@ -45,7 +35,7 @@ const ConsultantsForm = ({ func, id }) => {
   return (
     <div>
       <ValidatorForm onSubmit={handleSubmit} onError={() => console.log}>
-        <Grid justifyContent={"center"} container spacing={6}>
+        <Grid justifyContent={"center"} container>
           <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
             <TextField
               type="text"
@@ -97,7 +87,7 @@ const ConsultantsForm = ({ func, id }) => {
             {}
           </Grid>
         </Grid>
-        <Grid justifyContent={"end"} container spacing={6}>
+        <Grid justifyContent={"end"} container>
           <Button color="primary" variant="contained" type="submit">
             <Icon>send</Icon>
             <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>

@@ -21,9 +21,10 @@ function deleteTurkishCharacters(text) {
     .toLowerCase();
 }
 
-const userToken = JSON.parse(
-  window.localStorage.getItem("userData")
-).accessToken;
+var userToken = null;
+
+if (window.localStorage.getItem("userData"))
+  userToken = JSON.parse(window.localStorage.getItem("userData")).accessToken;
 
 export const addProject = async (fileList, item) => {
   try {

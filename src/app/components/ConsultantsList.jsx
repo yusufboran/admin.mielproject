@@ -30,7 +30,7 @@ const StyledTable = styled(Table)(() => ({
 }));
 
 const ConsultantsList = () => {
-  const [items, setItems] = useState([]);
+  const items = [];
 
   useEffect(() => {
     getItem();

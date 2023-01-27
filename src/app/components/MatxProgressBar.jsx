@@ -18,7 +18,7 @@ const MatxProgressBar = ({
   const secondary = theme.palette.text.secondary;
 
   return (
-    <Grid container spacing={spacing} alignItems="center">
+    <Grid container  alignItems="center">
       <Grid item xs={text ? 8 : 12}>
         <CustomLinearProgress
           color={color}

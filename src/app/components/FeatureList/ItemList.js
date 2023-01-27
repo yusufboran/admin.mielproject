@@ -1,10 +1,4 @@
-import {
-  AccordionActions,
-  Divider,
-  Icon,
-  IconButton,
-  styled,
-} from "@mui/material";
+import { AccordionActions, Divider, styled } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -13,7 +7,6 @@ import { deleteItemId, getItemsList } from "app/db/feature";
 import React from "react";
 import { useEffect } from "react";
 import DeleteDialog from "../DeleteDialog";
-import ModalAdd from "./ModalAdd";
 import ModalEdit from "./ModalEdit";
 
 const ExpansionPanel = styled(Accordion)(() => ({

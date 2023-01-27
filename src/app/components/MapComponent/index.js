@@ -34,7 +34,6 @@ export default function LabTabs() {
   React.useEffect(() => {
     setEditITem(null);
     getItemsList(setItems);
-    console.log(items);
   }, []);
 
   const newLocation = (item) => {

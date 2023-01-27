@@ -11,7 +11,7 @@ export default function PaymentForm() {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container >
         <Grid item xs={12} md={6}>
           <TextField
             required

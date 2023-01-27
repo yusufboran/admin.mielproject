@@ -15,18 +15,16 @@ const ContentBox = styled(Box)(() => ({
   background: "rgba(0, 0, 0, 0.01)",
 }));
 
-
-
 const initialValues = {
-  email: "jason@ui-lib.com",
-  password: "dummyPass",
+  email: "admin@mielproje.com",
+  password: "admin",
   remember: true,
 };
 
 // form field validation schema
 const validationSchema = Yup.object().shape({
   password: Yup.string()
-    .min(6, "Password must be 6 character length")
+    .min(5, "Password must be 5 character length")
     .required("Password is required!"),
   email: Yup.string()
     .email("Invalid Email address")

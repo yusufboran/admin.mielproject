@@ -11,7 +11,7 @@ export default function AddressForm() {
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container >
         <Grid item xs={12} sm={6}>
           <TextField
             required

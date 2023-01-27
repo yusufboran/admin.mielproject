@@ -29,7 +29,6 @@ export default function ModalEdit({ item }) {
     setOpen(false);
   }
   function handleSave() {
-    console.log(item);
     const item = {
       id: id,
       title: title,

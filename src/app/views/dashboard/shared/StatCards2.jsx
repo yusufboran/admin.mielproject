@@ -48,7 +48,7 @@ const StatCards2 = () => {
   const bgError = lighten(palette.error.main, 0.85);
 
   return (
-    <Grid container spacing={3} sx={{ mb: 3 }}>
+    <Grid container   sx={{ mb: 3 }}>
       <Grid item xs={12} md={6}>
         <Card elevation={3} sx={{ p: 2 }}>
           <ContentBox>
