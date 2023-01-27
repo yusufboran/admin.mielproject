@@ -3,6 +3,8 @@ import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 
 const SliderImage = ({ item }) => {
+  var url = process.env.REACT_APP_DATABASE_URL;
+  console.log("url", url);
   return (
     <div>
       <AwesomeSlider>
@@ -10,7 +12,7 @@ const SliderImage = ({ item }) => {
           item.map((imgUrl, index) => (
             <div>
               <img
-                src={`http://localhost:3000/uploads/${imgUrl}`}
+                src={`${url}/uploads/${imgUrl}`}
                 alt="Girl in a jacket"
                 width="100%"
                 height="56.25%"

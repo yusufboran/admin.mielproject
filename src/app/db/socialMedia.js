@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import axios from "axios";
-
-var path = "http://localhost:3000/api/v1/socialmedia";
+var url = process.env.REACT_APP_DATABASE_URL;
+var path = `${url}/api/v1/socialmedia`;
 
 const userToken = JSON.parse(
   window.localStorage.getItem("userData")
@@ -34,7 +34,7 @@ export const deleteSocialMedia = async (Id) => {
     axios.delete(path, {
       data: {
         id: Id,
-        token: userToken
+        token: userToken,
       },
     });
 

@@ -1,7 +1,9 @@
 import toast from "react-hot-toast";
 import axios from "axios";
 
-var path = "http://localhost:3000/api/v1/contactform";
+var url = process.env.REACT_APP_DATABASE_URL;
+
+var path = `${url}/api/v1/contactform`;
 
 const userToken = JSON.parse(
   window.localStorage.getItem("userData")

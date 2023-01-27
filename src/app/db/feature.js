@@ -5,7 +5,9 @@ const userToken = JSON.parse(
   window.localStorage.getItem("userData")
 ).accessToken;
 
-var path = "http://localhost:3000/api/v1/features";
+var url = process.env.REACT_APP_DATABASE_URL;
+
+var path = `${url}/api/v1/features`;
 export const addItem = async (item) => {
   try {
     item = { ...item, token: userToken };

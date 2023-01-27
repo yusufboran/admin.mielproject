@@ -5,9 +5,11 @@ export const dbLogout = async () => {
   // LOGOUT
 };
 
+var url = process.env.REACT_APP_DATABASE_URL;
+
 export const dbLogin = async (email, password) => {
   try {
-    var user = await axios.post("http://localhost:3000/api/v1/auth/login", {
+    var user = await axios.post(`${url}/api/v1/auth/login`, {
       username: email,
       password: password,
     });

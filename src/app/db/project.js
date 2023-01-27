@@ -20,7 +20,7 @@ function deleteTurkishCharacters(text) {
     .replace(/[-]+/gi, "-")
     .toLowerCase();
 }
-
+var url = process.env.REACT_APP_DATABASE_URL;
 var userToken = null;
 
 if (window.localStorage.getItem("userData"))
@@ -54,13 +54,13 @@ export const addProject = async (fileList, item) => {
     }
 
     axios
-      .post("http://localhost:3000/api/v1/project/upload", formData, config)
+      .post(`${url}/api/v1/project/upload`, formData, config)
       .then((response) => console.log("response.data", response.data));
 
     delete item.fileList;
     console.log(item);
     axios
-      .post("http://localhost:3000/api/v1/project/", item)
+      .post(`${url}/api/v1/project/`, item)
       .then((response) => console.log("response.data", response.data));
 
     toast.success("Successfully Project Add");
@@ -72,7 +72,7 @@ export const addProject = async (fileList, item) => {
 export const getProjectsList = async (setItems) => {
   try {
     axios
-      .get("http://localhost:3000/api/v1/project/")
+      .get(`${url}/api/v1/project/`)
       .then((response) =>
         console.log("response.data", setItems(response.data))
       );
@@ -83,7 +83,7 @@ export const getProjectsList = async (setItems) => {
 
 export const deleteProjectsId = async (Id) => {
   try {
-    axios.delete("http://localhost:3000/api/v1/project/", {
+    axios.delete(`${url}/api/v1/project/`, {
       data: {
         id: Id,
         token: userToken,
