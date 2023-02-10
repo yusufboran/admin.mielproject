@@ -53,15 +53,11 @@ export const addProject = async (fileList, item) => {
       formData.append("files", filesArr[i]);
     }
 
-    axios
-      .post(`${url}/api/v1/project/upload`, formData, config)
-      .then((response) => console.log("response.data", response.data));
+    axios.post(`${url}/api/v1/project/upload`, formData, config);
 
     delete item.fileList;
     console.log(item);
-    axios
-      .post(`${url}/api/v1/project/`, item)
-      .then((response) => console.log("response.data", response.data));
+    axios.post(`${url}/api/v1/project/`, item);
 
     toast.success("Successfully Project Add");
   } catch (error) {
@@ -71,11 +67,9 @@ export const addProject = async (fileList, item) => {
 
 export const getProjectsList = async (setItems) => {
   try {
-    axios
-      .get(`${url}/api/v1/project/`)
-      .then((response) =>
-        console.log("response.data", setItems(response.data))
-      );
+    axios.get(`${url}/api/v1/project/`).then((response) => {
+      setItems(response.data);
+    });
   } catch (error) {
     toast.error("getProjectsList", error.message);
   }

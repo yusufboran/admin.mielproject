@@ -30,7 +30,7 @@ export const getItemsList = async (setItems) => {
     axios
       .get(path)
       .then((response) =>
-        console.log("response.data", setItems(response.data))
+      setItems(response.data)
       );
   } catch (error) {
     toast.error("locations getItemsList", error.message);

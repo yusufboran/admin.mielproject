@@ -61,7 +61,7 @@ export default function NewProjectItem({ func, id }) {
 
   return (
     <SimpleCard>
-      <Grid container >
+      <Grid container spacing={2}>
         <Grid item xl={6} md={12} sm={12} xs={12}>
           <TextField
             value={projectName || ""}

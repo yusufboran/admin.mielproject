@@ -24,7 +24,7 @@ const ProjectsPage = () => {
           routeSegments={[{ name: "Project", path: "/projects" }]}
         />
       </Box>
-      <Grid container>
+      <Grid spacing={2} container>
         {items.map((item) => {
           return (
             <Grid item xl={6} md={12} sm={12} xs={12}>

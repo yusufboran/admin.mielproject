@@ -1,0 +1,258 @@
+//== Typography Variable
+$baseFont: "Montserrat", sans-serif;
+$baseFontSize: 15px;
+$mdi-icon: "Material Design Icons";
+$fa-icon: "FontAwesome";
+
+//== Site Typography Colors
+$paragraph: #151515;
+$headingColor: #151515;
+$ashColor: #aaaaaa;
+$borderColor: #eee;
+$hvrColor: #182141;
+
+//== Site Brand Color
+$brandColor: #004548;
+$brandColorDark: darken($brandColor, 15%);
+$brandColorLight: lighten($brandColor, 15%);
+
+//== Alternative Color
+$white: #ffffff;
+$offWhite: #f8f9fc;
+$black: #000000;
+$blackSoft: #222222;
+$navy: #3b5998;
+$pink: #ff69b4;
+$violet: #9933cc;
+$olive: #559137;
+$green: #008000;
+$red: #e74c3c;
+$orange: #f5740a;
+$yellow: #fbbf00;
+
+//== Social Media Icons Color
+$facebook: #3b5999;
+$twitter: #1da1f2;
+$pinterest: #cb2028;
+$youtube: #cc332d;
+$reddit: #ff4500;
+$linkedin: #0077b5;
+
+//== Responsive Media Query Variables
+$xlmax-device: "only screen and (min-width: 1200px) and (max-width: 1599.98px)";
+$xl-device: "only screen and (min-width: 1200px)";
+$lg-device: "only screen and (min-width: 992px) and (max-width: 1199.98px)";
+$md-device: "only screen and (min-width: 768px) and (max-width: 991.98px)";
+$sm-device: "only screen and (max-width: 767.98px)";
+$xs-device: "only screen and (max-width: 575.98px)";
+$xxs-device: "only screen and (max-width: 479.98px)";
+$min-device: "only screen and (max-width: 200px)";
+
+.poem {
+  text-align: center;
+  font-size: 24px;
+  line-height: 1;
+
+  @media #{$sm-device} {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  @media #{$xxs-device} {
+    margin-bottom: 20px;
+    font-size: 10px;
+  }
+  @media #{$min-device} {
+    margin-bottom: 20px;
+    font-size: 7.5px;
+  }
+}
+
+.about-thumb {
+  overflow: hidden;
+
+  @media #{$sm-device} {
+    margin-bottom: 35px;
+  }
+
+  img {
+    width: 100%;
+    transition: 0.4s;
+  }
+
+  &--2 {
+    margin-right: -250px;
+  }
+}
+
+.page-header-area {
+  .page-header-content-inner {
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    @media #{$md-device} {
+      height: 400px;
+    }
+
+    @media #{$sm-device} {
+      height: 350px;
+    }
+
+    h2 {
+      color: white;
+      text-transform: uppercase;
+      font-size: (55px);
+
+      @media #{$xs-device} {
+        font-size: 25px;
+      }
+    }
+
+    p {
+      @media #{$xl-device} {
+        max-width: 70%;
+        margin: auto;
+      }
+    }
+  }
+
+  .edit-button {
+    .btn {
+      background-color: transparent;
+      border: none;
+      color: transparent;
+      padding: 12px 16px;
+      font-size: 32px;
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+    }
+  }
+
+  &:hover {
+    .edit-button {
+      .btn {
+        transition: 0.5s 0.1s;
+        background-color: $red;
+        color: white;
+      }
+    }
+  }
+}
+
+.bg {
+  &-white {
+    background-color: $white;
+  }
+
+  &-primary {
+    background-color: rgb(0, 69, 72);
+  }
+  &-b-opacity {
+    background-color: rgba($color: #000000, $alpha: 0.35);
+  }
+
+  &-offwhite {
+    background-color: $offWhite;
+  }
+
+  &-brand {
+    background-color: $brandColor;
+  }
+
+  &-blackSoft {
+    background-color: $blackSoft;
+  }
+}
+
+.bg-img {
+  background: no-repeat center center;
+  background-size: cover;
+}
+
+.container {
+  @media screen and (min-width: 1200px) {
+    max-width: 1200px;
+  }
+
+  &-fluid {
+    padding: 0 100px;
+
+    @media #{$lg-device} {
+      padding: 0 15px;
+    }
+
+    @media #{$md-device, $sm-device} {
+      padding: 0 30px;
+    }
+
+    @media #{$xxs-device} {
+      padding: 0 15px;
+    }
+  }
+}
+
+.sm-top {
+  margin-top: 110px;
+
+  @media #{$md-device} {
+    margin-top: 90px;
+  }
+
+  @media #{$sm-device} {
+    margin-top: 60px;
+  }
+}
+
+.about-content {
+  .about-since {
+    font-size: 24px;
+    line-height: 1;
+
+    @media #{$sm-device} {
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    @media #{$xxs-device} {
+      margin-bottom: 20px;
+      font-size: 8px;
+    }
+  }
+
+  &--2 {
+    @media #{$xl-device} {
+      margin-left: 0;
+      padding-right: 40px;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  .align-items-lg-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 992px) {
+    .align-items-lg-center {
+      align-items: center;
+    }
+  }
+
+  .col-md-6 {
+    width: 50%;
+    float: left;
+  }
+
+  .col-lg-5 {
+    width: 41.66666666666667%;
+    float: left;
+  }
+}

@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     getProjectsList(setItems);
-  }, []);
+  }, [items]);
 
   const content = useRoutes(routes);
   return (

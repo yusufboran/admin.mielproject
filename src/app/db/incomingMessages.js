@@ -12,7 +12,6 @@ const userToken = JSON.parse(
 export const getItemsList = async (setItems) => {
   try {
     axios.get(path).then((response) => {
-      console.log(response.data);
       setItems(response.data);
     });
   } catch (error) {

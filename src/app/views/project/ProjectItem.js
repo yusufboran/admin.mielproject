@@ -32,7 +32,7 @@ export default function ProjectItem({ item }) {
     setExpanded(!expanded);
   };
   const handleDelete = (item) => {
-    deleteProjectsId(item.id);
+    deleteProjectsId(item.pid);
   };
 
   return (

@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 import MatxLayout from "./components/MatxLayout/MatxLayout";
 import consultantsRoute from "./views/consultants/ConsultantsRoutes";
 import profileRoutes from "./views/profile/ProfileRoutes";
+import aboutMeRoutes from "./views/aboutMe/AboutMeRoutes";
 
 const routes = [
   {
@@ -20,6 +21,8 @@ const routes = [
       ...projectRoutes,
       ...consultantsRoute,
       ...profileRoutes,
+      ...profileRoutes,
+      ...aboutMeRoutes,
     ],
   },
   ...sessionRoutes,

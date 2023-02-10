@@ -21,11 +21,7 @@ export const addItem = async (item) => {
 
 export const getItemsList = async (setItems) => {
   try {
-    axios
-      .get(path)
-      .then((response) =>
-        console.log("response.data", setItems(response.data))
-      );
+    axios.get(path).then((response) => setItems(response.data));
   } catch (error) {
     toast.error("features getItemsList", error.message);
   }
