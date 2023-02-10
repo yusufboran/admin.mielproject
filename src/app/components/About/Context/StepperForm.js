@@ -8,16 +8,12 @@ import { Editor } from "@tinymce/tinymce-react";
 import React from "react";
 import { useState } from "react";
 import DropFileInput from "../../DropFileInput/DropFileInput";
-import Header from "./Header";
 import "../style.scss";
-
-function getSteps() {
-  return ["Upload image", "Context", "Header check"];
-}
+import About from "./Component";
 
 export default function StepperForm() {
   const [file, setFile] = useState([]);
-  const [context, setcontext] = useState(
+  const [text, settext] = useState(
     '<h2 style="text-align: center;">türkçe açıklama</h2>'
   );
 
@@ -35,8 +31,8 @@ export default function StepperForm() {
         return (
           <Editor
             apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
-            onEditorChange={(e) => setcontext(e)}
-            value={context}
+            onEditorChange={(e) => settext(e)}
+            value={text}
             init={{
               selector: "#tinymce",
               branding: false,
@@ -44,9 +40,7 @@ export default function StepperForm() {
           />
         );
       case 2:
-        return (
-          <Header image={file} context={context} edit={true} />
-        );
+        return <About image={file} context={text} edit={true} />;
 
       default:
         return `Aenean arcu ligula, porttitor id neque imperdiet, congue convallis erat. Integer libero sapien, convallis a vulputate vel, pretium vulputate metus. Donec leo justo, viverra ut tempor commodo, laoreet eu velit. Donec vel sem quis velit pharetra elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam in commodo mauris. Ut iaculis ipsum velit.`;
@@ -54,7 +48,7 @@ export default function StepperForm() {
   }
 
   const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+  const steps = ["Upload image", "Context", "Check"];
 
   const handleNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -62,7 +56,9 @@ export default function StepperForm() {
   const handleBack = () =>
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-  const handleReset = () => setActiveStep(0);
+  const handleSave = () => {
+    alert("Save");
+  };
 
   return (
     <Box>
@@ -75,45 +71,31 @@ export default function StepperForm() {
       </Stepper>
 
       <Box mt={4}>
-        {activeStep === steps.length ? (
-          <Box>
-            <Typography>All steps completed</Typography>
-
+        <Box>
+          <Typography>{getStepContent(activeStep)}</Typography>
+          <Box pt={2}>
             <Button
-              sx={{ mt: 2 }}
               variant="contained"
               color="secondary"
-              onClick={handleReset}
+              disabled={activeStep === 0}
+              onClick={handleBack}
             >
-              Reset
+              Back
+            </Button>
+
+            <Button
+              disabled={!(file.length > 0) || !(text.length > 0)}
+              sx={{ ml: 2 }}
+              variant="contained"
+              color="primary"
+              onClick={
+                activeStep === steps.length - 1 ? handleSave : handleNext
+              }
+            >
+              {activeStep === steps.length - 1 ? "Save" : "Next"}
             </Button>
           </Box>
-        ) : (
-          <Box>
-            <Typography>{getStepContent(activeStep)}</Typography>
-
-            <Box pt={2}>
-              <Button
-                variant="contained"
-                color="secondary"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-              >
-                Back
-              </Button>
-
-              <Button
-                disabled={!(file.length > 0) || !(context.length > 0)}
-                sx={{ ml: 2 }}
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </Box>
-          </Box>
-        )}
+        </Box>
       </Box>
     </Box>
   );
