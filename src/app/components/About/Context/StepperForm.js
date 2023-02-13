@@ -5,8 +5,10 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import { Editor } from "@tinymce/tinymce-react";
+import { addItem } from "app/db/other";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DropFileInput from "../../DropFileInput/DropFileInput";
 import "../style.scss";
 import About from "./Component";
@@ -57,7 +59,8 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const handleSave = () => {
-    alert("Save");
+    addItem(file[0], text, "content");
+    window.location.reload(true);
   };
 
   return (

@@ -3,14 +3,14 @@ import parse from "html-react-parser";
 
 const Header = ({ children, image, context, edit }) => {
   //"https://wallpaperaccess.com/full/3155150.jpg"
-
+  var url = process.env.REACT_APP_DATABASE_URL;
   return (
     <div
       className="page-header-area bg-img"
       style={{
         backgroundImage: edit
           ? `url(${URL.createObjectURL(image[0])})`
-          : `url(${image})`,
+          : `url(${url}/uploads/${image})`,
       }}
     >
       {children}

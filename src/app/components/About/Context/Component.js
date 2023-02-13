@@ -5,8 +5,7 @@ import Thumbnail from "../../Thumbnail";
 import Content from "../../Content";
 
 const About = ({ context, image, disable, children, edit }) => {
-  console.log(image);
-
+  var url = process.env.REACT_APP_DATABASE_URL;
   return (
     <div className="about-context sm-top">
       {children}
@@ -15,7 +14,11 @@ const About = ({ context, image, disable, children, edit }) => {
           <div className="col-md-6 col-lg-5">
             <Thumbnail
               classes="about-thumb"
-              imgSrc={!edit ? image : URL.createObjectURL(image[0])}
+              imgSrc={
+                !edit
+                  ? `${url}/uploads/${image}`
+                  : URL.createObjectURL(image[0])
+              }
             />
           </div>
 
