@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
-import Profile from "app/components/Profile/index.js";
+import Profile from "app/components/Profile/index.jsx";
 
 const Container = styled("div")(({ theme }) => ({
   margin: "30px",

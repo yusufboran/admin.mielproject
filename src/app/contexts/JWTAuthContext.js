@@ -63,15 +63,16 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const userData = await dbLogin(email, password);
+    console.log(userData);
     const accessToken = userData.token;
     const response = {
       accessToken,
       user: {
         id: 1,
         role: "SA",
-        name: email,
-        username: "jason_alexander",
-        email: "jason@ui-lib.com",
+        name: userData.username,
+        username: userData.username,
+        email: userData.email,
         avatar: "/assets/images/face-6.jpg",
         age: 25,
       },
