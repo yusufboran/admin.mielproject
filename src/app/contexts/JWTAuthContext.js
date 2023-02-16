@@ -63,7 +63,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const userData = await dbLogin(email, password);
-    console.log(userData);
     const accessToken = userData.token;
     const response = {
       accessToken,

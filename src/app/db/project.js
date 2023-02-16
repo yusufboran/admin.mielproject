@@ -56,7 +56,6 @@ export const addProject = async (fileList, item) => {
     axios.post(`${url}/api/v1/project/upload`, formData, config);
 
     delete item.fileList;
-    console.log(item);
     axios.post(`${url}/api/v1/project/`, item);
 
     toast.success("Successfully Project Add");
@@ -90,8 +89,11 @@ export const deleteProjectsId = async (Id) => {
   }
 };
 
-export const updateProjectId = async (id, item) => {
+export const updateProjectId = async (id, item, fileList) => {
   try {
+    item = { ...item, pid: id, token: userToken, paths: ["file_list"] };
+    axios.put(`${url}/api/v1/project/`, item);
+    toast.success("Successfully Project Update");
   } catch (error) {
     toast.error("updateProjectId", error.message);
   }

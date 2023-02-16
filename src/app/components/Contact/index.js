@@ -47,7 +47,6 @@ export default function DataGridDemo() {
 
   React.useEffect(() => {
     getItemsList(setItems);
-    console.log(items);
   }, []);
 
   const handleDelete = () => {

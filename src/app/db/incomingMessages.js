@@ -21,7 +21,6 @@ export const getItemsList = async (setItems) => {
 
 export const deleteItemId = async (items) => {
   try {
-    console.log(items);
     items.forEach((item) => {
       axios.delete(path, {
         data: {

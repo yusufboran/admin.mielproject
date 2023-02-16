@@ -23,7 +23,6 @@ export default function ModalEdit({ open, setOpen, editItem }) {
   }
 
   function handleDelete() {
-    console.log("Delete", editItem.id);
     deleteSocialMedia(editItem.id);
     setOpen(false);
 

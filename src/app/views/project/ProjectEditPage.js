@@ -16,10 +16,9 @@ const Container = styled("div")(({ theme }) => ({
 const ProjectEditPage = () => {
   var url = window.location.href.split("/");
   var projectId = url[url.length - 1];
-  console.log(projectId);
 
-  const updateConsultant = (itefileList, item) => {
-    updateProjectId(projectId, item);
+  const updateConsultant = (fileList, item) => {
+    updateProjectId(projectId,item,fileList );
   };
   return (
     <Container>

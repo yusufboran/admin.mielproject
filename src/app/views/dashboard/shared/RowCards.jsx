@@ -47,7 +47,6 @@ const RowCards = () => {
   const [selectedItem, setSelectedItem] = React.useState(false);
 
   const handleClickOpen = (item) => {
-    console.log(item);
     setSelectedItem(item);
     setOpen(true);
   };

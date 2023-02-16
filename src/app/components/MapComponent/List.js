@@ -15,7 +15,6 @@ export default function MapList({ items, handleEdit }) {
   const handleDelete = (id) => {
     deleteItemId(id);
   };
-  console.log("items", items);
 
   return (
     <div>

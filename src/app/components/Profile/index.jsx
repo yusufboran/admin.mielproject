@@ -3,7 +3,7 @@ import { Span } from "app/components/Typography";
 import { dbUserUpdate } from "app/db/auth";
 import { useEffect, useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
-
+import AddUSer from "./addUser";
 const TextField = styled(TextValidator)(() => ({
   width: "100%",
   marginBottom: "16px",
@@ -102,12 +102,7 @@ const SimpleForm = () => {
                 <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
               </Button>
 
-              <Button color="primary" variant="contained">
-                <Icon>add</Icon>
-                <Span sx={{ pl: 1, textTransform: "capitalize" }}>
-                  New User
-                </Span>
-              </Button>
+              {/* <AddUSer /> */}
             </Grid>
           </Grid>
         </Grid>

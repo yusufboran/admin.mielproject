@@ -16,7 +16,6 @@ export const addItem = async (item) => {
     delete item.localion;
     delete item.date;
     item = { ...item, files: location, location, token: userToken };
-    console.log(item);
     axios.post(path, item);
 
     toast.success("Successfully");

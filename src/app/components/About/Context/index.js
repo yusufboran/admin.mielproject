@@ -1,5 +1,5 @@
 import React from "react";
-import NestedModal from "../../Modal";
+import NestedModal from "../Modal";
 import About from "./Component";
 import StepperForm from "./StepperForm";
 

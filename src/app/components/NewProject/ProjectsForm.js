@@ -16,11 +16,10 @@ export default function NewProjectItem({ func, id }) {
       features: features,
       descriptionTR: descriptionTR,
       descriptionEN: descriptionEN,
-      fileList: fileList,
     };
 
     func(fileList, item);
-    navigate("/");
+    // navigate("/");
   };
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function NewProjectItem({ func, id }) {
       if (id) {
         items.forEach((item) => {
           if (item.pid === id) {
-            console.log(item);
             setProjectName(item.projectname);
             setFeatures(item.features);
             setDescriptionTR(item.descriptiontr);

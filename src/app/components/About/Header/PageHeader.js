@@ -1,6 +1,6 @@
 import React from "react";
 import "../style.scss";
-import NestedModal from "../../Modal";
+import NestedModal from "../Modal";
 import StepperForm from "./StepperForm.js";
 import Header from "./Header";
 

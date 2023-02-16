@@ -34,7 +34,6 @@ const MapChart = ({ items }) => {
           ))
         }
       </Geographies>
-      {console.log(items)}
       {items.map((item) => (
         <Marker
           key={item.id}

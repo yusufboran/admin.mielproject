@@ -25,7 +25,6 @@ const ConsultantsEditPage = () => {
     }
   };
 
-  console.log();
 
   return (
     <Container>
