@@ -89,9 +89,41 @@ export const deleteProjectsId = async (Id) => {
   }
 };
 
-export const updateProjectId = async (id, item, fileList) => {
+export const updateProjectId = async (id, item, fileList, uploadPic) => {
   try {
-    item = { ...item, pid: id, token: userToken, paths: ["file_list"] };
+    var paths = [];
+    var filesArr = [];
+
+    var now = Date.now();
+    fileList.forEach((file) => {
+      var fileName = deleteTurkishCharacters(
+        item.projectName + "-" + now + "-" + file.name
+      );
+      const myNewFile = new File([file], fileName, { type: file.type });
+      filesArr.push(myNewFile);
+      paths.push(fileName);
+    });
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    const formData = new FormData();
+    for (let i = 0; i < filesArr.length; i++) {
+      formData.append("files", filesArr[i]);
+    }
+
+    axios.post(`${url}/api/v1/project/upload`, formData, config);
+
+    item = {
+      ...item,
+      pid: id,
+      token: userToken,
+      paths: paths,
+      uploadPic: uploadPic,
+    };
     axios.put(`${url}/api/v1/project/`, item);
     toast.success("Successfully Project Update");
   } catch (error) {

@@ -17,8 +17,8 @@ const ProjectEditPage = () => {
   var url = window.location.href.split("/");
   var projectId = url[url.length - 1];
 
-  const updateConsultant = (fileList, item) => {
-    updateProjectId(projectId,item,fileList );
+  const updateConsultant = (fileList, item,uploadPic) => {
+    updateProjectId(projectId,item,fileList,uploadPic );
   };
   return (
     <Container>
