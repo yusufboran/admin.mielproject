@@ -62,29 +62,30 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email, password) => {
-    const userData = await dbLogin(email, password);
-    const accessToken = userData.token;
-    const response = {
-      accessToken,
-      user: {
-        id: 1,
-        role: "SA",
-        name: userData.username,
-        username: userData.username,
-        email: userData.email,
-        avatar: "/assets/images/face-6.jpg",
-        age: 25,
-      },
-    };
-    const { user } = response;
+    await dbLogin(email, password).then((userData) => {
+      const accessToken = userData.token;
+      const response = {
+        accessToken,
+        user: {
+          id: 1,
+          role: "SA",
+          name: userData.email,
+          username: userData.email,
+          email: userData.email,
+          avatar: "/assets/images/face-6.jpg",
+        },
+      };
 
-    setSession(response);
+      const { user } = response;
 
-    dispatch({
-      type: "LOGIN",
-      payload: {
-        user,
-      },
+      setSession(response);
+
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          user,
+        },
+      });
     });
   };
 

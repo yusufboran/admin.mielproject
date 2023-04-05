@@ -34,11 +34,17 @@ const MapChart = ({ items }) => {
           ))
         }
       </Geographies>
+
       {items.map((item) => (
         <Marker
           key={item.id}
-          coordinates={[item.location[1], item.location[0]]}
+          coordinates={[
+            Number(item["location"].slice(1, -1).split(",")[1]),
+            Number(item["location"].slice(1, -1).split(",")[0]),
+          ]}
         >
+          {console.log(item.location[0])}
+          {item.location[1]}
           {/* coordinates={[
             item.location.split(",")[1],
             item.location.split(",")[0],

@@ -10,16 +10,19 @@ import { useState } from "react";
 import DropFileInput from "../../DropFileInput/DropFileInput";
 import Header from "./Header";
 import "../style.scss";
-import { addItem } from "app/db/other";
+import { addItem } from "app/db/about";
 
 function getSteps() {
-  return ["Upload image", "Context", "Header check"];
+  return ["Upload image", "Context TR", "Context EN", "Header check"];
 }
 
 export default function StepperForm() {
   const [file, setFile] = useState([]);
-  const [context, setcontext] = useState(
-    '<h2 style="text-align: center;">türkçe açıklama</h2>'
+  const [contextTr, setcontextTr] = useState(
+    'türkçe metin'
+  );
+  const [contextEn, setcontextEn] = useState(
+    'english explanation'
   );
 
   function getStepContent(stepIndex) {
@@ -36,16 +39,36 @@ export default function StepperForm() {
         return (
           <Editor
             apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
-            onEditorChange={(e) => setcontext(e)}
-            value={context}
+            onEditorChange={(e) => setcontextTr(e)}
+            value={contextTr}
             init={{
               selector: "#tinymce",
               branding: false,
             }}
           />
         );
+
       case 2:
-        return <Header image={file} context={context} edit={true} />;
+        return (
+          <Editor
+            apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+            onEditorChange={(e) => setcontextEn(e)}
+            value={contextEn}
+            init={{
+              selector: "#tinymce",
+              branding: false,
+            }}
+          />
+        );
+      case 3:
+        return (
+          <Header
+            image={file}
+            context_tr={contextTr}
+            context_en={contextEn}
+            edit={true}
+          />
+        );
 
       default:
         return `Aenean arcu ligula, porttitor id neque imperdiet, congue convallis erat. Integer libero sapien, convallis a vulputate vel, pretium vulputate metus. Donec leo justo, viverra ut tempor commodo, laoreet eu velit. Donec vel sem quis velit pharetra elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam in commodo mauris. Ut iaculis ipsum velit.`;
@@ -62,7 +85,7 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const handleSave = () => {
-    addItem(file[0], context, "header");
+    addItem(file[0], contextTr, contextEn, "header");
     window.location.reload(true);
   };
 
@@ -91,7 +114,11 @@ export default function StepperForm() {
             </Button>
 
             <Button
-              disabled={!(file.length > 0) || !(context.length > 0)}
+              disabled={
+                !(file.length > 0) ||
+                !(contextTr.length > 0) ||
+                !(contextEn.length > 0)
+              }
               sx={{ ml: 2 }}
               variant="contained"
               color="primary"

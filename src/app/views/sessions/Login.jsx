@@ -16,9 +16,9 @@ const ContentBox = styled(Box)(() => ({
 }));
 
 const initialValues = {
-  email: "admin@mielproje.com",
-  password: "admin",
-  remember: true,
+  // email: "admin@mielproje.com",
+  // password: "admin",
+  // remember: true,
 };
 
 // form field validation schema

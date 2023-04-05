@@ -49,6 +49,7 @@ $xxs-device: "only screen and (max-width: 479.98px)";
 $min-device: "only screen and (max-width: 200px)";
 
 .poem {
+  overflow: auto;
   text-align: center;
   font-size: 24px;
   line-height: 1;

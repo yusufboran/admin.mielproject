@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import ProjectsForm from "app/components/NewProject/ProjectsForm";
 import { addProject } from "app/db/project";
@@ -12,10 +12,8 @@ const Container = styled("div")(({ theme }) => ({
   },
 }));
 
-
-
 const handleSumbit = (fileList, item) => {
-  addProject(fileList, item)
+  addProject(fileList, item);
 };
 
 const ProjectItemPage = () => {
@@ -29,7 +27,9 @@ const ProjectItemPage = () => {
             { name: "Add", path: "/projects/add" },
           ]}
         />
-        <ProjectsForm func={handleSumbit} />
+        <Grid container style={{ marginTop: 0 }}>
+          <ProjectsForm func={handleSumbit} />
+        </Grid>
       </Box>
     </Container>
   );

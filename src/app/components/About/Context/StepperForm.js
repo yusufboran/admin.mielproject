@@ -5,7 +5,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import { Editor } from "@tinymce/tinymce-react";
-import { addItem } from "app/db/other";
+import { addItem } from "app/db/about";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +15,8 @@ import About from "./Component";
 
 export default function StepperForm() {
   const [file, setFile] = useState([]);
-  const [text, settext] = useState(
-    '<h2 style="text-align: center;">türkçe açıklama</h2>'
-  );
+  const [text_tr, settext_tr] = useState("türkçe açıklama");
+  const [text_en, settext_en] = useState("english explanation");
 
   function getStepContent(stepIndex) {
     switch (stepIndex) {
@@ -33,8 +32,8 @@ export default function StepperForm() {
         return (
           <Editor
             apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
-            onEditorChange={(e) => settext(e)}
-            value={text}
+            onEditorChange={(e) => settext_tr(e)}
+            value={text_tr}
             init={{
               selector: "#tinymce",
               branding: false,
@@ -42,7 +41,27 @@ export default function StepperForm() {
           />
         );
       case 2:
-        return <About image={file} context={text} edit={true} />;
+        return (
+          <Editor
+            apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+            onEditorChange={(e) => settext_en(e)}
+            value={text_en}
+            init={{
+              selector: "#tinymce",
+              branding: false,
+            }}
+          />
+        );
+
+      case 3:
+        return (
+          <About
+            image={file}
+            context_tr={text_tr}
+            context_en={text_en}
+            edit={true}
+          />
+        );
 
       default:
         return `Aenean arcu ligula, porttitor id neque imperdiet, congue convallis erat. Integer libero sapien, convallis a vulputate vel, pretium vulputate metus. Donec leo justo, viverra ut tempor commodo, laoreet eu velit. Donec vel sem quis velit pharetra elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam in commodo mauris. Ut iaculis ipsum velit.`;
@@ -50,7 +69,7 @@ export default function StepperForm() {
   }
 
   const [activeStep, setActiveStep] = React.useState(0);
-  const steps = ["Upload image", "Context", "Check"];
+  const steps = ["Upload image", "Context TR", "Context EN", "Check"];
 
   const handleNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -59,7 +78,7 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const handleSave = () => {
-    addItem(file[0], text, "content");
+    addItem(file[0], text_tr, text_en, "content");
     window.location.reload(true);
   };
 
@@ -87,7 +106,11 @@ export default function StepperForm() {
             </Button>
 
             <Button
-              disabled={!(file.length > 0) || !(text.length > 0)}
+              disabled={
+                !(file.length > 0) ||
+                !(text_tr.length > 0) ||
+                !(text_en.length > 0)
+              }
               sx={{ ml: 2 }}
               variant="contained"
               color="primary"

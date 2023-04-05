@@ -26,6 +26,35 @@ var userToken = null;
 if (window.localStorage.getItem("userData"))
   userToken = JSON.parse(window.localStorage.getItem("userData")).accessToken;
 
+export const getProjectsList = async (setItems) => {
+  try {
+    axios.get(`https://mielproje.com.tr/api/project.php`).then((response) => {
+      setItems(response.data);
+    });
+  } catch (error) {
+    toast.error("getProjectsList", error.message);
+  }
+};
+
+export const deleteProjectsId = async (Id) => {
+  try {
+    axios
+      .delete(`https://mielproje.com.tr/api/project.php`, {
+        data: {
+          id: Id,
+          token: userToken,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    toast.success("Delete Successfully");
+  } catch (error) {
+    toast.error("deleteConsultansId", error.message);
+  }
+};
+
 export const addProject = async (fileList, item) => {
   try {
     var paths = [];
@@ -50,13 +79,31 @@ export const addProject = async (fileList, item) => {
 
     const formData = new FormData();
     for (let i = 0; i < filesArr.length; i++) {
-      formData.append("files", filesArr[i]);
+      formData.append(`images[]`, filesArr[i]);
     }
 
-    axios.post(`${url}/api/v1/project/upload`, formData, config);
+    axios
+      .post(`https://mielproje.com.tr/api/upload.php/`, formData, config)
+      .then((res) => {
+        console.log(res.data);
+      });
 
     delete item.fileList;
-    axios.post(`${url}/api/v1/project/`, item);
+    for (let prop in item) {
+      if (typeof item[prop] === "string") {
+        item[prop] = item[prop].replace("'", "''");
+      }
+      if (prop == "features") {
+        item["features"].forEach((feature, index) => {
+          item.features[index] = feature.replace("'", "''");
+        });
+      }
+    }
+    axios.post(`https://mielproje.com.tr/api/project.php/`, item).then((res) => {
+      console.log(res.data);
+    });
+
+    console.log("Upload ", item);
 
     toast.success("Successfully Project Add");
   } catch (error) {
@@ -64,59 +111,39 @@ export const addProject = async (fileList, item) => {
   }
 };
 
-export const getProjectsList = async (setItems) => {
-  try {
-    axios.get(`${url}/api/v1/project/`).then((response) => {
-      setItems(response.data);
-    });
-  } catch (error) {
-    toast.error("getProjectsList", error.message);
-  }
-};
-
-export const deleteProjectsId = async (Id) => {
-  try {
-    axios.delete(`${url}/api/v1/project/`, {
-      data: {
-        id: Id,
-        token: userToken,
-      },
-    });
-
-    toast.success("Delete Successfully");
-  } catch (error) {
-    toast.error("deleteConsultansId", error.message);
-  }
-};
-
 export const updateProjectId = async (id, item, fileList, uploadPic) => {
   try {
     var paths = [];
-    var filesArr = [];
 
-    var now = Date.now();
-    fileList.forEach((file) => {
-      var fileName = deleteTurkishCharacters(
-        item.projectName + "-" + now + "-" + file.name
-      );
-      const myNewFile = new File([file], fileName, { type: file.type });
-      filesArr.push(myNewFile);
-      paths.push(fileName);
-    });
+    if (fileList.length > 0) {
+      var filesArr = [];
+      var now = Date.now();
+      fileList.forEach((file) => {
+        var fileName = deleteTurkishCharacters(
+          item.projectName + "-" + now + "-" + file.name
+        );
+        const myNewFile = new File([file], fileName, { type: file.type });
+        filesArr.push(myNewFile);
+        paths.push(fileName);
+      });
 
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      };
 
-    const formData = new FormData();
-    for (let i = 0; i < filesArr.length; i++) {
-      formData.append("files", filesArr[i]);
+      const formData = new FormData();
+      for (let i = 0; i < filesArr.length; i++) {
+        formData.append(`images[]`, filesArr[i]);
+      }
+
+      axios
+        .post(`https://mielproje.com.tr/api/upload.php`, formData, config)
+        .then((response) => {
+          console.log(response.data);
+        });
     }
-
-    axios.post(`${url}/api/v1/project/upload`, formData, config);
-
     item = {
       ...item,
       pid: id,
@@ -124,7 +151,11 @@ export const updateProjectId = async (id, item, fileList, uploadPic) => {
       paths: paths,
       uploadPic: uploadPic,
     };
-    axios.put(`${url}/api/v1/project/`, item);
+    console.log(item);
+    axios.put(`https://mielproje.com.tr/api/project.php/`, item).then((response) => {
+      console.log(response.data);
+    });
+
     toast.success("Successfully Project Update");
   } catch (error) {
     toast.error("updateProjectId", error.message);

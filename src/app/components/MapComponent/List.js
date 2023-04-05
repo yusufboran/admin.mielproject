@@ -55,7 +55,7 @@ export default function MapList({ items, handleEdit }) {
                     </IconButton>
                   </Link>
                   <DeleteDialog
-                    deleteButton={() => handleDelete(location.lid)}
+                    deleteButton={() => handleDelete(location.id)}
                   />
                 </TableCell>
               </TableRow>

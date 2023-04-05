@@ -7,7 +7,7 @@ const userToken = JSON.parse(
 
 var url = process.env.REACT_APP_DATABASE_URL;
 
-var path = `${url}/api/v1/features`;
+var path = `https://mielproje.com.tr/api/features.php`;
 export const addItem = async (item) => {
   try {
     item = { ...item, token: userToken };

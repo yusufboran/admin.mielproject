@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, styled } from "@mui/material";
+import { Box, Grid, styled } from "@mui/material";
 import { Breadcrumb } from "app/components";
 import ProjectsForm from "app/components/NewProject/ProjectsForm";
 import { updateProjectId } from "app/db/project";
@@ -17,8 +17,8 @@ const ProjectEditPage = () => {
   var url = window.location.href.split("/");
   var projectId = url[url.length - 1];
 
-  const updateConsultant = (fileList, item,uploadPic) => {
-    updateProjectId(projectId,item,fileList,uploadPic );
+  const updateConsultant = (fileList, item, uploadPic) => {
+    updateProjectId(projectId, item, fileList, uploadPic);
   };
   return (
     <Container>
@@ -30,7 +30,9 @@ const ProjectEditPage = () => {
             { name: "Edit", path: "/projects/add" },
           ]}
         />
-        <ProjectsForm func={updateConsultant} id={projectId} />
+        <Grid container style={{ marginTop: 0 }}>
+          <ProjectsForm func={updateConsultant} id={projectId} />
+        </Grid>
       </Box>
     </Container>
   );

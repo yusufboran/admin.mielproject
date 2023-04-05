@@ -3,7 +3,7 @@ import axios from "axios";
 
 var url = process.env.REACT_APP_DATABASE_URL;
 
-var path = `${url}/api/v1/contactform`;
+var path = `https://mielproje.com.tr/api/contact.php`;
 
 const userToken = JSON.parse(
   window.localStorage.getItem("userData")
@@ -21,14 +21,13 @@ export const getItemsList = async (setItems) => {
 
 export const deleteItemId = async (items) => {
   try {
-    items.forEach((item) => {
-      axios.delete(path, {
-        data: {
-          id: item.id,
-          token: userToken,
-        },
+    axios
+      .delete(path, {
+        deneme: true,
+        ids: items.map((item) => item.id),
+      }).then((respoence) => {
+        console.log(respoence.data);
       });
-    });
 
     toast.success("Delete Successfully");
   } catch (error) {

@@ -6,10 +6,9 @@ const userToken = JSON.parse(
   window.localStorage.getItem("userData")
 ).accessToken;
 
-var url = process.env.REACT_APP_DATABASE_URL;
-var path = `${url}/api/v1/about`;
+var path = `https://mielproje.com.tr/api/about.php`;
 
-export const addItem = async (file, context, title) => {
+export const addItem = async (file, contextTr, contextEn, title) => {
   try {
     var now = Date.now();
     var fileName = deleteTurkishCharacters(title + "-" + now + "-" + file.name);
@@ -22,17 +21,25 @@ export const addItem = async (file, context, title) => {
     };
 
     const formData = new FormData();
-    formData.append("files", myNewFile);
+    formData.append("images[]", myNewFile);
 
-    axios.post(`${url}/api/v1/project/upload`, formData, config);
+    axios
+      .post(`https://mielproje.com.tr/api/upload.php`, formData, config)
+      .then((response) => {
+        console.log(response.data);
+      });
 
     var item = {
       image_path: fileName,
-      context: context,
+      contextTr: contextTr,
+      contextEn: contextEn,
       token: userToken,
       title: title,
     };
-    axios.post(path, item);
+    console.log(item)
+    axios.post(path, item).then((response) => {
+      console.log(response.data);
+    });
 
     toast.success("Successfully");
   } catch (error) {
@@ -43,6 +50,7 @@ export const addItem = async (file, context, title) => {
 export const getItemsList = async (setHeader, setContent) => {
   try {
     axios.get(path).then((response) => {
+      console.log(response);
       setHeader(response.data.find((item) => item.title === "header"));
       setContent(response.data.find((item) => item.title === "content"));
     });

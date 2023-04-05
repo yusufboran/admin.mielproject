@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import parse from "html-react-parser";
 
-const Header = ({ children, image, context, edit }) => {
-  //"https://wallpaperaccess.com/full/3155150.jpg"
-  var url = process.env.REACT_APP_DATABASE_URL;
+const Header = ({ children, image, context_tr, context_en, edit }) => {
+  const [state, setState] = useState(true);
+
+  const changeText = () => {
+    setState(!state);
+  };
+  var url = "https://mielproje.com.tr/api/upload";
   return (
     <div
       className="page-header-area bg-img"
       style={{
         backgroundImage: edit
           ? `url(${URL.createObjectURL(image[0])})`
-          : `url(${url}/uploads/${image})`,
+          : `url(${url}/${image})`,
       }}
     >
       {children}
@@ -18,8 +22,10 @@ const Header = ({ children, image, context, edit }) => {
       <div className="container">
         <div className="col-lg-10 col-xl-8 m-auto">
           <div className="page-header-content-inner">
-            <div className="bg-b-opacity  p-4 poem">
-              <span className="about-since">{parse(context)}</span>
+            <div onClick={changeText} className="bg-b-opacity  p-4 poem">
+              <span className="about-since">
+                {state ? parse(context_tr) : parse(context_en)}
+              </span>
             </div>
           </div>
         </div>

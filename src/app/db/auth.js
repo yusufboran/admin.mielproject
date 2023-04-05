@@ -5,14 +5,18 @@ export const dbLogout = async () => {
   // LOGOUT
 };
 
+var path = `https://mielproje.com.tr/api/auth.php`;
 var url = process.env.REACT_APP_DATABASE_URL;
 
 export const dbLogin = async (email, password) => {
   try {
-    var user = await axios.post(`${url}/api/v1/auth/login`, {
+    var user = await axios.post(path, {
       email: email,
       password: password,
+      method: "login",
     });
+
+    console.log(user);
 
     if (user.data.token) {
       toast.success("Successfully!");
@@ -30,7 +34,7 @@ export const dbUserUpdate = async (item) => {
     ).accessToken;
     const email = JSON.parse(window.localStorage.getItem("userData")).user
       .email;
-    var result = await axios.put(`${url}/api/v1/auth`, {
+    var result = await axios.put(path, {
       token: token,
       email: email,
 

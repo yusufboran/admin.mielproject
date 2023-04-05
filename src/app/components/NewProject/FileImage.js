@@ -24,7 +24,7 @@ export default function FileImage({ item ,deleteImage}) {
     >
       <img
         width={250}
-        src={`${url}/uploads/${item.image_path}`}
+        src={`https://mielproje.com.tr/api/upload/${item.path}`}
         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
         alt={item.title}
         style={{
