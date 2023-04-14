@@ -6,7 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
-import { Editor } from "@tinymce/tinymce-react";
+import TextEditor from "../TextEditor";
 
 const AccordionRoot = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -33,7 +33,7 @@ const AccordionRoot = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function TextEditor({ context, setContext, language }) {
+export default function EditorBlock({ context, setContext, language }) {
   return (
     <AccordionRoot>
       <Accordion defaultExpanded>
@@ -52,19 +52,9 @@ export default function TextEditor({ context, setContext, language }) {
         </AccordionSummary>
 
         <AccordionDetails className="details">
-          <Editor
-            apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
-            onEditorChange={(e) => setContext(e)}
-            value={context}
-            init={{
-              selector: "#tinymce",
-              branding: false,
-            }}
-          />
+          <TextEditor setContext={setContext} value={context} />
         </AccordionDetails>
-
         <Divider />
-
         <AccordionActions>
           <Button size="small">Cancel</Button>
           <Button size="small" color="primary">
