@@ -45,14 +45,18 @@ export default function NewProjectItem({ func, id }) {
 
   const [projectName, setProjectName] = useState();
   const [features, setFeatures] = React.useState([]);
-  const [descriptionTR, setDescriptionTR] = React.useState();
-  const [descriptionEN, setDescriptionEN] = React.useState("");
+  const [descriptionTR, setDescriptionTR] = React.useState("11111");
+  const [descriptionEN, setDescriptionEN] = React.useState("asdasdasdasdasd");
   const [fileList, setFileList] = useState([]);
   const [uploadPic, setUploadPic] = useState([]);
 
   const deleteImage = (id) => {
     var objIndex = uploadPic.findIndex((obj) => obj.id == id);
     uploadPic[objIndex] = { ...uploadPic[objIndex], isDelete: true };
+  };
+
+  const contextCopy = () => {
+    setDescriptionEN(descriptionTR);
   };
 
   return (
@@ -90,19 +94,32 @@ export default function NewProjectItem({ func, id }) {
             )}
           />
         </Grid>
-        <Grid item xl={12} xs={12} md={12}>
-          <TextEditor
-            placeholder="Projemiz..."
-            context={descriptionTR}
-            setContext={setDescriptionTR}
-            language={"tr"}
-          />
-          <TextEditor
-            placeholder="Our project..."
-            context={descriptionEN}
-            setContext={setDescriptionEN}
-            language={"en"}
-          />
+        <Grid
+          container
+          spacing={2}
+          style={{ marginLeft: "3px", marginTop: "1px" }}
+        >
+          <Grid item xl={12} xs={12} md={12}>
+            <TextEditor
+              placeholder="Projemiz..."
+              context={descriptionTR}
+              setContext={setDescriptionTR}
+              language={"tr"}
+            />
+          </Grid>
+          <Grid item></Grid>
+          <Grid item xl={12} xs={12} md={12}>
+            <TextEditor
+              placeholder="Our project..."
+              context={descriptionEN}
+              setContext={setDescriptionEN}
+              language={"en"}
+            >
+              <Button onClick={() => contextCopy()} variant="text">
+                Copy Turkish Content
+              </Button>
+            </TextEditor>
+          </Grid>
         </Grid>
       </Grid>
 

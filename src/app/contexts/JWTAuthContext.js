@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
     await dbLogin(email, password).then((userData) => {
       const accessToken = userData.token;
       const response = {
+        loginTime: Number(Date.now() + 30 * 60 * 1000),
         accessToken,
         user: {
           id: 1,
@@ -100,7 +101,8 @@ export const AuthProvider = ({ children }) => {
       try {
         const userData = JSON.parse(window.localStorage.getItem("userData"));
 
-        if (userData) {
+        var { loginTime } = userData;
+        if (loginTime > Number(Date.now())) {
           setSession(userData);
           const { user } = userData;
           dispatch({

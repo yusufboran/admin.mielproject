@@ -33,7 +33,12 @@ const AccordionRoot = styled(Box)(({ theme }) => ({
   },
 }));
 
-export default function EditorBlock({ context, setContext, language }) {
+export default function EditorBlock({
+  children,
+  context,
+  setContext,
+  language,
+}) {
   return (
     <AccordionRoot>
       <Accordion defaultExpanded>
@@ -52,6 +57,7 @@ export default function EditorBlock({ context, setContext, language }) {
         </AccordionSummary>
 
         <AccordionDetails className="details">
+          {children}
           <TextEditor setContext={setContext} value={context} />
         </AccordionDetails>
         <Divider />

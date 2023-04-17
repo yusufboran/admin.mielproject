@@ -1,19 +1,10 @@
 import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-function TextEditor() {
-  const [state, setState] = React.useState({
-    content: "",
-    urlImage: "",
-  });
-  const _handleEditorChange = (e) => {
-    setState({ ...state, content: e });
-  };
-
+function TextEditor({ setContext, value }) {
   return (
     <Editor
-      apiKey={`0l9ca7pyz0qyliy0v9mmkfl2cz69uodvc8l6md8o4cnf6rnc`}
-      initialValue="<p>This is the initial content of the editor</p>"
+      apiKey={`e111szrlelmlh4hln712nuv1aoghe030osw7qy5abezywu5z`}
       init={{
         selector: "#tinymce",
         branding: false,
@@ -62,8 +53,8 @@ function TextEditor() {
           input.click();
         },
       }}
-      onEditorChange={(e) => _handleEditorChange(e)}
-      value={state.saved ? "" : state.content}
+      onEditorChange={(e) => setContext(e)}
+      value={value ? value : ""}
     />
   );
 }
