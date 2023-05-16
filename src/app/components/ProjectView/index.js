@@ -21,7 +21,7 @@ import { ProjectContext } from "app/App";
 export default function ProjectView() {
   const items = useContext(ProjectContext);
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };

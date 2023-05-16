@@ -60,13 +60,6 @@ export default function EditorBlock({
           {children}
           <TextEditor setContext={setContext} value={context} />
         </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="small">Cancel</Button>
-          <Button size="small" color="primary">
-            Save
-          </Button>
-        </AccordionActions>
       </Accordion>
     </AccordionRoot>
   );

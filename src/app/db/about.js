@@ -10,6 +10,7 @@ var path = `https://mielproje.com.tr/api/about.php`;
 
 export const addItem = async (file, contextTr, contextEn, title) => {
   try {
+    console.log(file, contextTr, contextEn, title);
     var now = Date.now();
     var fileName = deleteTurkishCharacters(title + "-" + now + "-" + file.name);
     const myNewFile = new File([file], fileName, { type: file.type });
@@ -36,7 +37,7 @@ export const addItem = async (file, contextTr, contextEn, title) => {
       token: userToken,
       title: title,
     };
-    console.log(item)
+    console.log(item);
     axios.post(path, item).then((response) => {
       console.log(response.data);
     });

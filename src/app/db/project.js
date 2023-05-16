@@ -99,9 +99,11 @@ export const addProject = async (fileList, item) => {
         });
       }
     }
-    axios.post(`https://mielproje.com.tr/api/project.php/`, item).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post(`https://mielproje.com.tr/api/project.php/`, item)
+      .then((res) => {
+        console.log(res.data);
+      });
 
     console.log("Upload ", item);
 
@@ -144,18 +146,26 @@ export const updateProjectId = async (id, item, fileList, uploadPic) => {
           console.log(response.data);
         });
     }
+    var images = [];
+    uploadPic.forEach((img) => {
+      if (img.isDelete) {
+        images.push(img.id);
+        console.log(images);
+      }
+    });
     item = {
       ...item,
       pid: id,
       token: userToken,
       paths: paths,
-      uploadPic: uploadPic,
+      deleteImg: images,
     };
     console.log(item);
-    axios.put(`https://mielproje.com.tr/api/project.php/`, item).then((response) => {
-      console.log(response.data);
-    });
-
+    axios
+      .put(`https://mielproje.com.tr/api/project.php/`, item)
+      .then((response) => {
+        console.log(response.data);
+      });
     toast.success("Successfully Project Update");
   } catch (error) {
     toast.error("updateProjectId", error.message);

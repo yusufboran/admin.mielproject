@@ -42,10 +42,9 @@ export default function FileImage({ item ,deleteImage}) {
 
             position: "absolute",
             color: "white",
-            top: "50%",
-            left: "50%",
+            top: "45%",
+            left: "36%",
             zIndex: 99,
-            transform: "translate(-50%, -50%)",
           }}
           class="btn"
         >

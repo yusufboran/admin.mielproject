@@ -123,7 +123,7 @@ export default function NewProjectItem({ func, id }) {
         </Grid>
       </Grid>
 
-      <Grid spacing={2} container>
+      <Grid spacing={2} style={{ marginTop: "10px" }} container>
         {uploadPic.map((item) => {
           if (!item.isDelete)
             return (

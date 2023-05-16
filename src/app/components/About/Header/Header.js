@@ -7,14 +7,16 @@ const Header = ({ children, image, context_tr, context_en, edit }) => {
   const changeText = () => {
     setState(!state);
   };
-  var url = "https://mielproje.com.tr/api/upload";
+
+  var url = "https://mielproje.com.tr/api/upload/";
+ 
   return (
     <div
       className="page-header-area bg-img"
       style={{
         backgroundImage: edit
           ? `url(${URL.createObjectURL(image[0])})`
-          : `url(${url}/${image})`,
+          : `url(${url}${image})`,
       }}
     >
       {children}

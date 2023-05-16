@@ -48,3 +48,15 @@ export const dbUserUpdate = async (item) => {
     toast.error("Updata", error.message);
   }
 };
+
+export const dbUserRegister = async (item) => {
+  try {
+    await axios.post(path, item).then((response) => {
+      if (response.status == 200) {
+        toast.success("Successfully!");
+      } else toast.error("Register ", response.data);
+    });
+  } catch (error) {
+    toast.error("Register ", error.message);
+  }
+};

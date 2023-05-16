@@ -18,12 +18,8 @@ function getSteps() {
 
 export default function StepperForm() {
   const [file, setFile] = useState([]);
-  const [contextTr, setcontextTr] = useState(
-    'türkçe metin'
-  );
-  const [contextEn, setcontextEn] = useState(
-    'english explanation'
-  );
+  const [contextTr, setcontextTr] = useState("türkçe metin");
+  const [contextEn, setcontextEn] = useState("english explanation");
 
   function getStepContent(stepIndex) {
     switch (stepIndex) {
